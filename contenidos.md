@@ -1,7 +1,7 @@
 # INFO183: Análisis de sistemas lineales
-# a.k.a. Sistemas para el procesamiento digital de señales
-# Universidad Austral de Chile
-## Dr. Pablo Huijse H.
+### a.k.a. Sistemas para el procesamiento digital de señales
+### Universidad Austral de Chile
+### Dr. Pablo Huijse H.
 
 ## Programa tentativo con contenido detallado
 
@@ -73,7 +73,8 @@
     - ~~Procesamiento de imágenes y visión computacional~~ (INFO185)
 
 ## Bibliografía
-    1. Alan V. Oppenheim y Alan S. Willsky, “Señales y Sistemas”, 2da edición, Prentice Hall, 1998, **BM621.382 OPP**
-    1. Alan V. Oppenheim y Ronald. W. Schafer, “Tratamiento de señales en tiempo discreto”, 3ra edición, Pearson, 2000, **BM621.382 OPPt**
-    1. Jonathan Y. Stein, “Digital Signal Processing: A Computer Science Perspective”, John Wiley and Sons, 2000
+
+1. Alan V. Oppenheim y Alan S. Willsky, “Señales y Sistemas”, 2da edición, Prentice Hall, 1998, **BM621.382 OPP**
+1. Alan V. Oppenheim y Ronald. W. Schafer, “Tratamiento de señales en tiempo discreto”, 3ra edición, Pearson, 2000, **BM621.382 OPPt**
+1. Jonathan Y. Stein, “Digital Signal Processing: A Computer Science Perspective”, John Wiley and Sons, 2000
 
