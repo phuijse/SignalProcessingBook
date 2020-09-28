@@ -20,5 +20,5 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 github: 
-	ghp-import -n "$(BUILD_DIR)"
-	git push -u origin gh-pages:
+	ghp-import -n "$(BUILD_DIR)/html"
+	git push -u origin gh-pages
