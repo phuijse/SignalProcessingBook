@@ -976,7 +976,7 @@
     "y = y/np.amax(np.absolute(y))\n",
     "fig, ax = plt.subplots()\n",
     "ax.plot(y)\n",
-    "Audio(ys, rate=Fs)"
+    "Audio(y, rate=Fs)"
    ]
   },
   {
