@@ -17,4 +17,5 @@ Lecciones
    :maxdepth: 1
 
    clases/unidad1/01_introducción.ipynb
+   clases/unidad1/test.ipynb
 
