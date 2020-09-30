@@ -33,7 +33,8 @@ release = '2020'
 extensions = [
         'sphinx.ext.mathjax',
         'sphinx.ext.githubpages',
-        'nbsphinx'
+        'nbsphinx',
+        'bokeh.sphinxext.bokeh_plot'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
