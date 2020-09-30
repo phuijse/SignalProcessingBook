@@ -1,0 +1,6 @@
+- file: README
+
+- part: Unidad 1
+  chapters:
+    - file: clases/unidad1/01_introducción
+    - file: clases/unidad1/02_espectro

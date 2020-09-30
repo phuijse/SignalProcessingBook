@@ -1,0 +1,28 @@
+# Book settings
+title: INFO183 Análisis de sistemas lineales
+author: Pablo Huijse Heise 
+logo: ""
+
+execute:
+  execute_notebooks: cache
+  cache: _notebooks_cache
+
+parse:
+  myst_extended_syntax: true
+
+repository:
+  url: https://github.com/phuijse/UACH-INFO183
+
+html:
+  use_repository_button: false
+  use_issues_button: false
+  use_edit_page_button: false
+
+sphinx:
+  extra_extensions: [bokeh.sphinxext.bokeh_plot]
+  config:
+    language: es
+
+latex:
+  latex_documents:
+    targetname: book.tex
