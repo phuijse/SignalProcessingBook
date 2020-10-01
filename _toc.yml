@@ -1,4 +1,5 @@
 - file: README
+  numbered: true
 
 - part: Unidad 1
   chapters:
