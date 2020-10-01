@@ -1,6 +1,6 @@
 # sphinx
 _build
-notebooks_cache
+_notebooks_cache
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
