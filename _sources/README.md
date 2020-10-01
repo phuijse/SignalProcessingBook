@@ -1,5 +1,4 @@
-INFO183: Análisis de sistemas lineales
-======================================
+# INFO183: Análisis de sistemas lineales
 
 Material docente del curso INFO183 de la carrera de Ingeniería Civil Informática de la Universidad Austral de Chile. 
 
