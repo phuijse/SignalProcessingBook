@@ -1,0 +1,46 @@
+Traceback (most recent call last):
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/site-packages/nbclient/client.py", line 1082, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/site-packages/nbclient/client.py", line 535, in async_execute
+    await self.async_execute_cell(
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/site-packages/nbclient/client.py", line 827, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/phuijse/.conda/envs/info183/lib/python3.8/site-packages/nbclient/client.py", line 735, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+fig, ax = plt.subplots(4, figsize=(6, 6));
+t = np.arange(-3, 3, step=0.01); N = len(t)
+s =  np.cos(2*np.pi*t) - 0.5*np.sin(2.0*np.pi*12*t + np.pi/3) + 0.25*np.sin(2.0*np.pi*23*t) 
+ax[0].plot(t, s, '-'); ax[0].set_title('Original')
+
+def update(Fs):    
+    t_short = t[::int(100/Fs)]; s_short = s[::int(100/Fs)]
+    ax[1].cla(); ax[1].plot(t_short, s_short, '.'); ax[1].set_title('Sampled at %0.2f' %(Fs))
+    S = fftpack.fft(s_short); f = fftpack.fftshift(fftpack.fftfreq(n=len(S), d=1.0/Fs)); 
+    ax[2].cla(); ax[2].plot(f, fftpack.fftshift((np.absolute(S))), linewidth=2);
+    S_pad = np.concatenate((S[:int(len(S)/2)], np.zeros(shape=(N-len(S))), S[int(len(S)/2):]))
+    ax[2].set_title('Spectrum '); s_recon = np.real(fftpack.ifft(S_pad))
+    ax[3].cla(); ax[3].plot(t, s_recon*len(t)/len(t_short), '-', linewidth=2); 
+    ax[3].set_title("Reconstruction from padded spectrum");
+interact(update, Fs=SelectionSlider_nice(options=[5, 10, 25, 33, 50, 100], value=100));
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-2-4a69bfccaad6>[0m in [0;36m<module>[0;34m[0m
+[1;32m     13[0m     [0max[0m[0;34m[[0m[0;36m3[0m[0;34m][0m[0;34m.[0m[0mcla[0m[0;34m([0m[0;34m)[0m[0;34m;[0m [0max[0m[0;34m[[0m[0;36m3[0m[0;34m][0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mt[0m[0;34m,[0m [0ms_recon[0m[0;34m*[0m[0mlen[0m[0;34m([0m[0mt[0m[0;34m)[0m[0;34m/[0m[0mlen[0m[0;34m([0m[0mt_short[0m[0;34m)[0m[0;34m,[0m [0;34m'-'[0m[0;34m,[0m [0mlinewidth[0m[0;34m=[0m[0;36m2[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     14[0m     [0max[0m[0;34m[[0m[0;36m3[0m[0;34m][0m[0;34m.[0m[0mset_title[0m[0;34m([0m[0;34m"Reconstruction from padded spectrum"[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 15[0;31m [0minteract[0m[0;34m([0m[0mupdate[0m[0;34m,[0m [0mFs[0m[0;34m=[0m[0mSelectionSlider_nice[0m[0;34m([0m[0moptions[0m[0;34m=[0m[0;34m[[0m[0;36m5[0m[0;34m,[0m [0;36m10[0m[0;34m,[0m [0;36m25[0m[0;34m,[0m [0;36m33[0m[0;34m,[0m [0;36m50[0m[0;34m,[0m [0;36m100[0m[0;34m][0m[0;34m,[0m [0mvalue[0m[0;34m=[0m[0;36m100[0m[0;34m)[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mNameError[0m: name 'interact' is not defined
+NameError: name 'interact' is not defined
+

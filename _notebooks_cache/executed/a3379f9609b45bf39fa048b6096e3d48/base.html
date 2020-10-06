@@ -5,49 +5,49 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Espectro y Transformada de Fourier &#8212; INFO183 Análisis de sistemas lineales</title>
+    <title>&lt;no title&gt; &#8212; INFO183 Análisis de sistemas lineales</title>
     
-  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+  <link rel="stylesheet" href="../../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
 
     
   <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
   <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
   <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/ui_handle.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/ui_handle.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.30270b6e4c972e43c488.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/translations.js"></script>
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script src="../../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -58,10 +58,9 @@
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Búsqueda" href="../../search.html" />
-    <link rel="prev" title="1. Introducción al procesamiento digital de señales" href="01_introducci%C3%B3n.html" />
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -78,9 +77,9 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
+<a class="navbar-brand text-wrap" href="../../../index.html">
   
-  <img src="../../_static/logo.png" class="logo" alt="logo">
+  <img src="../../../_static/logo.png" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
@@ -88,7 +87,7 @@
 </a>
 </div>
 
-<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
 </form>
@@ -99,14 +98,14 @@
   Unidad 1
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="01_introducci%C3%B3n.html">
+  <a class="reference internal" href="../../../clases/unidad1/01_introducci%C3%B3n.html">
    1. Introducción al procesamiento digital de señales
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../clases/unidad1/02_espectro.html">
    2. Espectro y Transformada de Fourier
   </a>
  </li>
@@ -152,7 +151,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/clases/unidad1/02_espectro.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/_notebooks_cache/executed/a3379f9609b45bf39fa048b6096e3d48/base.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -176,17 +175,17 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/phuijse/UACH-INFO183/master?urlpath=tree/clases/unidad1/02_espectro.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/phuijse/UACH-INFO183/master?urlpath=tree/_notebooks_cache/executed/a3379f9609b45bf39fa048b6096e3d48/base.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
+                    src="../../../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/phuijse/UACH-INFO183/blob/master/clases/unidad1/02_espectro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/phuijse/UACH-INFO183/blob/master/_notebooks_cache/executed/a3379f9609b45bf39fa048b6096e3d48/base.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Lanzamiento Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../../_static/images/logo_colab.png"
+                    src="../../../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
         
         
@@ -202,174 +201,7 @@
             <i class="fas fa-list"></i> Contenido
         </div>
         <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#espectro">
-   2.1. Espectro
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#onda">
-     2.1.1. Onda
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#senal-sinusoidal">
-     2.1.2. Señal sinusoidal
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#componentes-frecuenciales-y-descomposiciones-armonicas">
-   2.2. Componentes frecuenciales y descomposiciones armónicas
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#apendice-numeros-complejos">
-     2.2.1. Apéndice: Números complejos
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#serie-de-fourier">
-   2.3. Serie de Fourier
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#apendice-bases-generadoras">
-     2.3.1. Apéndice: Bases generadoras
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#base-de-fourier">
-     2.3.2. Base de Fourier
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-fs-de-senal-cuadrada">
-     2.3.3. Ejemplo: FS de señal cuadrada
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#propiedades-de-la-fs">
-     2.3.4. Propiedades de la FS
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#teorema-de-parseval">
-     2.3.5. Teorema de Parseval
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformada-de-fourier">
-   2.4. Transformada de Fourier
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#derivacion-a-partir-de-la-fs">
-     2.4.1. Derivación a partir de la FS
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#par-de-fourier">
-     2.4.2. Par de Fourier
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo">
-     2.4.3. Ejemplo
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#propiedades-de-la-transformada-de-fourier">
-     2.4.4. Propiedades de la transformada de Fourier
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     2.4.5. Teorema de Parseval
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definicion-espectros-de-amplitud-y-fase">
-     2.4.6. Definición: Espectros de amplitud y fase
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformada-de-fourier-discreta-dft">
-   2.5. Transformada de Fourier Discreta (DFT)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#propiedades-de-la-dft">
-     2.5.1. Propiedades de la DFT
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definicion-frecuencia-de-nyquist">
-     2.5.2. Definición: Frecuencia de Nyquist
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rango-frecuencial-de-la-dft">
-     2.5.3. Rango frecuencial de la DFT
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#la-dft-es-un-producto-matricial">
-     2.5.4. La DFT es  un producto matricial
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     2.5.5. Ejemplo
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dft-inversa">
-     2.5.6. DFT inversa
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformada-rapida-de-fourier-fft">
-   2.6. Transformada Rápida de Fourier (FFT)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fft-en-python">
-   2.7. FFT en Python
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#funciones-basicas-de-scipy-fft">
-     2.7.1. Funciones básicas de
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       scipy.fft
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     2.7.2. Ejemplo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#actividades-a-realizar-en-la-sesion-practica">
-   2.8. Actividades a realizar en la sesión práctica
-  </a>
- </li>
+            <ul class="simple nav section-nav flex-column">
 </ul>
 
         </nav>
@@ -699,37 +531,6 @@
   }
 }(window));</script></div>
 </div>
-<div class="section" id="espectro-y-transformada-de-fourier">
-<h1><span class="section-number">2. </span>Espectro y Transformada de Fourier<a class="headerlink" href="#espectro-y-transformada-de-fourier" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="espectro">
-<h2><span class="section-number">2.1. </span>Espectro<a class="headerlink" href="#espectro" title="Enlazar permanentemente con este título">¶</a></h2>
-<ul class="simple">
-<li><p>Isaac Newton llamó <strong>espectros</strong> a los componentes que forman la luz blanca y que normalmente no se pueden ver</p></li>
-<li><p>Newton mostró usando prismas que la luz blanca puede descomponerse en colores y viceverza</p></li>
-<li><p>Hoy entendemos que la luz como onda tiene una <strong>frecuencia asociada</strong> y que cada color es una frecuencia particular</p></li>
-</ul>
-<table><tr><td>
-<a class="reference internal image-reference" href="../../_images/fourier-newton.jpg"><img alt="../../_images/fourier-newton.jpg" class="align-center" src="../../_images/fourier-newton.jpg" style="width: 400px;" /></a>
-</td><td>
-<a class="reference internal image-reference" href="../../_images/fourier-prism.jpg"><img alt="../../_images/fourier-prism.jpg" class="align-center" src="../../_images/fourier-prism.jpg" style="width: 400px;" /></a>
-</td></tr></table>
-<p>Paradójicamente, Newton nunca acepto que esto se debía a la frecuencia de la radiación ya que creía en la teoría corpuscular de la luz</p>
-<div class="section" id="onda">
-<h3><span class="section-number">2.1.1. </span>Onda<a class="headerlink" href="#onda" title="Enlazar permanentemente con este título">¶</a></h3>
-<ul class="simple">
-<li><p>Es una perturbación que transporta energía a través del espacio</p></li>
-<li><p>Se describe (tipicamente) por su frecuencia (período), amplitud y fase/desfase</p></li>
-</ul>
-</div>
-<div class="section" id="senal-sinusoidal">
-<h3><span class="section-number">2.1.2. </span>Señal sinusoidal<a class="headerlink" href="#senal-sinusoidal" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>La siguiente es una función del tiempo completamente descrita por su amplitud <span class="math notranslate nohighlight">\(A\)</span>, frecuencia <span class="math notranslate nohighlight">\(f\)</span> y fase <span class="math notranslate nohighlight">\(\phi\)</span></p>
-<div class="math notranslate nohighlight">
-\[
-s(t) = A \cos (2 \pi f t + \phi)
-\]</div>
-<p>El recíproco de la frecuencia también se llama periódo: <span class="math notranslate nohighlight">\(P= \frac{1}{f}\)</span></p>
-<p>Observe como cambia la señal al modificar sus parámetros</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -795,28 +596,6 @@ s(t) = A \cos (2 \pi f t + \phi)
   }
 })(window);</script></div>
 </div>
-</div>
-</div>
-<div class="section" id="componentes-frecuenciales-y-descomposiciones-armonicas">
-<h2><span class="section-number">2.2. </span>Componentes frecuenciales y descomposiciones armónicas<a class="headerlink" href="#componentes-frecuenciales-y-descomposiciones-armonicas" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Una sinusoide que es períodica en una fracción</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{P}{k} ~ \forall k \in \mathbb{N}
-\]</div>
-<p>también es periódica en <span class="math notranslate nohighlight">\(P\)</span></p>
-<p>En general</p>
-<ul class="simple">
-<li><p>Llamamos a <span class="math notranslate nohighlight">\(f_0 = 1/P\)</span> la <strong>frecuencia fundamental</strong></p></li>
-<li><p>Llamamos a <span class="math notranslate nohighlight">\(f_k = k/P = kf_0\)</span> el <strong>k-esimo armónico de <span class="math notranslate nohighlight">\(f_0\)</span></strong></p></li>
-</ul>
-<p>Si sumamos armónicos con distintas amplitudes el resultado es una nueva función periódica que tiene la misma frecuencia fundamental</p>
-<p>En el siguiente ejemplo modifique las amplitudes de cada armónico y observe la señal resultante</p>
-<div class="math notranslate nohighlight">
-\[
-s(t) = A_1 \cos(2\pi f_0) + A_2 \cos(2\pi 2f_0) + A_3 \cos(2\pi 3 f_0)
-\]</div>
-<p>Note que la suma no es necesariamente sinusoidal</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -885,18 +664,6 @@ s(t) = A_1 \cos(2\pi f_0) + A_2 \cos(2\pi 2f_0) + A_3 \cos(2\pi 3 f_0)
   }
 })(window);</script></div>
 </div>
-<p>Podemos generalizar esta noción utilizando la <strong>serie trigonométrica</strong></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-s(t) &amp;= \sum_{k=0}^\infty A_k \cos(2\pi k f t + \phi_k) \nonumber \\
-&amp;= \sum_{k=0}^\infty a_k \cos(2\pi k f t) + b_k \sin(2\pi k f t), \nonumber
-\end{align}
-\end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(a_k = A_k \cos(\phi_k)\)</span> y <span class="math notranslate nohighlight">\(b_k = -A_k \sin(\phi_k)\)</span> se obtienen de <span class="math notranslate nohighlight">\(\cos(x+y) = \cos(x)\cos(y) - \sin(x)\sin(y)\)</span></p>
-<p>Podemos generar una función periódica arbitrarias definiendo <span class="math notranslate nohighlight">\(\{a_k, b_k\}\)</span> y <span class="math notranslate nohighlight">\(f\)</span></p>
-<p>Sea por ejemplo <span class="math notranslate nohighlight">\(a_k = 0\)</span> y <span class="math notranslate nohighlight">\(b_k = 1/k\)</span>  <span class="math notranslate nohighlight">\(\forall k\)</span></p>
-<p>¿Qué señal se obtiene al agregar cada vez más armónicos?</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -964,139 +731,6 @@ s(t) &amp;= \sum_{k=0}^\infty A_k \cos(2\pi k f t + \phi_k) \nonumber \\
   }
 })(window);</script></div>
 </div>
-<div class="alert alert-info">
-<p><strong>Notemos que:</strong> Hasta ahora hemos visto como sintetizar señales a partir de sus armónicos, pero también podemos hacer el proceso inverso, es decir encontrar los armónicos de una señal dada</p>
-</div>
-<p>Tal como Newton descompuso la luz blanca en colores, nosotros podemos descomponer una señal en sus armónicos usando la <strong>serie de Fourier</strong></p>
-<div class="section" id="apendice-numeros-complejos">
-<h3><span class="section-number">2.2.1. </span>Apéndice: Números complejos<a class="headerlink" href="#apendice-numeros-complejos" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea z un número complejo, lo podemos escribir en forma cartesiana</p>
-<div class="math notranslate nohighlight">
-\[
-z = \Re[z] + j \Im[z] = a + j b
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(b \in \mathbb{R}\)</span> y <span class="math notranslate nohighlight">\(j = \sqrt{-1}\)</span> es el número imaginario.</p>
-<p>También podemos escribirlo en forma polar</p>
-<div class="math notranslate nohighlight">
-\[
-z = c e^{j\phi} = c \cos(\phi) + j c \sin(\phi)
-\]</div>
-<p>donde</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(c = |z| = \sqrt{a^2 + b^2} \in [0, \infty]\)</span> es la magnitud</p></li>
-<li><p><span class="math notranslate nohighlight">\(\phi = \angle z = \tan^{-1} \left (\frac{b}{a} \right) \in [-\frac{\pi}{2}, \frac{\pi}{2}]\)</span> es el ángulo</p></li>
-<li><p><span class="math notranslate nohighlight">\(a = c \cos(\phi)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(b = c\sin(\phi)\)</span></p></li>
-</ul>
-<p>se pueden escribir las siguientes relaciones</p>
-<div class="math notranslate nohighlight">
-\[
-\cos(\phi) = \frac{1}{2} (e^{j\phi} + e^{-j\phi}) ~\wedge~ \sin(\phi) = \frac{1}{2j} (e^{j\phi} - e^{-j\phi})
-\]</div>
-<p>el complejo conjugado de <span class="math notranslate nohighlight">\(z = a + j b = c e^{j\phi}\)</span> es</p>
-<div class="math notranslate nohighlight">
-\[
-z^* = a - jb = c e^{-j\phi}
-\]</div>
-</div>
-</div>
-<div class="section" id="serie-de-fourier">
-<h2><span class="section-number">2.3. </span>Serie de Fourier<a class="headerlink" href="#serie-de-fourier" title="Enlazar permanentemente con este título">¶</a></h2>
-<ul class="simple">
-<li><p>En 1807 <em>Jean Baptiste Joseph Fourier</em> presenta un teorema indicando que una función periódica arbitraria con periódo <span class="math notranslate nohighlight">\(P=1/f_0\)</span> puede representarse como una suma ponderada de senos y cosenos</p></li>
-<li><p>La serie de Fourier (FS) es una generalización de la serie trigonométrica a los números complejos</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-s(t) = \sum_{k=-\infty}^{\infty} c_k e^{j 2\pi k f_0 t}, ~~ c_k \in \mathbb{C}
-\]</div>
-<div class="section" id="apendice-bases-generadoras">
-<h3><span class="section-number">2.3.1. </span>Apéndice: Bases generadoras<a class="headerlink" href="#apendice-bases-generadoras" title="Enlazar permanentemente con este título">¶</a></h3>
-<ul class="simple">
-<li><p>Una base es un conjunto de un espacio vectorial</p></li>
-<li><p>Los elementos de la base son linealmente independientes</p></li>
-<li><p>Todos los elementos del espacio pueden expresarse como una combinación lineal de la base</p></li>
-</ul>
-<p>Considere el espacio vectorial <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>. El siguiente conjunto</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\left \{ v_1=\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, v_2= \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, v_3=\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right \},
-\end{split}\]</div>
-<p>es una base generadora de <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>, es decir un vector cualquiera <span class="math notranslate nohighlight">\(\vec a = (a_1, a_2, a_3) \in \mathbb{R}^3\)</span> se puede representar como</p>
-<div class="math notranslate nohighlight">
-\[
-\vec a = a_1 v_1 + a_2 v_2 + a_3 v_3.
-\]</div>
-<p>Un conjunto ortonormal siempre es linealmente independiente</p>
-</div>
-<div class="section" id="base-de-fourier">
-<h3><span class="section-number">2.3.2. </span>Base de Fourier<a class="headerlink" href="#base-de-fourier" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>El conjunto de funciones</p>
-<div class="math notranslate nohighlight">
-\[
-v_k (t) = \frac{1}{\sqrt{P}} e^{j2\pi k t / P} ~~ \forall k \in \mathbb{Z}
-\]</div>
-<p>cumple</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\langle v_n (t), v_m (t) \rangle = \int_0^P v_n (t) v_m^* (t) dt = \frac{1}{P} \int_0^P e^{j2\pi (n-m)t/P} dt =\begin{cases}1 &amp; n=m \\ 0 &amp; n \neq m\end{cases}
-\end{split}\]</div>
-<p><em>i.e.</em> es un conjunto ortonormal (l.i.) en el espacio de funciones periódicas con periódo <span class="math notranslate nohighlight">\(P\)</span></p>
-<p>Esto es facilmente comprobable si estudiamos</p>
-<div class="math notranslate nohighlight">
-\[
-\int_0^P e^{j2\pi k t / P} dt = \int_0^P \cos(2\pi k t/P) dt + j \int_0^P \sin(2\pi k t/P) dt 
-\]</div>
-<p>Es decir que</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\langle s(t),  e^{j 2\pi m t/ P} \rangle &amp;= \int_0^P s(t) e^{-j 2\pi m t/ P} dt \nonumber \\
-&amp;= \int_0^P \sum_{k=-\infty}^{\infty} c_k e^{j 2\pi k t/P} e^{-j 2\pi m t/P} dt \nonumber \\
-&amp;= \sum_{k=-\infty}^{\infty} c_k  \int_0^P e^{j 2\pi (k-m) t/P}  dt \nonumber \\
-&amp;=  c_m  P \nonumber \\
-\end{align}
-\end{split}\]</div>
-<p>Por lo que podemos encontrar los coeficientes de la FS  usando</p>
-<div class="math notranslate nohighlight">
-\[
-c_m = \frac{1}{P} \int_0^P s(t) e^{-j 2\pi m t/P} dt
-\]</div>
-</div>
-<div class="section" id="ejemplo-fs-de-senal-cuadrada">
-<h3><span class="section-number">2.3.3. </span>Ejemplo: FS de señal cuadrada<a class="headerlink" href="#ejemplo-fs-de-senal-cuadrada" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-s(t) = \begin{cases} 1 &amp; t \in[0, \frac{P}{2}] \\ 0 &amp; t \in [\frac{P}{2}, P] \end{cases}
-\end{split}\]</div>
-<p>Los coeficientes de su FS son</p>
-<div class="math notranslate nohighlight">
-\[
-c_0 = \frac{1}{P} \int_0^P s(t) dt = \frac{1}{P} \int_0^{P/2} dt = \frac{1}{2}
-\]</div>
-<p>y</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-c_k &amp;= \frac{1}{P} \int_0^\frac{P}{2} e^{-j2\pi kt/P} dt  \nonumber  \\  
-&amp;= -\frac{j}{P}  \int_0^\frac{P}{2} \sin(2\pi kt/P) dt \nonumber \\
-&amp;=  0 + j \frac{\cos(\pi k)  - 1}{2\pi k} \nonumber 
-\end{align}
-\end{split}\]</div>
-<p>Notemos que los coeficientes</p>
-<ul class="simple">
-<li><p>A excepsión de <span class="math notranslate nohighlight">\(c_0\)</span> sólo tienen parte imaginaria</p></li>
-<li><p>sólo son distintos de cero para armónicos impares (seno)</p></li>
-</ul>
-<p>Finalmente la FS está dada por</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-s(t) &amp;= \sum_{k=-\infty}^{\infty} j \frac{\cos(\pi k)  - 1}{2\pi k}  e^{j 2\pi k t/P} \nonumber \\
-&amp;= \frac{1}{2} + \sum_{k=1}^{\infty}  \frac{1 - \cos(\pi k)}{\pi k} \sin(2\pi k t/P)  \nonumber 
-\end{align}
-\end{split}\]</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -1164,69 +798,6 @@ s(t) &amp;= \sum_{k=-\infty}^{\infty} j \frac{\cos(\pi k)  - 1}{2\pi k}  e^{j 2\
   }
 })(window);</script></div>
 </div>
-</div>
-<div class="section" id="propiedades-de-la-fs">
-<h3><span class="section-number">2.3.4. </span>Propiedades de la FS<a class="headerlink" href="#propiedades-de-la-fs" title="Enlazar permanentemente con este título">¶</a></h3>
-<ul class="simple">
-<li><p>Si <span class="math notranslate nohighlight">\(s(t)\)</span> es par entonces <span class="math notranslate nohighlight">\(c_k\)</span> es par</p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(s(t)\)</span> es impar entonces <span class="math notranslate nohighlight">\(c_k\)</span> es impar</p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(s(t + P/2) = -s(t)\)</span> (antiperiódica) entonces <span class="math notranslate nohighlight">\(c_k=0\)</span> para k par</p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(s(t)\)</span> es real y par entonces <span class="math notranslate nohighlight">\(c_k\)</span> es real y par</p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(s(t)\)</span> es real e impar entonces <span class="math notranslate nohighlight">\(c_k\)</span> es imaginario e impar</p></li>
-<li><p>La FS es lineal</p></li>
-</ul>
-</div>
-<div class="section" id="teorema-de-parseval">
-<h3><span class="section-number">2.3.5. </span>Teorema de Parseval<a class="headerlink" href="#teorema-de-parseval" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>La potencia de una señal puede calcularse a partir de sus componentes</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-P_s &amp;= \frac{1}{P} \int_0^P |s(t)|^2 dt \nonumber \\
-&amp;= \frac{1}{P} \int_0^P |\sum_{k=-\infty}^{\infty} c_k e^{j 2\pi k t/P }|^2 dt \nonumber \\
-&amp;= \frac{1}{P} \int_0^P \sum_{k=-\infty}^{\infty} |c_k |^2 dt \nonumber \\
-&amp;= \sum_{k=-\infty}^\infty |c_k|^2 \nonumber
-\end{align}
-\end{split}\]</div>
-</div>
-</div>
-<div class="section" id="transformada-de-fourier">
-<h2><span class="section-number">2.4. </span>Transformada de Fourier<a class="headerlink" href="#transformada-de-fourier" title="Enlazar permanentemente con este título">¶</a></h2>
-<div class="alert alert-info">
-<p><strong>Notemos que:</strong> Podemos extender el concepto de descomposición armónica a señales no periódicas usando la Transformada de Fourier. Esta herramienta matemática será fundamental en este curso</p>
-</div>
-<ul class="simple">
-<li><p>El concepto de frecuencia puede aplicarse también a señales no-periódicas</p></li>
-<li><p>Según <strong>Joseph Fourier</strong> una señal no-periódica puede ser vista como una señal periódica <strong>con un período infinito</strong></p></li>
-<li><p>El único requisito es que ahora las frecuencias son un continuo, con un espaciado infinitesimal</p></li>
-</ul>
-<p>Veremos que:</p>
-<ul class="simple">
-<li><p>Una señal analógica puede ser vista como continua en el tiempo o continua en frecuencia</p></li>
-<li><p>Más adelante estudiaremos la Transformada de Fourier discreta (DFT) para señales digitales</p></li>
-</ul>
-<div class="section" id="derivacion-a-partir-de-la-fs">
-<h3><span class="section-number">2.4.1. </span>Derivación a partir de la FS<a class="headerlink" href="#derivacion-a-partir-de-la-fs" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea un tren de pulsos cuadrado con periódo P y ancho <span class="math notranslate nohighlight">\(2T &lt; P\)</span> definido en un período como</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-s(t) = \begin{cases} 1, &amp; |t| &lt; T \\ 0, &amp; T&lt;|t| &lt; P/2 \end{cases}
-\end{split}\]</div>
-<p>Su serie de Fourier es</p>
-<div class="math notranslate nohighlight">
-\[
-c_0 = \frac{1}{P} \int_{-P/2}^{P/2} s(t) dt = \frac{1}{P} \int_{-T}^{T}  dt = \frac{2T}{P}
-\]</div>
-<p>y</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-c_k &amp;= \frac{1}{P} \int_{-T}^{T} e^{-j2\pi kt/P} dt  \nonumber \\
-&amp;= \frac{1}{\pi k} \sin \left (2\pi k \frac{T}{P} \right)  \nonumber 
-\end{align}
-\end{split}\]</div>
-<p>En el siguiente ejemplo la figura izquierda muestra la señal de pulso cuadrado mientras que la derecha muestra <span class="math notranslate nohighlight">\(c_k\)</span> en función de <span class="math notranslate nohighlight">\(k\)</span></p>
-<p>¿Qué ocurre con <span class="math notranslate nohighlight">\(c_k\)</span> a medida que <span class="math notranslate nohighlight">\(P\)</span> aumenta (<span class="math notranslate nohighlight">\(f\)</span> disminuye)?</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -1309,70 +880,6 @@ c_k &amp;= \frac{1}{P} \int_{-T}^{T} e^{-j2\pi kt/P} dt  \nonumber \\
   }
 })(window);</script></div>
 </div>
-<ul class="simple">
-<li><p>A mayor P disminuye la frecuencia fundamental</p></li>
-<li><p>Cuando P es muy grande el tren de pulsos tiende a un único pulso</p></li>
-<li><p>Llamamos «envolvente» a la linea imaginaria que conecta los coeficientes <span class="math notranslate nohighlight">\(P \cdot c_k\)</span></p></li>
-<li><p>A mayor P la envolvente se muestrea con detalles más finos</p></li>
-</ul>
-<p>Si tomamos el caso <span class="math notranslate nohighlight">\(P \to \infty\)</span> la envolvente resultante es</p>
-<div class="math notranslate nohighlight">
-\[
-\lim_{P\to \infty} P c_k = S(f) = \int_{-\infty}^{\infty} s(t) e^{-j 2\pi t  f} dt,
-\]</div>
-<p>o también</p>
-<div class="math notranslate nohighlight">
-\[
-S(\omega) = \int_{-\infty}^{\infty} s(t) e^{-j\omega t } dt,
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(\omega = 2\pi f\)</span> se llama frecuencia angular.</p>
-<div class="alert alert-info">
-<p><strong>Atención</strong>: Esto se conoce como <strong>transformada de Fourier directa</strong> o <strong>integral de Fourier</strong>.</p>
-</div><p>Reemplazando el resultado anterior en la ecuación de síntesis y tomando el límite cuando <span class="math notranslate nohighlight">\(f_0 \to 0\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-s(t) &amp;= \lim_{f_0 \to 0} \sum_{k=-\infty}^{\infty} f_0 S(k f_0) e^{j 2\pi t  k f_0} \nonumber  \\
-&amp;= \int_{-\infty}^{\infty} S(f) e^{j 2\pi t  f} df \nonumber \\
-&amp;= \frac{1}{2\pi} \int_{-\infty}^{\infty} S(\omega) e^{j \omega t } d\omega, \nonumber 
-\end{align}
-\end{split}\]</div>
-<div class="alert alert-info">
-<p><strong>Atención</strong>: Esto se conoce como <strong>transformada de Fourier inversa</strong></p>
-</div>
-</div>
-<div class="section" id="par-de-fourier">
-<h3><span class="section-number">2.4.2. </span>Par de Fourier<a class="headerlink" href="#par-de-fourier" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Los operadores</p>
-<div class="math notranslate nohighlight">
-\[
-S(\omega) = \mathbb{FT} [s(t)] = \int_{-\infty}^{\infty} s(t) e^{-j\omega t } dt
-\]</div>
-<p>y</p>
-<div class="math notranslate nohighlight">
-\[
-s(t) = \mathbb{FT}^{-1} [S(\omega)] = \frac{1}{2\pi} \int_{-\infty}^{\infty} S(\omega) e^{j \omega t } d\omega, \nonumber 
-\]</div>
-<p>se conoce como par de Fourier y nos permiten analizar una señal en el dominio del tiempo o en el dominio de la frecuencia sin pérdidas</p>
-</div>
-<div class="section" id="ejemplo">
-<h3><span class="section-number">2.4.3. </span>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Consideremos nuevamente el pulso cuadrado</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-s(t) = \begin{cases} 1, &amp; |t| &lt; T \\ 0, &amp; |t| &gt; T\end{cases}
-\end{split}\]</div>
-<p>su transformada de Fourier es</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-S(\omega) &amp;= \int_{-\infty}^{\infty} s(t) e^{-j\omega t } dt \nonumber \\
-&amp;= \int_{-T}^{T} e^{-j\omega t } dt \nonumber \\
-&amp;= \frac{1}{-j\omega} \left(e^{-j\omega T }  - e^{j\omega T } \right) \nonumber \\
-&amp;= \frac{2}{\omega}  \sin(\omega T) = 2T \text{sinc}(\omega T) \nonumber 
-\end{align}
-\end{split}\]</div>
-<p>Esto calza precisamente con lo que vimos anteriomente</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mf">0.25</span>
@@ -1430,204 +937,6 @@ S(\omega) &amp;= \int_{-\infty}^{\infty} s(t) e^{-j\omega t } dt \nonumber \\
   }
 })(window);</script></div>
 </div>
-</div>
-<div class="section" id="propiedades-de-la-transformada-de-fourier">
-<h3><span class="section-number">2.4.4. </span>Propiedades de la transformada de Fourier<a class="headerlink" href="#propiedades-de-la-transformada-de-fourier" title="Enlazar permanentemente con este título">¶</a></h3>
-<ol class="simple">
-<li><p>La transformada de Fourier es un operador lineal, si tenemos dos señales y dos valores escalares entonces</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[
-\mathbb{FT}[c_1 s_1(t) + c_2 s_2(t)] = c_1\mathbb{FT}[s_1(t)] + c_2\mathbb{FT}[s_2(t)] 
-\]</div>
-<ol class="simple">
-<li><p>El operador de convolución en el tiempo se convierte en multiplicación en frecuencia</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[
-\mathbb{FT}[(s_1 * s_2)(t)] =  \mathbb{FT}[s_1(t)] \cdot \mathbb{FT}[s_2(t)],
-\]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-(s_1 * s_2)(t) = \int s_1(\tau) s_2(t-\tau) d\tau
-\]</div>
-<p>es la operación de convolución</p>
-<ol class="simple">
-<li><p>Así mismo, la multiplicación en frecuencia se convierte en multiplicación en el tiempo</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[
-\mathbb{FT}[s_1(t)\cdot s_2(t)] =  \frac{1}{2\pi}\mathbb{FT}[s_1(t)] * \mathbb{FT}[s_2(t)]  
-\]</div>
-</div>
-<div class="section" id="id1">
-<h3><span class="section-number">2.4.5. </span>Teorema de Parseval<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>La energía se preserva entre frecuencia y tiempo
-$<span class="math notranslate nohighlight">\(
-\int | s(t) |^2 dt = \frac{1}{2\pi} \int | S(\omega) |^2 d\omega
-\)</span>$</p>
-</div>
-<div class="section" id="definicion-espectros-de-amplitud-y-fase">
-<h3><span class="section-number">2.4.6. </span>Definición: Espectros de amplitud y fase<a class="headerlink" href="#definicion-espectros-de-amplitud-y-fase" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea la transformada de Fourier de una función general <span class="math notranslate nohighlight">\(s(t)\)</span></p>
-<p>Llamamos a <span class="math notranslate nohighlight">\(S(\omega)\)</span> el espectro de <span class="math notranslate nohighlight">\(s(t)\)</span></p>
-<p>El espectro es un número complejo que podemos escribir en notación polar como</p>
-<div class="math notranslate nohighlight">
-\[
-S(\omega) = |S(\omega)| e^{j\Phi(\omega)},
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(|S(\omega)|\)</span> se conoce como <strong>espectro de amplitud</strong> y <span class="math notranslate nohighlight">\(\Phi(\omega)\)</span> como <strong>espectro de fase</strong></p>
-</div>
-</div>
-<div class="section" id="transformada-de-fourier-discreta-dft">
-<h2><span class="section-number">2.5. </span>Transformada de Fourier Discreta (DFT)<a class="headerlink" href="#transformada-de-fourier-discreta-dft" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>En nuestro caso particular nos interesa procesar señales usando software</p>
-<p>Por ende asumiremos que existe un proceso que sensa y convierte la señal analógica continua en una señal digital, como en el siguiente diagrama</p>
-<a class="reference internal image-reference" href="../../_images/signal-sampling1.png"><img alt="../../_images/signal-sampling1.png" src="../../_images/signal-sampling1.png" style="width: 500px;" /></a>
-<ul class="simple">
-<li><p>La señal análogica <span class="math notranslate nohighlight">\(s(t)\)</span> se muestrea cada <span class="math notranslate nohighlight">\(T_s\)</span> durante un tiempo <span class="math notranslate nohighlight">\(T\)</span></p></li>
-<li><p>El tiempo asociada a <span class="math notranslate nohighlight">\(s_n\)</span> es <span class="math notranslate nohighlight">\(t_n = n \cdot T_s\)</span> [s]</p></li>
-<li><p>El inverso del periódo de muestreo se denomina <strong>frecuencia de muestreo</strong>: <span class="math notranslate nohighlight">\(F_s = \frac{1}{T_s}\)</span> [Hz]</p></li>
-<li><p>La cantidad de muestras del arreglo <span class="math notranslate nohighlight">\(\{s_n\}\)</span> es equivalente a <span class="math notranslate nohighlight">\(N = \lfloor T F_s \rfloor \)</span></p></li>
-</ul>
-<p>Más formalmente diremos que existe un sistema muestreador con frecuencia de muestreo <span class="math notranslate nohighlight">\(F_s\)</span> [Hz] tal que</p>
-<div class="math notranslate nohighlight">
-\[
-s(t) = \sum_{n=0}^{N-1} s[n] \delta(t - n/F_s),
-\]</div>
-<p>Si reemplazamos en la transformada de Fourier obtenemos</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-S(\omega) &amp;= \int s(t) e^{-j\omega t} dt \nonumber \\
-&amp;= \int \sum_{n=0}^{N-1} s[n] \delta(t - n/F_s) e^{-j\omega t} dt \nonumber \\
-&amp;=  \sum_{n=0}^{N-1} s[n] \int \delta(t - n/F_s) e^{-j\omega t} dt \nonumber \\
-&amp;=  \sum_{n=0}^{N-1} s[n] e^{-j\omega n/F_s} \nonumber 
-\end{align}
-\end{split}\]</div>
-<p>Finalmente definiendo <span class="math notranslate nohighlight">\(\omega = 2 \pi f = 2 \pi k \Delta f\)</span> donde <span class="math notranslate nohighlight">\(\Delta f = \frac{1}{T} = \frac{F_s}{N}\)</span> y reemplazando obtenemos</p>
-<div class="math notranslate nohighlight">
-\[
-S[k] =  \sum_{n=0}^{N-1} s[n] e^{-j \frac{2 \pi}{N} k n},
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(k = [0, 1, \ldots N-1]\)</span></p>
-<div class="alert alert-info">
-<p><strong>Atención</strong>: Esto se conoce como <strong>transformada de Fourier discreta</strong> o DFT</p>
-</div>
-<ul class="simple">
-<li><p>El índice <span class="math notranslate nohighlight">\(n\)</span> representa la discretización en el tiempo</p></li>
-<li><p>El índice <span class="math notranslate nohighlight">\(k\)</span> representa la discretización en frecuencia</p></li>
-</ul>
-<div class="section" id="propiedades-de-la-dft">
-<h3><span class="section-number">2.5.1. </span>Propiedades de la DFT<a class="headerlink" href="#propiedades-de-la-dft" title="Enlazar permanentemente con este título">¶</a></h3>
-<ol class="simple">
-<li><p>La DFT comparte las propiedades de la FT</p></li>
-<li><p>La DFT es periódica, con período <span class="math notranslate nohighlight">\(N\)</span></p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-S[k+N] &amp;= \sum_{n=0}^{N-1} s[n] e^{-j \frac{2 \pi}{N} (k+N) n} \nonumber \\
-&amp;=   \sum_{n=0}^{N-1} s[n] e^{-j \frac{2 \pi}{N} k n} e^{-j 2 \pi n} \nonumber \\
-&amp;= \sum_{n=0}^{N-1} s[n] e^{-j \frac{2 \pi}{N} k n} \nonumber 
-\end{align}
-\end{split}\]</div>
-</div>
-<div class="section" id="definicion-frecuencia-de-nyquist">
-<h3><span class="section-number">2.5.2. </span>Definición: Frecuencia de Nyquist<a class="headerlink" href="#definicion-frecuencia-de-nyquist" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Es la frecuencia más alta con que puede representarse una señal muestreada a <span class="math notranslate nohighlight">\(F_s\)</span></p>
-<p>Su valor es <span class="math notranslate nohighlight">\(\frac{F_s}{2}\)</span></p>
-</div>
-<div class="section" id="rango-frecuencial-de-la-dft">
-<h3><span class="section-number">2.5.3. </span>Rango frecuencial de la DFT<a class="headerlink" href="#rango-frecuencial-de-la-dft" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Considerando la frecuencia de Nyquist y la periodicidad de la DFT la correspondencia entre índices y frecuencias es</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{matrix}
-k &amp;  : &amp; 0, &amp; 1, &amp; 2, &amp; \ldots &amp; N/2 -1, &amp; N/2, &amp; N/2+1, &amp; \ldots &amp; N-2, &amp; N-1 \\
-f = k \frac{F_s}{N} &amp; : &amp; 0, &amp; \frac{F_s}{N}, &amp; \frac{2 F_s}{N}, &amp; \ldots &amp; \frac{F_s}{2} - \frac{F_s}{N}, &amp; \frac{F_s}{2} = -\frac{F_s}{2}, &amp;  \frac{F_s}{2} + \frac{F_s}{N} = - \frac{F_s}{2}  + \frac{F_s}{N}, &amp; \ldots &amp; -\frac{2 F_s}{N},  &amp; -\frac{F_s}{N}
-\end{matrix}
-\end{split}\]</div>
-</div>
-<div class="section" id="la-dft-es-un-producto-matricial">
-<h3><span class="section-number">2.5.4. </span>La DFT es  un producto matricial<a class="headerlink" href="#la-dft-es-un-producto-matricial" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea <span class="math notranslate nohighlight">\(\{s_n\}_{n=0,\ldots,N-1}\)</span> y definiendo</p>
-<div class="math notranslate nohighlight">
-\[
-W_N = e^{-j \frac{2\pi}{N}} = \cos \left(\frac{2\pi}{N}\right) - j \sin \left(\frac{2\pi}{N}\right)
-\]</div>
-<p>podemos expresar la transformada de Fourier discreta como</p>
-<div class="math notranslate nohighlight">
-\[
-S[k] =  \sum_{n=0}^{N-1} s[n] W_N^{kn}, \quad k = [0, 1, \ldots N-1],
-\]</div>
-<p>que también puede ser expresado matricialmente como</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\begin{pmatrix} 
-S[0] \\
-S[1] \\
-S[2] \\
-\vdots \\
-S[N-1] \\
-\end{pmatrix} &amp;=
-\begin{pmatrix}
-1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\
-1 &amp; W_N &amp; W_N^2 &amp; \cdots &amp; W_N^{N-1} \\
-1 &amp; W_N^2 &amp; W_N^4 &amp; \cdots &amp; W_N^{N-2} \\
-\vdots &amp; \dots &amp; \dots &amp; \ddots &amp;  \vdots \\
-1 &amp; W_N^{N-1} &amp; W_N^{N-2} &amp; \cdots &amp; W_N \\
-\end{pmatrix} 
-\begin{pmatrix} 
-s[0] \\
-s[1] \\
-s[2] \\
-\vdots \\
-s[N-1] \\
-\end{pmatrix} \nonumber  \\
-S &amp;= \Omega s,
-\end{align}
-\end{split}\]</div>
-<p>Notemos que:</p>
-<ul class="simple">
-<li><p>Por definición <span class="math notranslate nohighlight">\(W_N^{kn} = \left(e^{-j \frac{2\pi}{N}}\right)^{kn} = e^{-j \frac{2\pi}{N}kn}\)</span></p></li>
-<li><p>Por periodicidad <span class="math notranslate nohighlight">\(W_N^{2(N-1)} = W_N^{2(N-1) - N}  = W_N^{N-2}\)</span></p></li>
-<li><p>También se tiene simetría hermítica: <span class="math notranslate nohighlight">\(W_N^{k(-n)} = W_N^{-kn} = (W_N^{kn})^*\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\Omega\)</span> es una matriz cuadrada y simétrica</p></li>
-</ul>
-<div class="alert alert-info">
-<p><strong>Costo computacional:</strong> El cálculo de la DFT tiene complejidad cuadrática: <span class="math notranslate nohighlight">\(N^2\)</span> multiplicaciones y <span class="math notranslate nohighlight">\(N\)</span> sumas</p>
-</div>
-</div>
-<div class="section" id="id2">
-<h3><span class="section-number">2.5.5. </span>Ejemplo<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea <span class="math notranslate nohighlight">\(S=\{S[0], S[1], S[2], S[3]\}^T\)</span> podemos encontrar <span class="math notranslate nohighlight">\(s\)</span> usando</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-S= 
-\begin{pmatrix} 
-S[0] \\
-S[1] \\
-S[2] \\
-S[3] 
-\end{pmatrix} =
-\begin{pmatrix}
-1 &amp; 1  &amp; 1 &amp; 1\\
-1 &amp; W_4  &amp; W_4^2 &amp; W_4^3 \\
-1 &amp; W_4^2  &amp; W_4^4 &amp; W_4^2 \\
-1 &amp; W_4^3  &amp; W_4^2 &amp; W_4 \\
-\end{pmatrix} 
-s = \begin{pmatrix}
-1 &amp; 1  &amp; 1 &amp; 1\\
-1 &amp; -j  &amp; -1 &amp; j \\
-1 &amp; -1  &amp; 1 &amp; -1 \\
-1 &amp; j  &amp; -1 &amp; -j \\
-\end{pmatrix} 
-s
-\end{split}\]</div>
-<p>Luego sólo tenemos que encontrar el inverso de <span class="math notranslate nohighlight">\(\Omega\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1657,153 +966,6 @@ s
 </div>
 </div>
 </div>
-<p>Notemos que el inverso de <span class="math notranslate nohighlight">\(\Omega\)</span> es su complejo conjugado dividido N</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\Omega^{-1} = \frac{1}{4}
-\begin{pmatrix}
-1 &amp; 1 &amp; 1 &amp;  1 \\
-1 &amp; j &amp; -1 &amp;  -j \\
-1 &amp; -1 &amp; 1 &amp;  -1 \\
-1 &amp; -j &amp; -1  &amp; j \\
-\end{pmatrix} = \frac{1}{4} \Omega^*
-\end{split}\]</div>
-<p>Se puede verificar que esto ocurre para todo N</p>
-</div>
-<div class="section" id="dft-inversa">
-<h3><span class="section-number">2.5.6. </span>DFT inversa<a class="headerlink" href="#dft-inversa" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>En resumen podemos recuperar <span class="math notranslate nohighlight">\(s\)</span> a partir de <span class="math notranslate nohighlight">\(S\)</span> usando</p>
-<div class="math notranslate nohighlight">
-\[
-s = \frac{1}{N} \Omega^* S
-\]</div>
-<p>o lo que es equivalente</p>
-<div class="math notranslate nohighlight">
-\[
-s[n] = \frac{1}{N} \sum_{k=0}^{N-1} S[k] W_N^{-kn}, \quad n = [0, 1, \ldots N-1]
-\]</div>
-<p>que corresponde a la DFT inversa y cuya únicas diferencias con la DFT son el factor <span class="math notranslate nohighlight">\(\frac{1}{N}\)</span> y el signo del exponente</p>
-</div>
-</div>
-<div class="section" id="transformada-rapida-de-fourier-fft">
-<h2><span class="section-number">2.6. </span>Transformada Rápida de Fourier (FFT)<a class="headerlink" href="#transformada-rapida-de-fourier-fft" title="Enlazar permanentemente con este título">¶</a></h2>
-<ul class="simple">
-<li><p>La computación de la DFT tiene complejidad <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>, es muy costosa de aplicar en la práctica</p></li>
-<li><p>Existe una aproximación numérica exacta con complejidad <span class="math notranslate nohighlight">\(\mathcal{O}(N\log N)\)</span>: la <strong>Fast Fourier Transform</strong> (FFT).</p></li>
-</ul>
-<p>El algoritmo de Cooley-Tukey, que es tal vez el algoritmo FFT más famoso, obtiene una expresión recursiva que explota las simetrías en la DFT</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-S[k] &amp;=  \sum_{n=0}^{N-1} s[n] W_N^{kn} \nonumber \\
-&amp;= \sum_{n=0}^{N/2-1} s[2n] W_N^{k 2n} + \sum_{n=0}^{N/2-1} s[2n+1] W_N^{k(2n+1)} \nonumber \\
-&amp;= \sum_{n=0}^{N/2-1} s[2n] W_{N/2}^{kn} + W_N^{k} \sum_{n=0}^{N/2-1} s[2n+1] W_{N/2}^{kn} \nonumber \\
-&amp;= S_E[k] + W_N^{k} S_O[k] ~~ \forall k \in [0,N/2]  \nonumber 
-\end{align} 
-\end{split}\]</div>
-<p>Notar que se calculan dos «medias» DFT, una mitad se enfoca en los índices pares (even) y la otra en los impares (odd)</p>
-<p>Por periodicidad de la DFT tenemos que</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-S_E[k + N/2] &amp;=  \sum_{n=0}^{N/2-1} s[2n] W_{N/2}^{(k+N/2)n} \nonumber \\
-&amp;=  \sum_{n=0}^{N/2-1} s[2n] W_{N/2}^{kn} \exp \left(-j2\pi n \right) = S_E[k], \nonumber
-\end{align}
-\end{split}\]</div>
-<p>e igualmente</p>
-<div class="math notranslate nohighlight">
-\[
-S_O[k + N/2] = S_O[k],
-\]</div>
-<p>juntando ambos tenemos que</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-S[k + N/2] &amp;=  S_E[k + N/2] + W_{N}^{(k+N/2)} S_O[k + N/2] \nonumber  \\
-&amp;=  S_E[k] + W_{N}^{k} \exp \left(-j\pi\right) S_O[k] \nonumber \\
-&amp;=  S_E[k] - W_{N}^{k} S_O[k] \nonumber 
-\end{align}
-\end{split}\]</div>
-<p>es decir</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-S[k] &amp;=  S_E[k] + W_{N}^{k} S_O[k] \nonumber \\
-S[k + N/2] &amp;=  S_E[k] - W_{N}^{k} S_O[k] \quad \forall k \in [0,N/2]  \nonumber 
-\end{align}
-\end{split}\]</div>
-<div class="alert alert-info">
-<p><strong>Costo computacional:</strong> La DFT de <span class="math notranslate nohighlight">\(k\)</span> y <span class="math notranslate nohighlight">\(k+N/2\)</span> difieren sólo en un signo. Cada ves que dividimos el intervalo podemos reducir los cómputos a la mitad. El costo de la FFT tiene complejidad <span class="math notranslate nohighlight">\(N \log N\)</span></p>
-</div>
-<img alt="../../_images/fft-16samples.png" src="../../_images/fft-16samples.png" />
-<p>Imagen tomada de: <a class="reference external" href="http://www.themobilestudio.net/the-fourier-transform-part-14">http://www.themobilestudio.net/the-fourier-transform-part-14</a></p>
-<p>Cantidad de multiplicaciones</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>N</p></th>
-<th class="head"><p>DFT</p></th>
-<th class="head"><p>FFT</p></th>
-<th class="head"><p>FFT/DFT [%]</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>32</p></td>
-<td><p>1024</p></td>
-<td><p>160</p></td>
-<td><p>15.6</p></td>
-</tr>
-<tr class="row-odd"><td><p>128</p></td>
-<td><p>16,384</p></td>
-<td><p>896</p></td>
-<td><p>5.46</p></td>
-</tr>
-<tr class="row-even"><td><p>1,024</p></td>
-<td><p>1,048,576</p></td>
-<td><p>10,240</p></td>
-<td><p>0.97</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="fft-en-python">
-<h2><span class="section-number">2.7. </span>FFT en Python<a class="headerlink" href="#fft-en-python" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Existen múltiples implementaciones de la FFT. En este curso utilizaremos el módulo <code class="docutils literal notranslate"><span class="pre">fft</span></code> de la librería científica <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/tutorial/fft.html"><code class="docutils literal notranslate"><span class="pre">scipy</span></code> </a></p>
-<p>Si se require mayor eficiencia se puede considerar la librería <a class="reference external" href="https://hgomersall.github.io/pyFFTW/"><code class="docutils literal notranslate"><span class="pre">pyFFTW</span></code> </a> que es un wrapper de la Fast Fourier Transform in the West (FFTW), famosa implementación escrita en lenguaje C</p>
-<div class="section" id="funciones-basicas-de-scipy-fft">
-<h3><span class="section-number">2.7.1. </span>Funciones básicas de <code class="docutils literal notranslate"><span class="pre">scipy.fft</span></code><a class="headerlink" href="#funciones-basicas-de-scipy-fft" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Las principal función que utilizaremos es:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="c1"># Un arreglo de NumPy,</span>
-              <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># El número de muestras que se usarán para calcular la FFT</span>
-              <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># El eje del arreglo en que se calculara la FFT,</span>
-              <span class="n">workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># Número de trabajadores para calcular la FFT en paralelo</span>
-              <span class="o">...</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>que calcula la FFT de un arreglo de NumPy. Por convención, esta función retorna un arreglo con el espectro de frecuencia ordenando según</p>
-<div class="math notranslate nohighlight">
-\[
-f = \left[0, \frac{F_s}{N},  \frac{2 F_s}{N}, \ldots, \frac{F_s}{2},  \ldots  -\frac{2 F_s}{N},   -\frac{F_s}{N} \right]
-\]</div>
-<p>es decir que primero retorna las frecuencias positivas y luego las negativas en orden invertido</p>
-<p>Podemos usar la función:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="c1">#  Un arreglo de numpy</span>
-                  <span class="o">...</span>
-                  <span class="p">)</span>
-</pre></div>
-</div>
-<p>para dar vuelta la primera y segunda mitad del espectro obteniendo un orden más natural</p>
-<p>También podemos usar:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="c1">#  El número de muestras de x</span>
-                  <span class="n">d</span><span class="o">=</span><span class="mf">1.0</span> <span class="c1"># El inverso de la frecuencia de muestreo</span>
-                 <span class="p">)</span>
-</pre></div>
-</div>
-<p>para calcular las frecuencias asociadas a la FFT (útil para graficar)</p>
-</div>
-<div class="section" id="id3">
-<h3><span class="section-number">2.7.2. </span>Ejemplo<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea una señal con dos componentes sinusoidales a frecuencia <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(4\)</span> Hz, respetivamente, y con desfase <span class="math notranslate nohighlight">\(0\)</span> y <span class="math notranslate nohighlight">\(\pi/3 \approx 1.0472\)</span>, respectivamente</p>
-<p>Calculemos los espectros de magnitud y fase usando la FFT</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.fft</span> <span class="k">as</span> <span class="nn">sfft</span>
@@ -1865,7 +1027,6 @@ f = \left[0, \frac{F_s}{N},  \frac{2 F_s}{N}, \ldots, \frac{F_s}{2},  \ldots  -\
   }
 })(window);</script></div>
 </div>
-<p>Considerando sólo las frecuencias positivas (mitad derecha del espectro) podemos buscar la frecuencia de los dos puntos más altos del espectro de magnitud</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">SA</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># Ordena de menor a mayor y me quedo con las últimas dos</span>
@@ -1879,7 +1040,6 @@ f = \left[0, \frac{F_s}{N},  \frac{2 F_s}{N}, \ldots, \frac{F_s}{2},  \ldots  -\
 </div>
 </div>
 </div>
-<p>Las fases asociadas a estas frecuencias son</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SP</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span>
@@ -1892,9 +1052,6 @@ f = \left[0, \frac{F_s}{N},  \frac{2 F_s}{N}, \ldots, \frac{F_s}{2},  \ldots  -\
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-<p>Hemos logrado recuperar las frecuencias y las fases de los componentes individuales!</p>
-</div><p>Comparemos ahora la diferencia en tiempo de cómputo entra la DFT calculada como producto matricial y la FFT ¿Cuántos ordenes de magnitud hay de diferencia?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span> <span class="o">=</span> <span class="n">t</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">*</span><span class="n">f</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
@@ -1916,16 +1073,6 @@ The slowest run took 4.11 times longer than the fastest. This could mean that an
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="actividades-a-realizar-en-la-sesion-practica">
-<h2><span class="section-number">2.8. </span>Actividades a realizar en la sesión práctica<a class="headerlink" href="#actividades-a-realizar-en-la-sesion-practica" title="Enlazar permanentemente con este título">¶</a></h2>
-<ul class="simple">
-<li><p>Profundizar en el uso de <code class="docutils literal notranslate"><span class="pre">scipy.fft</span></code></p></li>
-<li><p>Calcular el espectro de ruido blanco y ruido rojo</p></li>
-</ul>
-</div>
-</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1940,7 +1087,7 @@ The slowest run took 4.11 times longer than the fastest. This could mean that an
         },
         kernelOptions: {
             kernelName: "info183",
-            path: "./clases/unidad1"
+            path: "./_notebooks_cache/executed/a3379f9609b45bf39fa048b6096e3d48"
         },
         predefinedOutput: true
     }
@@ -1955,7 +1102,6 @@ The slowest run took 4.11 times longer than the fastest. This could mean that an
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="01_introducci%C3%B3n.html" title="previous page"><span class="section-number">1. </span>Introducción al procesamiento digital de señales</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -1975,7 +1121,7 @@ The slowest run took 4.11 times longer than the fastest. This could mean that an
     </div>
 
     
-  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+  <script src="../../../_static/js/index.30270b6e4c972e43c488.js"></script>
 
 
     
