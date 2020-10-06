@@ -1702,33 +1702,36 @@ S[k] &amp;=  \sum_{n=0}^{N-1} s[n] W_N^{kn} \nonumber \\
 \end{align} 
 \end{split}\]</div>
 <p>Notar que se calculan dos «medias» DFT, una mitad se enfoca en los índices pares (even) y la otra en los impares (odd)</p>
-<p>Por periodicidad de la DFT tenemos que
-$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-272d0580-b314-44d9-b6b5-51c4a168453b">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-272d0580-b314-44d9-b6b5-51c4a168453b" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<p>Por periodicidad de la DFT tenemos que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
 S_E[k + N/2] &amp;=  \sum_{n=0}^{N/2-1} s[2n] W_{N/2}^{(k+N/2)n} \nonumber \\
 &amp;=  \sum_{n=0}^{N/2-1} s[2n] W_{N/2}^{kn} \exp \left(-j2\pi n \right) = S_E[k], \nonumber
-\end{align}\]</div>
+\end{align}
+\end{split}\]</div>
+<p>e igualmente</p>
 <div class="math notranslate nohighlight">
-\[e igualmente\]</div>
-<p>S_O[k + N/2] = S_O[k],
-$$</p>
-<p>juntando ambos tenemos que
-$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9440fa2a-1db3-427b-9c15-7582b79a092a">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-9440fa2a-1db3-427b-9c15-7582b79a092a" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+\[
+S_O[k + N/2] = S_O[k],
+\]</div>
+<p>juntando ambos tenemos que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
 S[k + N/2] &amp;=  S_E[k + N/2] + W_{N}^{(k+N/2)} S_O[k + N/2] \nonumber  \\
 &amp;=  S_E[k] + W_{N}^{k} \exp \left(-j\pi\right) S_O[k] \nonumber \\
 &amp;=  S_E[k] - W_{N}^{k} S_O[k] \nonumber 
-\end{align}\]</div>
+\end{align}
+\end{split}\]</div>
+<p>es decir</p>
 <div class="math notranslate nohighlight">
-\[es decir\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-530fa5e5-87e8-42b9-8720-2522c0abe7d1">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-530fa5e5-87e8-42b9-8720-2522c0abe7d1" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+\[\begin{split}
+\begin{align}
 S[k] &amp;=  S_E[k] + W_{N}^{k} S_O[k] \nonumber \\
 S[k + N/2] &amp;=  S_E[k] - W_{N}^{k} S_O[k] \quad \forall k \in [0,N/2]  \nonumber 
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\end{split}\]</div>
 <div class="alert alert-info">
 <p><strong>Costo computacional:</strong> La DFT de <span class="math notranslate nohighlight">\(k\)</span> y <span class="math notranslate nohighlight">\(k+N/2\)</span> difieren sólo en un signo. Cada ves que dividimos el intervalo podemos reducir los cómputos a la mitad. El costo de la FFT tiene complejidad <span class="math notranslate nohighlight">\(N \log N\)</span></p>
 </div>
@@ -1783,9 +1786,9 @@ f = \left[0, \frac{F_s}{N},  \frac{2 F_s}{N}, \ldots, \frac{F_s}{2},  \ldots  -\
 \]</div>
 <p>es decir que primero retorna las frecuencias positivas y luego las negativas en orden invertido</p>
 <p>Podemos usar la función:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ftshift</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="c1">#  Un arreglo de numpy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="c1">#  Un arreglo de numpy</span>
                   <span class="o">...</span>
-                 <span class="p">)</span>
+                  <span class="p">)</span>
 </pre></div>
 </div>
 <p>para dar vuelta la primera y segunda mitad del espectro obteniendo un orden más natural</p>
@@ -1799,7 +1802,7 @@ f = \left[0, \frac{F_s}{N},  \frac{2 F_s}{N}, \ldots, \frac{F_s}{2},  \ldots  -\
 </div>
 <div class="section" id="id3">
 <h3><span class="section-number">2.7.2. </span>Ejemplo<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea una señal con dos componentes sinusoidales a frecuencia <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(4\)</span>, respetivamente, y con desfase <span class="math notranslate nohighlight">\(0\)</span> y <span class="math notranslate nohighlight">\(\pi/3 \approx 1.0472\)</span>, respectivamente</p>
+<p>Sea una señal con dos componentes sinusoidales a frecuencia <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(4\)</span> Hz, respetivamente, y con desfase <span class="math notranslate nohighlight">\(0\)</span> y <span class="math notranslate nohighlight">\(\pi/3 \approx 1.0472\)</span>, respectivamente</p>
 <p>Calculemos los espectros de magnitud y fase usando la FFT</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
