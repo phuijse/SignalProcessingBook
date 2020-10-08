@@ -6,7 +6,7 @@ logo: logo.png
 execute:
   execute_notebooks: cache
   cache: _notebooks_cache
-  exclude:
+  exclude_patterns:
   - 'actividades/'
 
 parse:
