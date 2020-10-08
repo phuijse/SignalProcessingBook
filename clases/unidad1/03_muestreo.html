@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Efectos del muestreo y fenómino de aliasing &#8212; INFO183 Análisis de sistemas lineales</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/ui_handle.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Unidad 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_introducci%C3%B3n.html">
+   1. Introducción al procesamiento digital de señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_espectro.html">
+   2. Espectro y Transformada de Fourier
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+            title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/clases/unidad1/03_muestreo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Modo de pantalla completa"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/phuijse/UACH-INFO183/master?urlpath=tree/clases/unidad1/03_muestreo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/phuijse/UACH-INFO183/blob/master/clases/unidad1/03_muestreo.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Lanzamiento Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contenido
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#el-espectro-de-una-senal-discreta">
+   El espectro de una señal discreta
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#que-le-ocurre-al-espectro-de-una-senal-continua-cuando-la-muestreamos">
+     ¿Qué le ocurre al espectro de una señal continua cuando la muestreamos?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#que-significa-convolucionar-con-un-tren-de-impulsos">
+     ¿Qué significa convolucionar con un tren de impulsos?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cual-es-el-espectro-de-la-senal-gaussiana">
+     ¿Cúal es el espectro de la señal Gaussiana?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cual-es-el-espectro-de-la-gaussiana-discreta">
+     ¿Cuál es el espectro de la gaussiana «discreta»?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teorema-del-muestreo">
+   Teorema del muestreo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#que-pasa-con-el-espectro-discreto-si-no-se-cumple-la-condicion-anterior">
+     ¿Qué pasa con el espectro «discreto» si no se cumple la condición anterior?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aliasing">
+   Aliasing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#espectro-teorico-de-una-sinusoide">
+     Espectro teórico de una sinusoide
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#espectro-de-una-sinusoide-discreta">
+     Espectro de una sinusoide discreta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#espectro-traslapado-de-la-sinusoide-discreta">
+     Espectro traslapado de la sinusoide discreta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aliases-de-la-senal">
+     «Aliases» de la señal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#como-eliminamos-el-aliasing">
+     ¿Cómo eliminamos el aliasing?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apendice-principio-o-teorema-de-incertidumbre">
+   Apéndice: Principio o Teorema de incertidumbre
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> notebook
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">SelectionSlider</span><span class="p">,</span> <span class="n">IntSlider</span><span class="p">,</span> <span class="n">FloatSlider</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Audio</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span><span class="p">,</span> <span class="n">row</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">Slider</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_notebook</span>
+<span class="n">output_notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="efectos-del-muestreo-y-fenomino-de-aliasing">
+<h1>Efectos del muestreo y fenómino de aliasing<a class="headerlink" href="#efectos-del-muestreo-y-fenomino-de-aliasing" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="el-espectro-de-una-senal-discreta">
+<h2>El espectro de una señal discreta<a class="headerlink" href="#el-espectro-de-una-senal-discreta" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="que-le-ocurre-al-espectro-de-una-senal-continua-cuando-la-muestreamos">
+<h3>¿Qué le ocurre al espectro de una señal continua cuando la muestreamos?<a class="headerlink" href="#que-le-ocurre-al-espectro-de-una-senal-continua-cuando-la-muestreamos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Sin pérdida de generalidad, consideremos para este ejemplo la señal gaussiana</p>
+<div class="math notranslate nohighlight">
+\[
+s(t) = \exp \left ( -\frac{t^2}{2\sigma^2} \right)
+\]</div>
+<p>Muestrear es equivalente a multiplicar una señal continua por un tren de impulsos, también conocido como «peineta de Dirac»</p>
+<div class="math notranslate nohighlight">
+\[
+\upuparrows(t) = \sum_{m=-\infty}^\infty \delta[t - m / F_s],
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(F_s\)</span> es la frecuencia de muestreo, es decir el inverso entre la separación de los dientes de la peineta</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">Fs</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=.</span><span class="mi">01</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Frecuencia de muestreo&quot;</span><span class="p">)</span>
+
+<span class="n">t_dirac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">create_figure</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">title</span> <span class="p">:</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> 
+                                      <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="s1">&#39;Señal Gaussiana&#39;</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="s1">&#39;Peineta de Dirac&#39;</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="s1">&#39;Señal muestreada&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">]:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Tiempo [s]&#39;</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">t_dirac</span><span class="p">,</span> 
+                                    <span class="n">tops</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">t_dirac</span><span class="p">),</span>
+                                    <span class="n">sd</span><span class="o">=</span><span class="n">s</span><span class="p">(</span><span class="n">t_dirac</span><span class="p">)</span>
+                                   <span class="p">))</span>
+
+<span class="n">p2</span><span class="o">.</span><span class="n">vbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s1">&#39;tops&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">p3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;sd&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    var t_dirac = [];</span>
+<span class="s2">    var tops = [];</span>
+<span class="s2">    var sd = []</span>
+<span class="s2">    for (let i = -5.0; i &lt;= 5.0; i+=1/Fs.value) {</span>
+<span class="s2">        t_dirac.push(i);</span>
+<span class="s2">        tops.push(1);</span>
+<span class="s2">        sd.push(Math.exp(-0.5*Math.pow(i, 2)/Math.pow(0.5, 2)));</span>
+<span class="s2">    }</span>
+<span class="s2">    source.data[&#39;t&#39;] = t_dirac;</span>
+<span class="s2">    source.data[&#39;tops&#39;] = tops;</span>
+<span class="s2">    source.data[&#39;sd&#39;] = sd;    </span>
+<span class="s2">    source.change.emit();</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">Fs</span><span class="o">.</span><span class="n">js_on_change</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">column</span><span class="p">(</span><span class="n">Fs</span><span class="p">,</span> <span class="n">row</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La transformada de Fourier del tren de impulsos es</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{FT}[\upuparrows(t)] =  F_s \sum_{m=-\infty}^\infty  \delta(f - m F_s)
+\]</div>
+<p>es decir <strong>otro tren de impulsos</strong> pero en frecuencia</p>
+<p>Pueden revisar la demostración de la transformada anterior <a class="reference external" href="http://www.thefouriertransform.com/pairs/shah.php">aquí</a></p>
+<p>La señal muestreada es igual a <span class="math notranslate nohighlight">\(s(t) \cdot \upuparrows(t)\)</span></p>
+<p>Para obtener el espectro de la señal muestreada recordemos que multiplicar dos señales en el dominio del tiempo corresponde a convolucionar sus transformadas de Fourier en frecuencia</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbb{FT}[s(t) \cdot \upuparrows(t)] &amp;= \mathbb{FT}[s(t)] * \mathbb{FT}[\upuparrows(t)] \nonumber \\
+&amp;= S(f) *  F_s \sum_{m=-\infty}^\infty  \delta(f - m F_s) \nonumber \\
+&amp;= F_s \sum_{m = -\infty}^{\infty} S(f - m F_s) \nonumber
+\end{align}
+\end{split}\]</div>
+<p>Para entender la última igualdad revisemos la siguiente sección</p>
+</div>
+<div class="section" id="que-significa-convolucionar-con-un-tren-de-impulsos">
+<h3>¿Qué significa convolucionar con un tren de impulsos?<a class="headerlink" href="#que-significa-convolucionar-con-un-tren-de-impulsos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Matemáticamente la convolución entre dos señales discretas (de una dimensión) se define como</p>
+<div class="math notranslate nohighlight">
+\[
+(f * g)[n] = \sum_{m=-\infty}^\infty f[m] g[n-m] = \sum_{m=-\infty}^\infty f[n-m] g[m]
+\]</div>
+<ul class="simple">
+<li><p>Podemos imaginar que <span class="math notranslate nohighlight">\(g\)</span> se desplaza sobre <span class="math notranslate nohighlight">\(f\)</span> (o viceverza)</p></li>
+<li><p>En cada paso el <span class="math notranslate nohighlight">\(g\)</span> desplazado se multiplica punto a punto con <span class="math notranslate nohighlight">\(f\)</span> y luego se suman</p></li>
+<li><p>El resultado de convolucionar <span class="math notranslate nohighlight">\(f\)</span> con <span class="math notranslate nohighlight">\(g\)</span> es una nueva función</p></li>
+</ul>
+<p>Si <span class="math notranslate nohighlight">\(f\)</span> es un tren de impulsos ocurrirá una «repetición» de <span class="math notranslate nohighlight">\(g\)</span> (o viceverza)</p>
+<p>La siguiente animación muestra en la imagen superior un pulso cuadrado que se desplaza sobre sren de impulsos en la figura superior. La figura inferior muestra el resultado de la convolución</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">my_signal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">&lt;</span><span class="n">T</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># 2 segundos de espacio entre los dientes de la peinte</span>
+<span class="k">def</span> <span class="nf">peineta</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[::</span><span class="mi">20000</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> 
+    <span class="k">return</span> <span class="n">s</span>
+    
+<span class="n">conv_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">my_signal</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">peineta</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cla</span><span class="p">();</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
+    <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">my_signal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">a</span> <span class="o">-</span> <span class="mi">4</span><span class="p">),</span> <span class="n">peineta</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;señal&#39;</span><span class="p">);</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;peineta&#39;</span><span class="p">);</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conv_s</span><span class="p">);</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">);</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mf">0.1</span><span class="o">*</span><span class="n">a</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p1</span><span class="o">*</span><span class="n">p2</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">()</span>
+    
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p><strong>Por lo tanto:</strong> Muestrear una señal en el tiempo hace que su espectro <span class="math notranslate nohighlight">\(S(f)\)</span>, sea cual sea, se repita infinitamente. Además el espectro se repite cada <span class="math notranslate nohighlight">\(F_s\)</span> [Hz]</p>
+</div></div>
+<div class="section" id="cual-es-el-espectro-de-la-senal-gaussiana">
+<h3>¿Cúal es el espectro de la señal Gaussiana?<a class="headerlink" href="#cual-es-el-espectro-de-la-senal-gaussiana" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La transformada de Fourier de</p>
+<div class="math notranslate nohighlight">
+\[
+s(t) = \exp \left ( -\frac{t^2}{2\sigma^2} \right)
+\]</div>
+<p>es</p>
+<div class="math notranslate nohighlight">
+\[
+S(f) = \mathbb{FT}[s(t)] = \sqrt{2\pi}\sigma \exp \left ( -2\sigma^2 \pi^2 f^2 \right)
+\]</div>
+<p>La función gaussiana es muy especial: <strong>El espectro de una gaussiana es otra gaussiana</strong></p>
+<p>Puedes ver la demostración de la transformada anterior <a class="reference external" href="http://www.thefouriertransform.com/applications/gaussian.php">aquí</a></p>
+<p>En base a la gráfica siguiente notemos que</p>
+<ul class="simple">
+<li><p>Mientras más «ancha» sea la gaussiana en el tiempo (<span class="math notranslate nohighlight">\(\sigma\)</span> pequeño) más «angosto» será su espectro en frecuencia</p></li>
+<li><p>Las gaussianas son del mismo ancho cuando <span class="math notranslate nohighlight">\(\sigma = \frac{1}{\sqrt{2\pi}}\)</span></p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="n">step</span><span class="o">=.</span><span class="mi">01</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">)</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> 
+                                    <span class="n">gt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sigma</span><span class="o">.</span><span class="n">value</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+                                    <span class="n">gf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">sigma</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span><span class="o">.</span><span class="n">value</span>
+                                   <span class="p">))</span>
+
+<span class="n">create_figure</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">title</span> <span class="p">:</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> 
+                                      <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="s1">&#39;Dominio de tiempo&#39;</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="s1">&#39;Dominio de frecuencia&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;gf&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    var x = source.data[&#39;x&#39;];</span>
+<span class="s2">    var gt = source.data[&#39;gt&#39;];</span>
+<span class="s2">    var gf = source.data[&#39;gf&#39;]</span>
+<span class="s2">    for (var i = 0; i &lt; x.length; i++) {</span>
+<span class="s2">        gt[i] = Math.exp(-0.5*Math.pow(x[i]/sigma.value, 2));</span>
+<span class="s2">        gf[i] = Math.sqrt(Math.PI*2)*Math.exp(-2*Math.pow(Math.PI*x[i]*sigma.value, 2))*sigma.value;</span>
+<span class="s2">        </span>
+<span class="s2">    }</span>
+<span class="s2">    source.change.emit();</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">sigma</span><span class="o">.</span><span class="n">js_on_change</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">column</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">row</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cual-es-el-espectro-de-la-gaussiana-discreta">
+<h3>¿Cuál es el espectro de la gaussiana «discreta»?<a class="headerlink" href="#cual-es-el-espectro-de-la-gaussiana-discreta" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Como ya vimos el espectro de una señal discreta es idéntico al de la señal continua pero «repetido» según el valor de la frecuencia de muestreo</p>
+<p>Por ejemplo si <span class="math notranslate nohighlight">\(\sigma=1\)</span> y <span class="math notranslate nohighlight">\(Fs = 2\)</span> [Hz] tendríamos lo siguiente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussiana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">espectro_discreto</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="n">S</span> <span class="o">+=</span> <span class="n">gaussiana</span><span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">Fs</span><span class="o">*</span><span class="n">m</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">S</span>
+
+<span class="k">def</span> <span class="nf">ventana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Fs</span><span class="p">):</span>
+    <span class="n">SW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">SW</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">SW</span>
+
+<span class="n">Fs</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">gaussiana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span>  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro original&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">espectro_discreto</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro discreto&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">ventana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Fs</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">line_dash</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Ventana cuadrada&#39;</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Frecuencia [Hz]&#39;</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p><strong>Por lo tanto:</strong> Si multiplicamos el espectro discreto (azul) por una ventana cuadrada de ancho <span class="math notranslate nohighlight">\(F_s\)</span> (negro punteado) podemos recuperar el espectro original (verde) sin pérdidas</p>
+</div>
+<p>Esta es la base del siguiente teorema fundamental</p>
+</div>
+</div>
+<div class="section" id="teorema-del-muestreo">
+<h2>Teorema del muestreo<a class="headerlink" href="#teorema-del-muestreo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Sea una señal continua <span class="math notranslate nohighlight">\(s(t)\)</span> muestreada a <span class="math notranslate nohighlight">\(F_s\)</span> [Hz] produciendo una señal digital <span class="math notranslate nohighlight">\(s[n] = s(t = n/F_s)\)</span></p>
+<p>Si</p>
+<div class="math notranslate nohighlight">
+\[
+f_{\text{max}} &lt; \frac{F_s}{2},
+\]</div>
+<p>donde</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_{\text{max}}\)</span> es la componente de frecuencia más alta de la señal</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{F_s}{2}\)</span> es la frecuencia de Nyquist</p></li>
+</ul>
+<p>entonces la señal analógica <span class="math notranslate nohighlight">\(s(t)\)</span> puede ser recuperada perfectamente a partir de sus muestras discretas <span class="math notranslate nohighlight">\(s[n]\)</span></p>
+<p>Además el valor de la señal continua reconstruida es:</p>
+<div class="math notranslate nohighlight">
+\[
+s(t) = \sum_{n=-\infty}^{\infty} s[n] \text{sinc}(\pi F_s (t - n /F_s) )
+\]</div>
+<div class="section" id="que-pasa-con-el-espectro-discreto-si-no-se-cumple-la-condicion-anterior">
+<h3>¿Qué pasa con el espectro «discreto» si no se cumple la condición anterior?<a class="headerlink" href="#que-pasa-con-el-espectro-discreto-si-no-se-cumple-la-condicion-anterior" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Asumamos que la frecuencia de muestre se mantiene <span class="math notranslate nohighlight">\(F_s=2\)</span> [Hz] y que <span class="math notranslate nohighlight">\(\sigma\)</span> disminuye</p>
+<p>La frecuencia máxima de la gaussiana es la «última» frecuencia donde el espectro es distinto de cero</p>
+<p>Si <span class="math notranslate nohighlight">\(\sigma\)</span> disminuye la <span class="math notranslate nohighlight">\(f_{\text{max}}\)</span> aumenta</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">gaussiana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span>  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro original&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">espectro_discreto</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro discreto&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">ventana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Fs</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">line_dash</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Ventana cuadrada&#39;</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Frecuencia [Hz]&#39;</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si asumimos que <span class="math notranslate nohighlight">\(\sigma =1 \)</span> se mantiene y que la frecuencia de muestreo disminuye se obtiene un efecto equivalente</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">gaussiana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span>  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro original&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">espectro_discreto</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro discreto&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">ventana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Fs</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">line_dash</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Ventana cuadrada&#39;</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Frecuencia [Hz]&#39;</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p>Debido al solapamiento en el espectro discreto (azul) se vuelve imposible recuperar el espectro original (verde) sin alteraciones. Podríamos recuperar su parte central, pero eso significa perder información de alta frecuencia</p>
+</div>
+<p>El solapamiento espectral se llama <strong>aliasing</strong></p>
+</div>
+</div>
+<div class="section" id="aliasing">
+<h2>Aliasing<a class="headerlink" href="#aliasing" title="Enlazar permanentemente con este título">¶</a></h2>
+<ul class="simple">
+<li><p>El espectro de una señal muestreada es periódico en <span class="math notranslate nohighlight">\(F_s\)</span></p></li>
+<li><p>Si originalmente la señal tenía componentes con frecuencias mayores a <span class="math notranslate nohighlight">\(\frac{F_s}{2}\)</span> se produce un «traslape» o «solapamiento» espectral</p></li>
+<li><p>Este fenomeno se llama <em>aliasing</em> y los componentes traslapados se denominan <em>aliases</em></p></li>
+</ul>
+<p>Cuando existe aliasing veremos que no es posible reconstruir la señal original sin ambiguedad</p>
+<div class="section" id="espectro-teorico-de-una-sinusoide">
+<h3>Espectro teórico de una sinusoide<a class="headerlink" href="#espectro-teorico-de-una-sinusoide" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Consideremos por ejemplo la siguiente señal sinusoidal</p>
+<div class="math notranslate nohighlight">
+\[
+s(t) = \cos(2\pi f_0 t)
+\]</div>
+<p>La transformada de Fourier de coseno es un impulso en <span class="math notranslate nohighlight">\(f_0\)</span> y otro en <span class="math notranslate nohighlight">\(-f_0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+S(f) = \frac{1}{2} \left(\delta(f-f_0) + \delta(f+f_0) \right)
+\]</div>
+<p>Puedes ver la demostración de esta transformada <a class="reference external" href="http://www.thefouriertransform.com/pairs/sinusoids.php">aquí</a></p>
+</div>
+<div class="section" id="espectro-de-una-sinusoide-discreta">
+<h3>Espectro de una sinusoide discreta<a class="headerlink" href="#espectro-de-una-sinusoide-discreta" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Si muestreamos a una frecuencia <span class="math notranslate nohighlight">\(F_s\)</span> que sea menor a <span class="math notranslate nohighlight">\(2 f_0\)</span> entonces habrá traslape en el espectro discreto</p>
+<p>Por ejemplo consideremos <span class="math notranslate nohighlight">\(f_0 = 1.23\)</span> [Hz] y <span class="math notranslate nohighlight">\(F_s = 2\)</span> [Hz]. Digamos además que observamos la señal por <span class="math notranslate nohighlight">\(100\)</span> [s]</p>
+<p>¿Cómo se ve el espectro de amplitud?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.fft</span> <span class="k">as</span> <span class="nn">sfft</span>
+
+<span class="n">f0</span> <span class="o">=</span> <span class="mf">1.23</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">Fs</span> <span class="o">=</span> <span class="mi">2</span> 
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">f</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">SA</span> <span class="o">=</span> <span class="n">sfft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">sfft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">f0</span><span class="p">))))</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">sfft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">sfft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">))</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">SA</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Frecuencia [Hz]&#39;</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p>Aparece un componente en <span class="math notranslate nohighlight">\(f = \pm 0.77\)</span> [Hz]. Pero la señal era de <span class="math notranslate nohighlight">\(1.23\)</span> [Hz] ¿Puedes explicar porqué?</p>
+</div></div>
+<div class="section" id="espectro-traslapado-de-la-sinusoide-discreta">
+<h3>Espectro traslapado de la sinusoide discreta<a class="headerlink" href="#espectro-traslapado-de-la-sinusoide-discreta" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recordemos que el de la señal de la señal «original» se repite cada <span class="math notranslate nohighlight">\(F_s\)</span> [Hz]</p>
+<p>En este caso <span class="math notranslate nohighlight">\(F_s\)</span> es menor que <span class="math notranslate nohighlight">\(2 f_0\)</span> por lo que ocurrirá traslape espectral</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">Fs</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">espectro_coseno</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f0</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">S</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="n">f0</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">S</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f0</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">S</span>
+
+<span class="k">def</span> <span class="nf">espectro_discreto</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f0</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="n">S</span> <span class="o">+=</span> <span class="n">espectro_coseno</span><span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">Fs</span><span class="o">*</span><span class="n">m</span><span class="p">,</span> <span class="n">f0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">S</span>
+
+<span class="k">def</span> <span class="nf">ventana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Fs</span><span class="p">):</span>
+    <span class="n">SW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">SW</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">SW</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">espectro_coseno</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f0</span><span class="p">),</span>  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">line_width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro original&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">espectro_discreto</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f0</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Espectro discreto&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">ventana</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Fs</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">line_dash</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Ventana cuadrada&#39;</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Frecuencia [Hz]&#39;</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El cuadrado negro con linea punteada representa el rango</p>
+<div class="math notranslate nohighlight">
+\[
+\left[-\frac{F_s}{2}, \frac{F_s}{2} \right]
+\]</div>
+<p>es decir lo que «podemos ver» cuando usamos la transformada de Fourier (es equivalente a la figura anterior)</p>
+</div>
+<div class="section" id="aliases-de-la-senal">
+<h3>«Aliases» de la señal<a class="headerlink" href="#aliases-de-la-senal" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Como vimos en este caso la frecuencia de la señal está fuera del rango que podemos estudiar</p>
+<p>Además por culpa del solapamiento espectral aparecerán «aliases»</p>
+<p>La frecuencia de los aliases sigue la fórmula</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_a = f_0  + m F_s\)</span> [Hz] donde <span class="math notranslate nohighlight">\(m\)</span> es un número natural</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_a = m F_s - f_0\)</span> [Hz] donde <span class="math notranslate nohighlight">\(m\)</span> es un número natural</p></li>
+</ul>
+<p>Uno de estos aliases es <span class="math notranslate nohighlight">\(f_a = Fs - F0 = 0.773\)</span> [Hz], la frecuencia que vimos originalmente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">f</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f0</span><span class="p">),</span>  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> 
+        <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Señal original&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">signal</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">f0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Señal muestreada&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">-</span> <span class="n">f0</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">line_dash</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Alias de la señal&#39;</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Tiempo [s]&#39;</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p>El «alias» se hace pasar por la señal original. No podemos distinguir cual de las dos se uso para generar la señal muestreada (puntos azules). Ya no podemos reconstruir sin ambiguedad la señal</p>
+</div></div>
+<div class="section" id="como-eliminamos-el-aliasing">
+<h3>¿Cómo eliminamos el aliasing?<a class="headerlink" href="#como-eliminamos-el-aliasing" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Necesitamos que todas las frecuencias del espectro sean menores que <span class="math notranslate nohighlight">\(\frac{Fs}{2}\)</span></p>
+<p>Podemos lograr esto mediante</p>
+<ul class="simple">
+<li><p>Filtrado: Eliminar las frecuencias mayores a <span class="math notranslate nohighlight">\(\frac{F_s}{2}\)</span> (Próxima unidad)</p></li>
+<li><p>Aumentar <span class="math notranslate nohighlight">\(F_s\)</span> tal que sea dos veces mayor que la frecuencia máxima de interés, no siempre es fácil saber cuál será su valor <em>a priori</em></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="apendice-principio-o-teorema-de-incertidumbre">
+<h2>Apéndice: Principio o Teorema de incertidumbre<a class="headerlink" href="#apendice-principio-o-teorema-de-incertidumbre" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El principio de incertidumbre de Heisenberg nos dice que la precisión (certeza) con que medimos la posición de una particula es inversamente proporcional a la precisión con que medimos su momentum lineal:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta x \Delta p \geq \frac{h}{4\pi},
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(h\)</span> es la constante de Planck</p>
+<div class="alert alert-info">
+<p><strong>En señales existe un principio análogo:</strong> No podemos especificar con infinita precisión la localización temporal y frecuencial de una señal al mismo tiempo.</p>
+</div><p>Denis Gabor (1946) fue el primero en darse cuenta de que el principio de incertidumbre aplica para señales.</p>
+<p>Su teorema dice que para una señal con energía finita</p>
+<div class="math notranslate nohighlight">
+\[
+E = \int |s(t)|^2 dt
+\]</div>
+<p>con valor medio temporal</p>
+<div class="math notranslate nohighlight">
+\[
+\langle t \rangle = \frac{1}{E} \int t |s(t)|^2 dt,
+\]</div>
+<p>y varianza temporal</p>
+<div class="math notranslate nohighlight">
+\[
+(\Delta t)^2 = \frac{1}{E} \int (t - \langle t \rangle)^2 |s(t)|^2 dt,
+\]</div>
+<p>cuya transformada de Fourier <span class="math notranslate nohighlight">\(\mathbb{FT}[s(t)] = S(\omega)\)</span> tiene un valor medio en frecuencia</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \omega \rangle = \frac{1}{E} \int (\omega - \langle \omega \rangle) |S (\omega)|^2 d \omega
+\]</div>
+<p>y varianza frecuencial</p>
+<div class="math notranslate nohighlight">
+\[
+(\Delta \omega)^2 = \frac{1}{E} \int (\omega - \langle \omega \rangle)^2 |S(\omega)|^2 d\omega
+\]</div>
+<p>se cumple que</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta t \Delta \omega \geq \frac{1}{2},
+\]</div>
+<p>es decir <span class="math notranslate nohighlight">\(\Delta t\)</span> y <span class="math notranslate nohighlight">\(\Delta \omega\)</span> no pueden ser arbitrariamente pequeños</p>
+<div class="alert alert-info">
+<p>Tal como vimos antes el ancho temporal y el ancho frecuencial están inversamente correlacionados</p>
+</div></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "info183"
+        },
+        kernelOptions: {
+            kernelName: "info183",
+            path: "./clases/unidad1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'info183'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pablo Huijse Heise<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>
