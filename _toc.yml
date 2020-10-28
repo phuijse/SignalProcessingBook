@@ -7,3 +7,7 @@
     - file: clases/unidad1/02_espectro
     - file: clases/unidad1/03_muestreo
     - file: clases/unidad1/04_enventanado
+- part: Unidad 2
+  chapters:
+    - file: clases/unidad2/01_espectrograma
+
