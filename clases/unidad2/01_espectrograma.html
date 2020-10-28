@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Espectrograma &#8212; INFO183 Análisis de sistemas lineales</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/ui_handle.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="prev" title="4. Fuga espectral y técnica de enventanado" href="../unidad1/04_enventanado.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Unidad 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/01_introducci%C3%B3n.html">
+   1. Introducción al procesamiento digital de señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/02_espectro.html">
+   2. Espectro y Transformada de Fourier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/03_muestreo.html">
+   3. Efectos del muestreo y fenómeno de aliasing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/04_enventanado.html">
+   4. Fuga espectral y técnica de enventanado
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Unidad 2
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Espectrograma
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+            title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/clases/unidad2/01_espectrograma.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Modo de pantalla completa"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/phuijse/UACH-INFO183/master?urlpath=tree/clases/unidad2/01_espectrograma.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/phuijse/UACH-INFO183/blob/master/clases/unidad2/01_espectrograma.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Lanzamiento Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contenido
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#que-ocurre-con-el-espectro-de-una-senal-si-su-frecuencia-cambia-en-el-tiempo">
+   1.1. ¿Qué ocurre con el espectro de una señal si su frecuencia cambia en el tiempo?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frecuencia-instantanea">
+   1.2. Frecuencia instantanea
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-chirrido-o-chirp">
+     1.2.1. Ejemplo: Chirrido o
+     <em>
+      Chirp
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-frecuencia-modulada-fm">
+     1.2.2. Ejemplo: Frecuencia Modulada (FM)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-vibrato">
+     1.2.3. Ejemplo: Vibrato
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#representacion-en-tiempo-y-frecuencia">
+   1.3. Representación en tiempo y frecuencia
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#como-se-obtiene-el-espectrograma">
+     1.3.1. ¿Cómo se obtiene el espectrograma?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ventanas-y-espectrogramas">
+     1.3.2. Ventanas y espectrogramas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#espectrograma-en-python">
+     1.3.3. Espectrograma en Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-espectrograma-de-un-vibrato">
+     1.3.4. Ejemplo: Espectrograma de un vibrato
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-espectrograma-del-chirp">
+     1.3.5. Ejemplo: Espectrograma del
+     <em>
+      chirp
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-espectrograma-de-una-senal-de-voz">
+     1.3.6. Ejemplo: Espectrograma de una señal de voz
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span> <span class="nn">scipy.fft</span> <span class="k">as</span> <span class="nn">sfft</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span><span class="p">,</span> <span class="n">patches</span><span class="p">,</span> <span class="n">rc</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;animation&#39;</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="s1">&#39;html5&#39;</span><span class="p">)</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;savefig&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Audio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="espectrograma">
+<h1><span class="section-number">1. </span>Espectrograma<a class="headerlink" href="#espectrograma" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="que-ocurre-con-el-espectro-de-una-senal-si-su-frecuencia-cambia-en-el-tiempo">
+<h2><span class="section-number">1.1. </span>¿Qué ocurre con el espectro de una señal si su frecuencia cambia en el tiempo?<a class="headerlink" href="#que-ocurre-con-el-espectro-de-una-senal-si-su-frecuencia-cambia-en-el-tiempo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Consideremos por ejemplo este ejemplo sencillo de una señal donde la frecuencia cambia abruptamente en un tiempo determinado</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s(t) = \begin{cases}\cos(2\pi f_1 t) &amp; t &lt;0  \\ \cos(2\pi f_2 t) &amp; t \geq 0 \end{cases}
+\end{split}\]</div>
+<p>Sea por ejemplo <span class="math notranslate nohighlight">\(f_1=440\)</span> Hz y <span class="math notranslate nohighlight">\(f_2 = 220\)</span> Hz. Si la graficamos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mi">44100</span>
+<span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="mi">440</span><span class="p">,</span> <span class="mi">220</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f1</span><span class="o">*</span><span class="n">t</span><span class="p">[:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]),</span> 
+                    <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f2</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">:])))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>y si la escuchamos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Audio</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, si calculamos la FFT de la señal para obtener su espectro tenemos que</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">freq</span> <span class="o">=</span> <span class="n">sfft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">sfft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">S</span><span class="p">);</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia [Hz]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La DFT/FFT nos entrega un «resumen» de todas las frecuencias  en la señal</p>
+<div class="alert alert-info">
+    No es posible diferenciar una señal donde ambas frecuencias ocurren al mismo tiempo de otra donde las frecuencias aparecen en tiempos distintos
+</div>
+</div>
+<div class="section" id="frecuencia-instantanea">
+<h2><span class="section-number">1.2. </span>Frecuencia instantanea<a class="headerlink" href="#frecuencia-instantanea" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hasta ahora hemos estudiando señales donde la frecuencia es constante en el tiempo</p>
+<p>Definamos la <strong>frecuencia instantanea</strong> como la tasa de cambio de la fase o ángulo en función del tiempo</p>
+<div class="math notranslate nohighlight">
+\[
+f(t) =  \frac{1}{2\pi} \frac{d \phi (t)}{dt}
+\]</div>
+<p>Una señal sinusoidal con una frecuencia que cambia en el tiempo sería entonces</p>
+<div class="math notranslate nohighlight">
+\[
+s(t) = A \cos( \phi(t) ) = A \cos \left(2\pi \int_0^t f(\tau) d\tau + \phi(0) \right)
+\]</div>
+<p>Notemos que si la frecuencia fuera constante, es decir <span class="math notranslate nohighlight">\(f(t) = f\)</span> <span class="math notranslate nohighlight">\(\forall t\)</span>, entonces <span class="math notranslate nohighlight">\(\int_0^t f(\tau) d\tau = t f\)</span> y recuperamos <span class="math notranslate nohighlight">\(A\cos(2\pi t f + \phi)\)</span></p>
+<p>A continuación veamos algunos ejemplos de señales donde la frecuencia cambia con el tiempo</p>
+<div class="section" id="ejemplo-chirrido-o-chirp">
+<h3><span class="section-number">1.2.1. </span>Ejemplo: Chirrido o <em>Chirp</em><a class="headerlink" href="#ejemplo-chirrido-o-chirp" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un <em>chirp</em> es una señal cuya frecuencia varía suavemente entre un valor inicial y otro final</p>
+<p>Esta variación puede seguir una forma lineal</p>
+<div class="math notranslate nohighlight">
+\[
+f(t) = f_{inicio} + (f_{fin} - f_{inicial}) \frac{(t - t_{inicial})}{(t_{fin} - t_{inicio})}
+\]</div>
+<p>o también no lineal (cuadrática, exponencial, etc)</p>
+<p>Los <em>chirp</em> tienen aplicaciones en radar y sonar. También sirven como modelo para el canto de las aves</p>
+<p>Podemos crear un chirrido sintético usando <code class="docutils literal notranslate"><span class="pre">scipy.signal.chirp</span></code> como se muestra a continuación</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mi">44100</span>
+<span class="n">f_inicio</span><span class="p">,</span> <span class="n">f_fin</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">2000</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">Fs</span><span class="p">);</span> 
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">chirp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="n">f_inicio</span><span class="p">,</span> <span class="n">f1</span><span class="o">=</span><span class="n">f_fin</span><span class="p">,</span> <span class="n">t1</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;quadratic&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">)</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ejemplo-frecuencia-modulada-fm">
+<h3><span class="section-number">1.2.2. </span>Ejemplo: Frecuencia Modulada (FM)<a class="headerlink" href="#ejemplo-frecuencia-modulada-fm" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La FM es una tecnología para guardar información en la frecuencia de una onda electromagnética. Es un tipo de <strong>codificación</strong> que se usa mucho en transmisiones de radio.</p>
+<ul class="simple">
+<li><p>La onda electromagnética se llama <strong>señal portadora</strong>. En radio corresponde a una sinusoide con una frecuencia central en el rango de 88 a los 108 [MHz]</p></li>
+<li><p>La información se llama <strong>señal modulada</strong>. En radio corresponde tipicamente a una señal de voz o a una canción, es decir que está en el rango de los 20 [Hz] a 20 [kHz] (rango audible humano)</p></li>
+</ul>
+<p>Una señal en el rango audible puede viajar algunos metros. En cambio, si va codificada en la señal portadora puede viajar cerca de 50 km</p>
+<p>El siguiente esquema muestra la operación que realiza una estación de radio que transmite señales</p>
+<a class="reference internal image-reference" href="../../_images/fm.png"><img alt="../../_images/fm.png" src="../../_images/fm.png" style="width: 600px;" /></a>
+<p>La radio que recibe la señal debe realizar el proceso inverso, es decir decodifica la información a partir de la frecuencia de la señal que está recepcionando</p>
+<p>Matemáticamente la señal modulada <span class="math notranslate nohighlight">\(s_m(t)\)</span> modifica la frecuencia central <span class="math notranslate nohighlight">\(f_c\)</span> de la señal portadora como sigue</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+s(t) &amp; = A_c \cos \left(2\pi \int_0^t \left(f_c + K s_m(\tau) \right) d\tau \right) \nonumber \\
+&amp;= A_c \cos \left(2\pi f_c t + 2\pi K  \int_0^t s_m(\tau) d\tau \right), \nonumber
+\end{align}
+\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(K\)</span> es el coeficiente de modulación y <span class="math notranslate nohighlight">\(s(t)\)</span> es la señal que finalmente viaja por el medio</p>
+<p>Cada estación de radio transmite su información <span class="math notranslate nohighlight">\(s_m(t)\)</span> usando una frecuencia portadora <span class="math notranslate nohighlight">\(f_c\)</span> distinta para no traslaparse</p>
+</div>
+<div class="section" id="ejemplo-vibrato">
+<h3><span class="section-number">1.2.3. </span>Ejemplo: Vibrato<a class="headerlink" href="#ejemplo-vibrato" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un <a class="reference external" href="https://es.wikipedia.org/wiki/Vibrato">vibrato</a> es un efecto musical que consiste en una variar periódicamente el tono de una nota.</p>
+<p>Por ejemplo, un violinista logra este efecto presionando una cuerda y luego moviendo su dedo de forma regular como muestra la siguiente animación (en cámara lenta)</p>
+<a class="reference internal image-reference" href="../../_images/vibrato.gif"><img alt="../../_images/vibrato.gif" src="../../_images/vibrato.gif" style="width: 400px;" /></a>
+<p>El vibrato es un caso particular de modulación de frecuencia. Si consideremos sólo tonos puros podríamos definir <span class="math notranslate nohighlight">\(s_m(t) = \cos(2\pi f_m t)\)</span>, con lo que nos queda la siguiente señal</p>
+<div class="math notranslate nohighlight">
+\[
+s(t) = A_c \cos \left(2\pi f_c t + \frac{K}{f_m} \sin(2\pi f_m t)  \right),
+\]</div>
+<p>De la expresión tenemos que</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_c\)</span> es la frecuencia o tono central</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_m\)</span> es la velocidad a la que cambia el tono central</p></li>
+<li><p><span class="math notranslate nohighlight">\(K/f_m\)</span> es la amplitud del cambio del tono cnetral</p></li>
+</ul>
+<p>¿Cómo se ve y escucha esta señal?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mi">44100</span>
+<span class="n">A_c</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">f_c</span><span class="p">,</span> <span class="n">f_m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">440</span><span class="p">,</span> <span class="mi">8</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_m</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">A_c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_c</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="p">(</span><span class="n">K</span><span class="o">/</span><span class="n">f_m</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;portadora&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;modulada&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Timepo [s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+    No es posible diferenciar una señal donde ambas frecuencias ocurren al mismo tiempo de otra donde las frecuencias aparecen en tiempos distintos
+</div>
+</div>
+</div>
+<div class="section" id="representacion-en-tiempo-y-frecuencia">
+<h2><span class="section-number">1.3. </span>Representación en tiempo y frecuencia<a class="headerlink" href="#representacion-en-tiempo-y-frecuencia" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para estudiar una señal cuya frecuencia cambia en el tiempo debemos estudiar la evolución temporal de su espectro</p>
+<p>La herramienta más utilizada para esto se llama espectrograma</p>
+<p>El <strong>espectrograma</strong> es una representación visual de la energía de señal distribuida en el tiempo y en la frecuencia.</p>
+<a class="reference internal image-reference" href="../../_images/spectrogram_speech.png"><img alt="../../_images/spectrogram_speech.png" src="../../_images/spectrogram_speech.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>El eje horizontal representa tiempo (segundos)</p></li>
+<li><p>El eje vertical representa frecuencia (Hz)</p></li>
+<li><p>Se usa color para representar la intensidad</p></li>
+</ul>
+<div class="section" id="como-se-obtiene-el-espectrograma">
+<h3><span class="section-number">1.3.1. </span>¿Cómo se obtiene el espectrograma?<a class="headerlink" href="#como-se-obtiene-el-espectrograma" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Para calcular el espectrograma se utiliza la <em>short-time Fourier transform</em> (STFT)</p>
+<p>Para el caso de una señal discreta la STFT se define como</p>
+<div class="math notranslate nohighlight">
+\[
+S[m, k] = \sum_{n} s[n] w[n-m] e^{-j \frac{2\pi}{N} nk}
+\]</div>
+<p>Notemos como la STFT depende del tiempo (índice m) y de la frecuencia (índice k)</p>
+<p>En la práctica la STFT consiste en</p>
+<ol class="simple">
+<li><p>multiplicar la señal por una ventana localizada <span class="math notranslate nohighlight">\(w[n-m]\)</span></p></li>
+<li><p>calcular la FFT sobre esa ventana</p></li>
+</ol>
+<p>Esto se repite para distintas ventanas como muestra el siguiente diagrama donde la linea azul es la señal y las lineas rojas son las ventanas desplazadas</p>
+<img alt="../../_images/spectrogram-diagram.png" src="../../_images/spectrogram-diagram.png" />
+<p>Finalmente el espectrograma consiste en juntar los espectros de amplitud obtenidos para cada ventana</p>
+<p>Notemos que las ventanas pueden traslaparse para mejorar la resolución temporal del espectrograma</p>
+</div>
+<div class="section" id="ventanas-y-espectrogramas">
+<h3><span class="section-number">1.3.2. </span>Ventanas y espectrogramas<a class="headerlink" href="#ventanas-y-espectrogramas" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Para calcular el espectrograma debemos seleccionar</p>
+<ul class="simple">
+<li><p>un tipo de ventana</p></li>
+<li><p>un largo de ventana</p></li>
+<li><p>un traslape de ventana</p></li>
+</ul>
+<p>Como vimos en la lección de «Fuga espectral» el tipo y largo de la ventana influyen de manera importante en el resultado</p>
+<ul class="simple">
+<li><p>Una ventana debería ser suave para evitar agregar lóbulos laterales</p></li>
+<li><p>Una ventana debe ser lo suficientemente larga para no perder resolución en frecuencia</p></li>
+<li><p>Una ventana debe ser lo suficientemente corta para no perder resolución temporal</p></li>
+</ul>
+</div>
+<div class="section" id="espectrograma-en-python">
+<h3><span class="section-number">1.3.3. </span>Espectrograma en Python<a class="headerlink" href="#espectrograma-en-python" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Podemos usar la función de <code class="docutils literal notranslate"><span class="pre">scipy.signal.spectrogram</span></code> cuyos parámetros más relevantes son</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spectrogram</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="c1"># Señal</span>
+            <span class="n">fs</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="c1"># Frecuencia de muestreo</span>
+            <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">),</span> <span class="c1"># Tipo de ventana y parámetros de ventana</span>
+            <span class="n">nperseg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># Largo de la ventana en número de muestras</span>
+            <span class="n">noverlap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># Cantidad de traslape, por defecto es 1/8 del largo de ventana</span>
+            <span class="o">...</span>
+           <span class="p">)</span>
+</pre></div>
+</div>
+<p>Esta función retorna</p>
+<ul class="simple">
+<li><p>f: Un arreglo con las frecuencias del espectrograma de largo M</p></li>
+<li><p>t: Un arreglo con los tiempos de las ventanas de largo N</p></li>
+<li><p>Sxx: Una matriz de MxN con los valores del espectrograma</p></li>
+</ul>
+<p>Finalmente podemos graficar el espectrograma usando la función <code class="docutils literal notranslate"><span class="pre">pcolormesh</span></code> de <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p>
+<p>A continuación veremos dos ejemplos</p>
+</div>
+<div class="section" id="ejemplo-espectrograma-de-un-vibrato">
+<h3><span class="section-number">1.3.4. </span>Ejemplo: Espectrograma de un vibrato<a class="headerlink" href="#ejemplo-espectrograma-de-un-vibrato" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La frecuencia de un vibrato sigue la formula</p>
+<div class="math notranslate nohighlight">
+\[
+f(t) = f_c + K \cos(2.0\pi f_m t)
+\]</div>
+<p>A continuación se muestra tres espectrogramas con distinto largo de ventana</p>
+<p>La linea linea negra punteada corresponde la formula que se muestra arriba</p>
+<ul class="simple">
+<li><p>En este caso la ventana de 46 [ms] representa mejor la señal</p></li>
+<li><p>La ventana de 11 [ms] tiene resolución temporal superior pero resolución frecuencial mala: gran dispersión en el eje vertical</p></li>
+<li><p>La ventana de 180 [ms] tiene resolución frecuencial superior pero resolución temporal mala: gran dispersión en el eje horizontal</p></li>
+</ul>
+<p>En todos los espectrogramas se usó una ventana de Kaiser con <span class="math notranslate nohighlight">\(\beta=6\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mi">44100</span>
+<span class="n">A_c</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">f_c</span><span class="p">,</span> <span class="n">f_m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">440</span><span class="p">,</span> <span class="mi">8</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_m</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">A_c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_c</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="p">(</span><span class="n">K</span><span class="o">/</span><span class="n">f_m</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">6.</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">Nw</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">2048</span><span class="p">,</span> <span class="mi">8192</span><span class="p">]):</span>
+    <span class="n">freqs</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">Nw</span><span class="p">,</span> 
+                                                 <span class="n">noverlap</span><span class="o">=</span><span class="n">Nw</span><span class="o">//</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;kaiser&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">Sxx</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Reds</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">);</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f_c</span> <span class="o">+</span> <span class="n">K</span><span class="o">*</span><span class="n">sm</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fórmula vibrato&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequencia [Hz]&#39;</span><span class="p">);</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ventana de duración </span><span class="si">{</span><span class="n">Nw</span><span class="o">/</span><span class="n">Fs</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> [s]&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">700</span><span class="p">])</span>    
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">);</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ejemplo-espectrograma-del-chirp">
+<h3><span class="section-number">1.3.5. </span>Ejemplo: Espectrograma del <em>chirp</em><a class="headerlink" href="#ejemplo-espectrograma-del-chirp" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Veamos como evoluciona la frecuencia para el chirp que escuchamos antes (transición cuadrático)</p>
+<p>La conclusión es similar al caso anterior</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mi">44100</span>
+<span class="n">f_inicio</span><span class="p">,</span> <span class="n">f_fin</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">2000</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">Fs</span><span class="p">);</span> 
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">chirp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="n">f_inicio</span><span class="p">,</span> <span class="n">f1</span><span class="o">=</span><span class="n">f_fin</span><span class="p">,</span> <span class="n">t1</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;quadratic&#39;</span><span class="p">)</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">6.</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">Nw</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">4096</span><span class="p">]):</span>
+    <span class="n">freqs</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">Nw</span><span class="p">,</span> 
+                                                 <span class="n">noverlap</span><span class="o">=</span><span class="n">Nw</span><span class="o">//</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;kaiser&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">Sxx</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Reds</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">);</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequencia [Hz]&#39;</span><span class="p">);</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ventana de duración </span><span class="si">{</span><span class="n">Nw</span><span class="o">/</span><span class="n">Fs</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> [s]&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5000</span><span class="p">])</span>    
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">);</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ejemplo-espectrograma-de-una-senal-de-voz">
+<h3><span class="section-number">1.3.6. </span>Ejemplo: Espectrograma de una señal de voz<a class="headerlink" href="#ejemplo-espectrograma-de-una-senal-de-voz" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Consideremos la siguiente señal de voz humana y su espectrograma</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">librosa</span>
+<span class="n">Fs</span> <span class="o">=</span> <span class="mi">44100</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">sample_rate</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../../data/123.ogg&quot;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">/</span><span class="n">Fs</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">Nw</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> 
+                                     <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;kaiser&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> 
+                                     <span class="n">nperseg</span><span class="o">=</span><span class="n">Nw</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="n">Nw</span><span class="o">//</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Sxx</span><span class="o">+</span><span class="mf">1e-10</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Reds</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequencia [Hz]&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">);</span> 
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]);</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Audio</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos observar que</p>
+<ul class="simple">
+<li><p>Cada vocal tiene un tono y una distribución de energía distintos</p></li>
+<li><p>A diferencia de una señal sintética la voz humana es rica en armónicos</p></li>
+<li><p>A diferencia de una señal sintética hay ruido blanco que contamina el espectrograma</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./clases/unidad2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../unidad1/04_enventanado.html" title="previous page"><span class="section-number">4. </span>Fuga espectral y técnica de enventanado</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pablo Huijse Heise<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>
