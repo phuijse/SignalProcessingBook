@@ -4,10 +4,9 @@ author: Pablo Huijse Heise
 logo: logo.png
 
 execute:
-  execute_notebooks: cache
-  cache: _notebooks_cache
+  execute_notebooks: force
   exclude_patterns:
-  - 'actividades/'
+  - 'tarea*'
 
 parse:
   myst_extended_syntax: true
