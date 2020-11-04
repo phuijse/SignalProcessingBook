@@ -10,4 +10,5 @@
 - part: Unidad 2
   chapters:
     - file: clases/unidad2/01_espectrograma
+    - file: clases/unidad2/02_sistemas
 
