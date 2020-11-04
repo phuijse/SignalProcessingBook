@@ -509,16 +509,16 @@ w[n] = 0.5 - 0.5 \cos \left( \frac{2\pi n}{L-1} \right)
 <li><p>Propongamos la siguiente respuesta en frecuencia ideal que solo deja pasar las frecuencias menores a <span class="math notranslate nohighlight">\(f_c\)</span>
 $$</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-ededb754-cf94-4bff-b0a8-eaefd42e8979">
-<span class="eqno">()<a class="headerlink" href="#equation-ededb754-cf94-4bff-b0a8-eaefd42e8979" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-09711e68-4b94-47ad-a360-d4a2062c4038">
+<span class="eqno">()<a class="headerlink" href="#equation-09711e68-4b94-47ad-a360-d4a2062c4038" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 H_d(\omega) &amp;= \begin{cases} K &amp; |f| &lt; f_c\\ 0 &amp; |f| &gt; f_c \end{cases} \nonumber \\
 &amp;= K \text{rect}(f/f_c) \nonumber 
 \end{align}\]</div>
 <div class="math notranslate nohighlight">
 \[1. Obtenemos su transformada de Fourier inversa
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1f0ca49f-8c9e-4689-868b-97d3eee27e50">
-<span class="eqno">()<a class="headerlink" href="#equation-1f0ca49f-8c9e-4689-868b-97d3eee27e50" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-44f2a0ac-6925-4ddd-aec3-993abe7d2dd2">
+<span class="eqno">()<a class="headerlink" href="#equation-44f2a0ac-6925-4ddd-aec3-993abe7d2dd2" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 h_d(t) &amp;= K \int_{-f_c}^{f_c} e^{j 2 \pi f t} df \nonumber \\
 &amp; = \frac{2j K f_c}{2 j \pi f_c t} \sin(2 \pi f_c t) = 2 K f_c \text{sinc}(2 \pi f_c t) \nonumber 
 \end{align}\]</div>
@@ -644,8 +644,8 @@ H_d(\omega) = \begin{cases} K &amp; |f| \geq f_c\\ 0 &amp; |f| &lt; f_c \end{cas
 <li><p>Obtenemos su transformada de Fourier inversa
 $$</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-19af3d4b-6a8d-4ce6-8529-5f525b64054c">
-<span class="eqno">()<a class="headerlink" href="#equation-19af3d4b-6a8d-4ce6-8529-5f525b64054c" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-09e9f2f7-fa60-4e8a-b1b0-32a8d6a229a4">
+<span class="eqno">()<a class="headerlink" href="#equation-09e9f2f7-fa60-4e8a-b1b0-32a8d6a229a4" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 h_d(t) &amp;= K \int_{-\infty}^{-f_c} e^{j 2 \pi f t} df  + K \int_{f_c}^{\infty} e^{j 2 \pi f t} df\nonumber \\
 &amp;= K \int_{-\infty}^{\infty} e^{j 2 \pi f t} df  - K \int_{-f_c}^{f_c} e^{j 2 \pi f t} df\nonumber \\
 &amp; = K \delta(t) - 2 K f_c \text{sinc}(2 \pi f_c t) \nonumber 
