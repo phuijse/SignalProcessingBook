@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diseño de sistemas y filtros FIR &#8212; INFO183 Análisis de sistemas lineales</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/ui_handle.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Unidad 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/01_introducci%C3%B3n.html">
+   1. Introducción al procesamiento digital de señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/02_espectro.html">
+   2. Espectro y Transformada de Fourier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/03_muestreo.html">
+   3. Efectos del muestreo y fenómeno de aliasing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/04_enventanado.html">
+   4. Fuga espectral y técnica de enventanado
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Unidad 2
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_espectrograma.html">
+   1. Espectrograma
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_sistemas.html">
+   2. Sistemas para el procesamiento de señales
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+            title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/clases/unidad2/03_filtros_FIR.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Modo de pantalla completa"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/phuijse/UACH-INFO183/master?urlpath=tree/clases/unidad2/03_filtros_FIR.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/phuijse/UACH-INFO183/blob/master/clases/unidad2/03_filtros_FIR.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Lanzamiento Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contenido
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistema-invariante-al-desplazamiento">
+   Sistema invariante al desplazamiento
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#respuesta-al-impulso-de-un-sistema">
+   Respuesta al impulso de un sistema
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     Ejemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistema-lti-y-respuesta-en-frecuencia-de-un-sistema">
+   Sistema LTI y respuesta en frecuencia de un sistema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtros-digitales">
+   Filtros digitales
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diseno-de-un-filtro-fir-metodo-de-la-ventana">
+   Diseño de un filtro FIR: Método de la ventana
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-filtro-pasa-bajo-lpf">
+     Ejemplo: Filtro pasa bajo (LPF)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-filtro-pasa-alto-hpf">
+     Ejemplo: Filtro pasa alto (HPF)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-filtro-pasa-banda-bpf-y-rechaza-banda-brf">
+     Ejemplo: Filtro pasa banda (BPF) y rechaza banda (BRF)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtro-fir-con-respuesta-en-frecuencia-arbitraria">
+   Filtro FIR con respuesta en frecuencia arbitraria
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span> <span class="nn">scipy.fft</span> <span class="k">as</span> <span class="nn">sfft</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span><span class="p">,</span> <span class="n">patches</span><span class="p">,</span> <span class="n">rc</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;animation&#39;</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="s1">&#39;html5&#39;</span><span class="p">)</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;savefig&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Audio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="diseno-de-sistemas-y-filtros-fir">
+<h1>Diseño de sistemas y filtros FIR<a class="headerlink" href="#diseno-de-sistemas-y-filtros-fir" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="sistema-invariante-al-desplazamiento">
+<h2>Sistema invariante al desplazamiento<a class="headerlink" href="#sistema-invariante-al-desplazamiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un sistema es invariante al desplazamiento  (<em>shift-invariant</em>) de su entrada si</p>
+<div class="math notranslate nohighlight">
+\[
+f(x[n-m]) = y[n-m] 
+\]</div>
+<p>Es decir que</p>
+<ul class="simple">
+<li><p>Aplicar un retardo en la entrada provoca un retardo equivalente en la salida</p>
+<ul>
+<li><p>Un <em>blip</em> en la entrada produce un <em>blop</em> en la salida sin importar <strong>cuando</strong> ocurre el blip</p></li>
+</ul>
+</li>
+<li><p>Las características del sistema no cambian con <span class="math notranslate nohighlight">\(n\)</span></p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(n\)</span> representa el tiempo decimos que el sistema es <strong>invariante en el tiempo</strong></p></li>
+</ul>
+<hr class="docutils" />
+<p>Un sistema FIR es invariante al desplazamiento si los valores de <span class="math notranslate nohighlight">\(h\)</span> son constantes para todo <span class="math notranslate nohighlight">\(n\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+h[n] = \text{Cte} \quad \forall n
+\]</div>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">l0</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">n</span><span class="p">));</span> 
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Input&#39;</span><span class="p">)</span>
+<span class="n">l1</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">square</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">5</span><span class="p">),</span> <span class="n">duty</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>      
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Output&#39;</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="p">))</span>
+    <span class="c1"># h = 1.+ np.cos(2.0*np.pi*2.*(n-m)/len(n))</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+    <span class="n">l0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">l1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">()</span>
+
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_filtros_FIR_3_0.png" src="../../_images/03_filtros_FIR_3_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="respuesta-al-impulso-de-un-sistema">
+<h2>Respuesta al impulso de un sistema<a class="headerlink" href="#respuesta-al-impulso-de-un-sistema" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Sea el impulso unitario o delta de Kronecker</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\delta[n-m] = \begin{cases} 1 &amp; n=m \\ 0 &amp; n \neq m \end{cases}
+\end{split}\]</div>
+<p>La <strong>respuesta al impulso de un sistema discreto</strong> es la salida obtenida cuando la entrada es un impulso unitario</p>
+<p>Para un sistema FIR arbitrario tenemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y[n]|_{x=\delta} = (h * \delta)[n] = \sum_{j=0}^L h[j] \delta[n-j] = \begin{cases} h[n] &amp; n \in [0, L] \\ 0 &amp; \text{en otro caso} \end{cases} \\
+\end{split}\]</div>
+<p>es decir que la respuesta al impulso:</p>
+<ul class="simple">
+<li><p>tiene <strong>una duración finita y luego decae a zero</strong></p></li>
+<li><p>recupera los coeficientes <span class="math notranslate nohighlight">\(h[j]\)</span> del sistema</p></li>
+</ul>
+<p>En un sistema causal se tiene que <span class="math notranslate nohighlight">\(h[n] = 0 \quad \forall n &lt; 0\)</span></p>
+<p>Llamamos <strong>soporte</strong> del sistema a todos aquellos valores de <span class="math notranslate nohighlight">\(n\)</span> tal que  <span class="math notranslate nohighlight">\(h[n] \neq 0\)</span></p>
+<div class="section" id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Para el sistema reverberante</p>
+<div class="math notranslate nohighlight">
+\[
+y[n] = x[n] + A x[n-m]
+\]</div>
+<p>la respuesta al impulso es</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y[n] = \delta[n] + A \delta[n-m] = \begin{cases} 1 &amp; n=0\\ A&amp; n=m \\ 0 &amp; \text{en otro caso} \end{cases}
+\end{split}\]</div>
+<p>La respuesta al impulse me permite a recuperar los coeficientes del sistema en caso de que no los conociera</p>
+</div>
+</div>
+<div class="section" id="sistema-lti-y-respuesta-en-frecuencia-de-un-sistema">
+<h2>Sistema LTI y respuesta en frecuencia de un sistema<a class="headerlink" href="#sistema-lti-y-respuesta-en-frecuencia-de-un-sistema" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los sistemas LTI (<em>linear time-invariant</em>) cumplen</p>
+<ul class="simple">
+<li><p>linealidad: homogeneo y aditivo</p></li>
+<li><p>invarianza al desplazamiento de la entrada</p></li>
+</ul>
+<p>y se expresan como</p>
+<div class="math notranslate nohighlight">
+\[
+y[n] = (h * x)[n] = \sum_j h[j] x[n-j]
+\]</div>
+<ul class="simple">
+<li><p>h es la respuesta al impulso</p></li>
+<li><p>h guarda los coeficientes del sistema</p></li>
+</ul>
+<hr class="docutils" />
+<p>Por propiedad de la DFT sabemos que un sistema LTI cumple</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{DFT}_N [y[n]] &amp; = \text{DFT}_N [(h * x)[n]] \nonumber \\
+\text{DFT}_N [y[n]] &amp; = \text{DFT}_N [h[n]]  \text{DFT}_N [x[n]] \nonumber \\
+Y[k] &amp;= H[k] X[k] , \nonumber
+\end{align}
+\end{split}\]</div>
+<p>donde convertimos la convolución temporal en una multiplicación frecuencial</p>
+<ul class="simple">
+<li><p>Llamamos a <span class="math notranslate nohighlight">\(H[k]\)</span> la <strong>respuesta en frecuencia del sistema</strong></p></li>
+<li><p>La respuesta en frecuencia es la transformada de Fourier de la respuesta al impulso</p></li>
+</ul>
+<hr class="docutils" />
+<p>Los sistemas LTI tienen intepretación directa en el dominio del frecuencia</p>
+<hr class="docutils" />
+<p>En la próxima lección usaremos sistemas LTI para diseñar <strong>filtros</strong></p>
+</div>
+<div class="section" id="filtros-digitales">
+<h2>Filtros digitales<a class="headerlink" href="#filtros-digitales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un <strong>filtro</strong> es un sistema cuyo objetivo es reducir o resaltar un cierto aspecto de una señal</p>
+<p>Por ejemplo</p>
+<ul class="simple">
+<li><p>Disminuir el nivel de ruido</p></li>
+<li><p>Separar señales mezcladas</p></li>
+<li><p>Ecualizar</p></li>
+<li><p>Restaurar (eliminar desenfoque o artefactos de grabación)</p></li>
+</ul>
+<p>Llamamos filtro digital a los filtros aplicados a señales digitales</p>
+<p>Hablamos de «señal filtrada» para referirnos a la salida del filtro</p>
+<p>A continuación estudiaremos filtros LTI, más adelante extenderemos a filtros adaptivos (no-TI) y filtros no-lineales (no-L)</p>
+<hr class="docutils" />
+<p>El <strong>filtro LTI</strong> se puede estudiar en frecuencia usando</p>
+<div class="math notranslate nohighlight">
+\[
+Y[k] = H[k] X[k] ,
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(H[k]\)</span> es la DFT del filtro (respuesta en frecuencia)</p>
+<ul class="simple">
+<li><p>El <strong>filtro LTI</strong> actua como una máscara que modifica el espectro de la entrada</p></li>
+<li><p>Solo puede acentuar, atenuar o remover ciertas frecuencias pero <strong>nunca crear nuevas frecuencias</strong></p></li>
+</ul>
+<p>Consideremos los siguienes filtros (máscaras) ideales</p>
+<img alt="../../_images/ideal_filters.gif" src="../../_images/ideal_filters.gif" />
+</div>
+<hr class="docutils" />
+<div class="section" id="diseno-de-un-filtro-fir-metodo-de-la-ventana">
+<h2>Diseño de un filtro FIR: Método de la ventana<a class="headerlink" href="#diseno-de-un-filtro-fir-metodo-de-la-ventana" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Recordemos, un filtro FIR</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+y[n] &amp;= h[0] x[n] + h[1] x[n-1] + h[2] x[n-2] + \ldots + h[L] x[n-L] \nonumber \\
+&amp;= \sum_{j=0}^{L} h[j] x[n-j] \nonumber \\
+&amp;= (h* x)[n] \nonumber 
+\end{align}
+\end{split}\]</div>
+<p>está definido por su orden (L) y sus coeficientes <span class="math notranslate nohighlight">\(h[j], j=0,\ldots, L\)</span></p>
+<hr class="docutils" />
+<p>Diseñar un filtro consisten en encontrar L y los valores de los coeficientes</p>
+<hr class="docutils" />
+<p>Podemos diseñar un filtro FIR siguiendo estos pasos</p>
+<ol class="simple">
+<li><p>Especificar una <strong>respuesta en frecuencia</strong> ideal <span class="math notranslate nohighlight">\(H_d[k]\)</span></p></li>
+<li><p>Usar la transformada de Fourier inversa para obtener la <strong>respuesta al impulso ideal</strong> <span class="math notranslate nohighlight">\(h_d[n]\)</span></p></li>
+<li><p>Truncar la respuesta al impulso ideal usando <strong>una ventana</strong> tal que <span class="math notranslate nohighlight">\(h[n] = h_d[n] w[n]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h[n]\)</span> nos da los coeficientes del filtro FIR y w[n] nos da el largo del filtro</p></li>
+</ol>
+<p>La ventana <span class="math notranslate nohighlight">\(w[n]\)</span> puede ser cualquiera de las funciones vistas en la unidad anterior, por ejemplo una ventana rectangular</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+w[n] = \begin{cases} 1 &amp; n \leq L \\ 0 &amp; n &gt; L \end{cases}
+\end{split}\]</div>
+<p>o la ventana de Hann</p>
+<div class="math notranslate nohighlight">
+\[
+w[n] = 0.5 - 0.5 \cos \left( \frac{2\pi n}{L-1} \right)
+\]</div>
+<hr class="docutils" />
+<div class="section" id="ejemplo-filtro-pasa-bajo-lpf">
+<h3>Ejemplo: Filtro pasa bajo (LPF)<a class="headerlink" href="#ejemplo-filtro-pasa-bajo-lpf" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un filtro pasa bajo es aquel que sólo deja pasar las <strong>bajas</strong> frecuencias</p>
+<p>Sus usos son:</p>
+<ul class="simple">
+<li><p>Recuperar una tendencia o comportamiento lento en la señal</p></li>
+<li><p>Eliminar el ruido aditivo</p></li>
+</ul>
+<p>Diseñemos un filtro que elimine todas las frecuencias mayores a <span class="math notranslate nohighlight">\(f_c\)</span> [Hz] de una señal <span class="math notranslate nohighlight">\(x[n]\)</span> muestreada con frecuencia <span class="math notranslate nohighlight">\(F_s\)</span>.</p>
+<ol class="simple">
+<li><p>Propongamos la siguiente respuesta en frecuencia ideal que solo deja pasar las frecuencias menores a <span class="math notranslate nohighlight">\(f_c\)</span>
+$$</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-bbe782db-40af-46e1-8d41-42bb6871521f">
+<span class="eqno">()<a class="headerlink" href="#equation-bbe782db-40af-46e1-8d41-42bb6871521f" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+H_d(\omega) &amp;= \begin{cases} K &amp; |f| &lt; f_c\\ 0 &amp; |f| &gt; f_c \end{cases} \nonumber \\
+&amp;= K \text{rect}(f/f_c) \nonumber 
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[1. Obtenemos su transformada de Fourier inversa
+\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-71d04f21-dbd8-4c57-bc3a-905204f7fcaa">
+<span class="eqno">()<a class="headerlink" href="#equation-71d04f21-dbd8-4c57-bc3a-905204f7fcaa" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+h_d(t) &amp;= K \int_{-f_c}^{f_c} e^{j 2 \pi f t} df \nonumber \\
+&amp; = \frac{2j K f_c}{2 j \pi f_c t} \sin(2 \pi f_c t) = 2 K f_c \text{sinc}(2 \pi f_c t) \nonumber 
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+que es una función infinitamente larga\\1. La versión discreta sería
+\end{aligned}\end{align} \]</div>
+<p>h_d[n] = 2 K f_c\text{sinc}(2 \pi f_c n/ F_s)
+$$</p>
+<ol class="simple">
+<li><p>Para obtener una respuesta al impulso finita multiplicamos por una ventana de largo finito</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+h[n] = 2 K f_c \text{sinc}(2 \pi f_c n /F_s) \text{rect}(n/(L+1))
+\]</div>
+<p>que implica esto en la respuesta en frecuencia real?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span> 
+<span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">C</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">C</span><span class="p">)</span>
+<span class="n">x_clean</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_clean</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x_clean</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;rect&#39;</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">axx</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span> <span class="k">for</span> <span class="n">axx</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">ravel</span><span class="p">()]</span>
+    <span class="c1"># Señal limpia</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x_clean</span><span class="p">);</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x_clean</span><span class="p">))))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>    
+    <span class="c1"># Señal contaminada</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span> <span class="n">ylims</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">();</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylims</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
+    <span class="c1"># Filtro ideal</span>
+    <span class="n">kc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">fc</span><span class="p">)</span>
+    <span class="n">Hd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">);</span> <span class="n">Hd</span><span class="p">[:</span><span class="n">kc</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">;</span> <span class="n">Hd</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">Hd</span><span class="p">)</span><span class="o">-</span><span class="n">kc</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">Hd</span><span class="p">))</span>
+    <span class="n">hd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">Hd</span><span class="p">)))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">hd</span><span class="p">)</span>
+    <span class="c1"># Filtro real</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">);</span> 
+    <span class="k">if</span> <span class="n">window</span> <span class="o">==</span> <span class="s1">&#39;rect&#39;</span><span class="p">:</span>
+        <span class="n">w</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">-</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">;</span>
+    <span class="k">elif</span> <span class="n">window</span> <span class="o">==</span> <span class="s1">&#39;hann&#39;</span><span class="p">:</span>
+        <span class="n">w</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">-</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">hd</span><span class="p">;</span> <span class="n">H</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">h</span><span class="p">);</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NMSE entre H y Hd </span><span class="si">%0.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">H</span><span class="p">)</span> <span class="o">-</span> <span class="n">Hd</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Hd</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>  <span class="n">ylims2</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">();</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylims2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+    <span class="c1"># Señal filtrada</span>
+    <span class="n">xf</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xf</span><span class="p">));</span> 
+    <span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">xf</span><span class="p">))));</span> <span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylims</span><span class="p">)</span>
+    
+<span class="n">interact</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">FloatSlider_nice</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+         <span class="n">L</span><span class="o">=</span><span class="n">SelectionSlider_nice</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">60</span><span class="p">),</span>
+         <span class="n">window</span><span class="o">=</span><span class="n">SelectionSlider_nice</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;rect&#39;</span><span class="p">,</span> <span class="s1">&#39;hann&#39;</span><span class="p">]));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">c86c749cc829</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">C</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">x_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">C</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;fftpack&#39; is not defined
+</pre></div>
+</div>
+<img alt="../../_images/03_filtros_FIR_9_1.png" src="../../_images/03_filtros_FIR_9_1.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>La respuesta en frecuencia «ideal» <span class="math notranslate nohighlight">\(H_d[k]\)</span> es plana y tiene discontinuidades</p></li>
+<li><p>La respuesta en frecuencia «real» <span class="math notranslate nohighlight">\(H[k]\)</span> busca aproximar a <span class="math notranslate nohighlight">\(H_d[k]\)</span></p></li>
+<li><p>Observando <span class="math notranslate nohighlight">\(H[k]\)</span> notamos que</p>
+<ul>
+<li><p>No tiene zonas perfectamente planas (ni es perfectamente zero)</p></li>
+<li><p>No tiene discontinuidades fuertes como el caso ideal</p></li>
+</ul>
+</li>
+<li><p>Esto se debe al recorte que hacemos con la ventana</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/system-real-filter.png"><img alt="../../_images/system-real-filter.png" src="../../_images/system-real-filter.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p>Podemos usar una ventana suave (Hann) para disminuir los <em>ripples</em> al costo de hacer más lenta las transiciones</p></li>
+</ul>
+<hr class="docutils" />
+<p>El diseño del filtro está dado entonces por su</p>
+<ul class="simple">
+<li><p><strong>Función:</strong> Definida por la respuesta en frecuencia ideal <span class="math notranslate nohighlight">\(|H_d[k]| \angle H_d[k]\)</span></p>
+<ul>
+<li><p>Podemos definir la magnitud o el ángulo dependiendo de la aplicación</p></li>
+</ul>
+</li>
+<li><p><strong>Fidelidad:</strong> El error tolerable entre la respuesta en frecuencia ideal y la real</p></li>
+</ul>
+<hr class="docutils" />
+</div>
+<hr class="docutils" />
+<div class="section" id="ejemplo-filtro-pasa-alto-hpf">
+<h3>Ejemplo: Filtro pasa alto (HPF)<a class="headerlink" href="#ejemplo-filtro-pasa-alto-hpf" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un filtro pasa alto es aquel que sólo deja pasar las <strong>altas</strong> frecuencias</p>
+<p>Sus usos son:</p>
+<ul class="simple">
+<li><p>Identificar cambios/detalles, es decir comportamientos rápidos en una señal</p></li>
+<li><p>Eliminar tendencias</p></li>
+</ul>
+<p>Diseñemos un filtro que elimine todas las frecuencias menores a <span class="math notranslate nohighlight">\(f_c\)</span> [Hz] de una señal <span class="math notranslate nohighlight">\(x[n]\)</span> muestreada con frecuencia <span class="math notranslate nohighlight">\(F_s\)</span>.</p>
+<ol class="simple">
+<li><p>Propongamos la siguiente respuesta en frecuencia ideal que solo deja pasar las frecuencias <strong>mayores</strong> a <span class="math notranslate nohighlight">\(f_c\)</span>
+$<span class="math notranslate nohighlight">\(
+H_d(\omega) = \begin{cases} K &amp; |f| \geq f_c\\ 0 &amp; |f| &lt; f_c \end{cases} 
+\)</span>$</p></li>
+<li><p>Obtenemos su transformada de Fourier inversa
+$$</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-cc586dd1-9a11-4d42-b2c4-7fa0ded9fd19">
+<span class="eqno">()<a class="headerlink" href="#equation-cc586dd1-9a11-4d42-b2c4-7fa0ded9fd19" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+h_d(t) &amp;= K \int_{-\infty}^{-f_c} e^{j 2 \pi f t} df  + K \int_{f_c}^{\infty} e^{j 2 \pi f t} df\nonumber \\
+&amp;= K \int_{-\infty}^{\infty} e^{j 2 \pi f t} df  - K \int_{-f_c}^{f_c} e^{j 2 \pi f t} df\nonumber \\
+&amp; = K \delta(t) - 2 K f_c \text{sinc}(2 \pi f_c t) \nonumber 
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[1. La versión discreta sería
+\]</div>
+<p>h_d[n] = K (\delta[n] - 2 F_c\text{sinc}(2 \pi f_c n/ F_s) )
+$$</p>
+<ol class="simple">
+<li><p>Finalmente la hacemos finita multiplicando por una ventana de largo finito
+$<span class="math notranslate nohighlight">\(
+h[n] = K (\delta[n] - 2 f_c\text{sinc}(2 \pi f_c n/ F_s) ) \text{rect}(n/(L+1))
+\)</span>$</p></li>
+</ol>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Un filtro pasa alto se obtiene de forma trivial <strong>restandole un filtro pasa bajo a un impulso unitario</strong></p></li>
+<li><p>Este «truco» se conoce como  <strong>inversión espectral</strong></p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/system-hpf.png"><img alt="../../_images/system-hpf.png" src="../../_images/system-hpf.png" style="width: 400px;" /></a>
+</div>
+<div class="section" id="ejemplo-filtro-pasa-banda-bpf-y-rechaza-banda-brf">
+<h3>Ejemplo: Filtro pasa banda (BPF) y rechaza banda (BRF)<a class="headerlink" href="#ejemplo-filtro-pasa-banda-bpf-y-rechaza-banda-brf" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li><p>Como sus nombres lo indicam estos filtros</p>
+<ul>
+<li><p>Dejan pasar una cierta banda de frecuencia (BPF) o</p></li>
+<li><p>Dejan pasar todas las frecuencias excepto una banda determinada (BRF)</p></li>
+</ul>
+</li>
+<li><p>La banda de frecuencia está definida por sus frecuencias de corte mínima y máxima</p></li>
+<li><p>Se pueden construir combinando el filtro pasa bajo y pasa alto</p></li>
+</ul>
+<p><strong>Filtro pasa banda</strong>:
+Para recuperar solo una cierta banda de frecuencia seguimos:</p>
+<ol class="simple">
+<li><p>Definir frecuencias de corte <span class="math notranslate nohighlight">\(f_{c1} &lt; f_{c2}\)</span></p></li>
+</ol>
+<ul class="simple">
+<li><p>Construir un filtro pasa bajo con frecuencia de corte <span class="math notranslate nohighlight">\(f_{c2}\)</span></p></li>
+<li><p>Convolucionar la señal con la respuesta al impulso resultante</p></li>
+<li><p>Construir un filtro pasa alto con frecuencia de corte <span class="math notranslate nohighlight">\(f_{c1}\)</span></p></li>
+<li><p>Convolucionar la señal filtrada con la respuesta al impulso resultante</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/system-bpf.png"><img alt="../../_images/system-bpf.png" src="../../_images/system-bpf.png" style="width: 400px;" /></a>
+<p><strong>Filtro rechazabanda</strong>:
+Para eliminar una cierta banda de frecuencia seguimos:</p>
+<ol class="simple">
+<li><p>Definir frecuencias de corte <span class="math notranslate nohighlight">\(f_{c1} &gt; f_{c2}\)</span></p></li>
+</ol>
+<ul class="simple">
+<li><p>Construir un filtro pasa bajo con frecuencia de corte <span class="math notranslate nohighlight">\(f_{c2}\)</span></p></li>
+<li><p>Construir un filtro pasa alto con frecuencia de corte <span class="math notranslate nohighlight">\(f_{c1}\)</span></p></li>
+<li><p>Sumar ambos las respuestas al impulso de ambos filtros</p></li>
+<li><p>Convolucionar la señal con la respuesta al impulso resultante</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/system-rbf.png"><img alt="../../_images/system-rbf.png" src="../../_images/system-rbf.png" style="width: 400px;" /></a>
+<p>Respuesta en frecuencia de un filtro:</p>
+<p><code class="docutils literal notranslate"><span class="pre">scipy.signal.freqz(b,</span> <span class="pre">a=1,</span> <span class="pre">worN=512,</span> <span class="pre">whole=False,</span> <span class="pre">plot=None)</span></code></p>
+<ul class="simple">
+<li><p>b (arreglo): coeficientes del numerador de <span class="math notranslate nohighlight">\(H[k]\)</span></p></li>
+<li><p>a (arreglo): coeficientes del denominador de <span class="math notranslate nohighlight">\(H[k]\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">low_pass_h</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">fc</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">fc</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">h</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="c1"># ganancia unitaria K = 1/(2fc sum h)</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="mi">200</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">fc_lp</span><span class="p">,</span> <span class="n">fc_hp</span><span class="p">,</span> <span class="n">fs</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span>
+<span class="n">h_lp</span> <span class="o">=</span> <span class="n">low_pass_h</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">fc_lp</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+<span class="n">h_hp</span> <span class="o">=</span> <span class="o">-</span><span class="n">low_pass_h</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">fc_hp</span><span class="p">,</span> <span class="n">fs</span><span class="p">);</span> <span class="n">h_hp</span><span class="p">[</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">h_lp</span>
+<span class="c1"># h = h_hp + h_lp</span>
+<span class="c1"># h = scipy.signal.convolve(h_hp, h_lp)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;h[n]&quot;</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">fs</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">response</span><span class="p">));</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">fs</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">response</span><span class="p">)));</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">delay</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">group_delay</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">fs</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">delay</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Retardo&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;|H[k]|&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;angle H[k]&quot;</span><span class="p">);</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">librosa</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">sample_rate</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../../data/nomekop.ogg&quot;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">ttime</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">),</span> 
+                                            <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                            <span class="n">return_onesided</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ttime</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Sxx</span><span class="o">+</span><span class="mf">1e-4</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e+4</span><span class="p">]);</span>
+
+<span class="n">Audio</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span><span class="p">),</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">scipy.signal.firwin(numtaps,</span> <span class="pre">cutoff,</span> <span class="pre">width=None,</span> <span class="pre">window='hamming',</span> <span class="pre">pass_zero=True,</span> <span class="pre">scale=True,</span> <span class="pre">nyq=None,</span> <span class="pre">fs=None)</span></code></p>
+<ul class="simple">
+<li><p>numtaps (entero): Largo del filtro</p></li>
+<li><p>cutoff (arreglo flotante): frecuencias de corte</p></li>
+<li><p>window (string): tipo de ventana</p></li>
+<li><p>pass_zero (bool): pasa bajo o pasa alto</p></li>
+<li><p>fs (flotante): Frecuencia de muestreo</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">firwin</span><span class="p">(</span><span class="n">numtaps</span><span class="o">=</span><span class="mi">1000</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> 
+                        <span class="n">pass_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span>
+                        <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Respuesta al impulso&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Respuesta en frecuencia&quot;</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">freq</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">sample_rate</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">response</span><span class="p">));</span>
+<span class="n">data_filt</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">ttime</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">data_filt</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">),</span> 
+                                            <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                            <span class="n">return_onesided</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ttime</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Sxx</span><span class="o">+</span><span class="mf">1e-4</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">);</span> <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e+4</span><span class="p">]);</span>
+
+<span class="n">Audio</span><span class="p">(</span><span class="n">data_filt</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span><span class="p">),</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="filtro-fir-con-respuesta-en-frecuencia-arbitraria">
+<h2>Filtro FIR con respuesta en frecuencia arbitraria<a class="headerlink" href="#filtro-fir-con-respuesta-en-frecuencia-arbitraria" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Consideremos un filtro FIR</p>
+<ul class="simple">
+<li><p>De orden <span class="math notranslate nohighlight">\(L\)</span> (par) con <span class="math notranslate nohighlight">\(L+1\)</span> coeficientes</p></li>
+<li><p>Centrado en el origen (cero fase)</p></li>
+<li><p>Con respuesta al impulso simétrica: <span class="math notranslate nohighlight">\(h_{n} = h_{-n}\)</span></p></li>
+</ul>
+<p>Podemos escribir su respuesta en frecuencia como</p>
+<div class="math notranslate nohighlight">
+\[
+H[k] = \sum_{n=-L/2}^{L/2} h[n] e^{-j \frac{2\pi}{N} k n} = h[0] + \sum_{n=1}^{L/2} h[n]\cos \left(\frac{2\pi}{N} k n\right)
+\]</div>
+<p>que para <span class="math notranslate nohighlight">\(k=0, \ldots, N-1\)</span> en forma matricial es</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{align} 
+\begin{pmatrix} H[0] \\ H[1] \\ H[2] \\ \vdots \\ H[N-1] \\ \end{pmatrix} 
+&amp;= 
+\begin{pmatrix} 
+1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\ 
+1 &amp; \cos \left(\frac{2\pi}{N} \right) &amp; \cos \left(\frac{2\pi}{N} 2\right) &amp; \cdots &amp; \cos \left(\frac{2\pi}{N} L/2\right) \\ 
+1 &amp; \cos \left(\frac{2\pi}{N} 2 \right) &amp; \cos \left(\frac{2\pi}{N} 4 \right) &amp; \cdots &amp; \cos \left(\frac{2\pi}{N} 2 L/2\right) \\ 
+\vdots &amp; \dots &amp; \dots &amp; \ddots &amp; \vdots \\ 
+1 &amp; \cos \left(\frac{2\pi}{N} (N-1)\right) &amp; \cos \left(\frac{2\pi}{N} (N-1) 2\right) &amp; \cdots &amp; \cos \left(\frac{2\pi}{N} (N-1) L/2\right) \\ 
+\end{pmatrix} 
+\begin{pmatrix} h[0] \\ h[1] \\ h[2] \\ \vdots \\ h[L/2] \\ \end{pmatrix} \nonumber \\
+H &amp;= A h, \nonumber
+\end{align} 
+\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{NxL/2}\)</span></p>
+<p>Si especificamos <span class="math notranslate nohighlight">\(H\)</span> podemos despejar <span class="math notranslate nohighlight">\(h\)</span> pero no podemos invertir A ya que no es cuadrada.</p>
+<hr class="docutils" />
+<p>Una alternativa es buscar <span class="math notranslate nohighlight">\(\hat h \approx h\)</span> que minimice el error cuadrático medio</p>
+<div class="math notranslate nohighlight">
+\[
+\min_h \| H - Ah\|^2,
+\]</div>
+<p>derivando e igualando a cero obtenemos el sistema de <strong>ecuaciones normales</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{d}{dh} \| H - Ah\|^2 &amp;= 0 \nonumber \\
+- 2 A^T (H - Ah) &amp;= 0 \nonumber \\
+A^T A h &amp;= A^T H \nonumber \\
+\hat h &amp;= (A^T A)^{-1} A^T H  \nonumber \\
+\hat h &amp;= A^{\dagger} H, \nonumber
+\end{align}
+\end{split}\]</div>
+<p>donde</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A^{\dagger} = (A^T A)^{-1} A^T\)</span> se conoce como la pseudo-inversa de A</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat h\)</span> se conoce como el <strong>estimador de mínimos cuadrados</strong> de h</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">scipy.signal.firls(numtaps,</span> <span class="pre">bands,</span> <span class="pre">desired,</span> <span class="pre">weight=None,</span> <span class="pre">nyq=None,</span> <span class="pre">fs=None)</span></code></p>
+<ul class="simple">
+<li><p>numtaps (entero impar): número de coeficientes</p></li>
+<li><p>bands: secuencia creciente de frecuencias</p></li>
+<li><p>desired: secuencia creciente de ganancias</p></li>
+<li><p>fs (flotante): Frecuencia de muestreo</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimador de minimos cuadrados para filtro FIR usando scipy.signal</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">firls</span><span class="p">(</span><span class="n">numtaps</span><span class="o">=</span><span class="mi">1000</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">bands</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">2340</span><span class="p">,</span> <span class="mi">2350</span><span class="p">,</span> <span class="mi">2750</span><span class="p">,</span> <span class="mi">2760</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> 
+                       <span class="n">desired</span><span class="o">=</span><span class="p">(</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Respuesta al impulso&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Respuesta en frecuencia&quot;</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">freq</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">sample_rate</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">response</span><span class="p">));</span>
+<span class="n">data_filt</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">ttime</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">data_filt</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">),</span> 
+                                            <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                            <span class="n">return_onesided</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ttime</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Sxx</span><span class="o">+</span><span class="mf">1e-4</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">);</span> <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e+4</span><span class="p">]);</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">data_filt</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./clases/unidad2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pablo Huijse Heise<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>
