@@ -11,4 +11,5 @@
   chapters:
     - file: clases/unidad2/01_espectrograma
     - file: clases/unidad2/02_sistemas
+    - file: clases/unidad2/03_filtros_FIR
 
