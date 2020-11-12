@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diseño de filtros IIR &#8212; INFO183 Análisis de sistemas lineales</title>
+    <title>Filtro FIR con respuesta en frecuencia arbitraria &#8212; INFO183 Análisis de sistemas lineales</title>
     
   <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
 
@@ -229,50 +229,62 @@
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sistema-iir-infinite-impulse-response">
-   Sistema IIR (infinite impulse response)
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Filtro FIR con respuesta en frecuencia arbitraria
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#respuesta-en-frecuencia-del-sistema-iir">
-   Respuesta en frecuencia del sistema IIR
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diseno-de-filtros-iir">
+   Diseño de filtros IIR
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo">
-     Ejemplo:
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sistema-iir-infinite-impulse-response">
+     Sistema IIR (infinite impulse response)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#respuesta-en-frecuencia-del-sistema-iir">
+     Respuesta en frecuencia del sistema IIR
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ejemplo">
+       Ejemplo:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diseno-de-filtros-iir-simples">
+     Diseño de filtros IIR simples
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diseno-de-filtros-iir-de-segundo-orden">
+     Diseño de filtros IIR de segundo orden
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diseno-de-filtros-iir-de-orden-mayor">
+     Diseño de filtros IIR de orden mayor
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#respuesta-en-frecuencia-de-filtros-fir-e-iir-del-orden-equivalente">
+     Respuesta en frecuencia de filtros FIR e IIR del orden equivalente
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#efectos-de-audio-a-href-https-en-wikipedia-org-wiki-wah-wah-music-wah-wah-a">
+     Efectos de audio:
+     <a href="https://en.wikipedia.org/wiki/Wah-wah_(music)">
+      Wah-wah
+     </a>
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#diseno-de-filtros-iir-simples">
-   Diseño de filtros IIR simples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#diseno-de-filtros-iir-de-segundo-orden">
-   Diseño de filtros IIR de segundo orden
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#diseno-de-filtros-iir-de-orden-mayor">
-   Diseño de filtros IIR de orden mayor
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#respuesta-en-frecuencia-de-filtros-fir-e-iir-del-orden-equivalente">
-   Respuesta en frecuencia de filtros FIR e IIR del orden equivalente
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#efectos-de-audio-a-href-https-en-wikipedia-org-wiki-wah-wah-music-wah-wah-a">
-   Efectos de audio:
-   <a href="https://en.wikipedia.org/wiki/Wah-wah_(music)">
-    Wah-wah
-   </a>
-  </a>
  </li>
 </ul>
 
@@ -300,6 +312,107 @@
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Audio</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="filtro-fir-con-respuesta-en-frecuencia-arbitraria">
+<h1>Filtro FIR con respuesta en frecuencia arbitraria<a class="headerlink" href="#filtro-fir-con-respuesta-en-frecuencia-arbitraria" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Consideremos un filtro FIR</p>
+<ul class="simple">
+<li><p>De orden <span class="math notranslate nohighlight">\(L\)</span> (par) con <span class="math notranslate nohighlight">\(L+1\)</span> coeficientes</p></li>
+<li><p>Centrado en el origen (cero fase)</p></li>
+<li><p>Con respuesta al impulso simétrica: <span class="math notranslate nohighlight">\(h_{n} = h_{-n}\)</span></p></li>
+</ul>
+<p>Podemos escribir su respuesta en frecuencia como</p>
+<div class="math notranslate nohighlight">
+\[
+H[k] = \sum_{n=-L/2}^{L/2} h[n] e^{-j \frac{2\pi}{N} k n} = h[0] + \sum_{n=1}^{L/2} h[n]\cos \left(\frac{2\pi}{N} k n\right)
+\]</div>
+<p>que para <span class="math notranslate nohighlight">\(k=0, \ldots, N-1\)</span> en forma matricial es</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{align} 
+\begin{pmatrix} H[0] \\ H[1] \\ H[2] \\ \vdots \\ H[N-1] \\ \end{pmatrix} 
+&amp;= 
+\begin{pmatrix} 
+1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\ 
+1 &amp; \cos \left(\frac{2\pi}{N} \right) &amp; \cos \left(\frac{2\pi}{N} 2\right) &amp; \cdots &amp; \cos \left(\frac{2\pi}{N} L/2\right) \\ 
+1 &amp; \cos \left(\frac{2\pi}{N} 2 \right) &amp; \cos \left(\frac{2\pi}{N} 4 \right) &amp; \cdots &amp; \cos \left(\frac{2\pi}{N} 2 L/2\right) \\ 
+\vdots &amp; \dots &amp; \dots &amp; \ddots &amp; \vdots \\ 
+1 &amp; \cos \left(\frac{2\pi}{N} (N-1)\right) &amp; \cos \left(\frac{2\pi}{N} (N-1) 2\right) &amp; \cdots &amp; \cos \left(\frac{2\pi}{N} (N-1) L/2\right) \\ 
+\end{pmatrix} 
+\begin{pmatrix} h[0] \\ h[1] \\ h[2] \\ \vdots \\ h[L/2] \\ \end{pmatrix} \nonumber \\
+H &amp;= A h, \nonumber
+\end{align} 
+\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{NxL/2}\)</span></p>
+<p>Si especificamos <span class="math notranslate nohighlight">\(H\)</span> podemos despejar <span class="math notranslate nohighlight">\(h\)</span> pero no podemos invertir A ya que no es cuadrada.</p>
+<hr class="docutils" />
+<p>Una alternativa es buscar <span class="math notranslate nohighlight">\(\hat h \approx h\)</span> que minimice el error cuadrático medio</p>
+<div class="math notranslate nohighlight">
+\[
+\min_h \| H - Ah\|^2,
+\]</div>
+<p>derivando e igualando a cero obtenemos el sistema de <strong>ecuaciones normales</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{d}{dh} \| H - Ah\|^2 &amp;= 0 \nonumber \\
+- 2 A^T (H - Ah) &amp;= 0 \nonumber \\
+A^T A h &amp;= A^T H \nonumber \\
+\hat h &amp;= (A^T A)^{-1} A^T H  \nonumber \\
+\hat h &amp;= A^{\dagger} H, \nonumber
+\end{align}
+\end{split}\]</div>
+<p>donde</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A^{\dagger} = (A^T A)^{-1} A^T\)</span> se conoce como la pseudo-inversa de A</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat h\)</span> se conoce como el <strong>estimador de mínimos cuadrados</strong> de h</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">scipy.signal.firls(numtaps,</span> <span class="pre">bands,</span> <span class="pre">desired,</span> <span class="pre">weight=None,</span> <span class="pre">nyq=None,</span> <span class="pre">fs=None)</span></code></p>
+<ul class="simple">
+<li><p>numtaps (entero impar): número de coeficientes</p></li>
+<li><p>bands: secuencia creciente de frecuencias</p></li>
+<li><p>desired: secuencia creciente de ganancias</p></li>
+<li><p>fs (flotante): Frecuencia de muestreo</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimador de minimos cuadrados para filtro FIR usando scipy.signal</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">firls</span><span class="p">(</span><span class="n">numtaps</span><span class="o">=</span><span class="mi">1000</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">bands</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">2340</span><span class="p">,</span> <span class="mi">2350</span><span class="p">,</span> <span class="mi">2750</span><span class="p">,</span> <span class="mi">2760</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> 
+                       <span class="n">desired</span><span class="o">=</span><span class="p">(</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Respuesta al impulso&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Respuesta en frecuencia&quot;</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">freq</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">sample_rate</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">response</span><span class="p">));</span>
+<span class="n">data_filt</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">ttime</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">data_filt</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">),</span> 
+                                            <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                            <span class="n">return_onesided</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ttime</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Sxx</span><span class="o">+</span><span class="mf">1e-4</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">);</span> <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e+4</span><span class="p">]);</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">data_filt</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">890099</span><span class="n">b4022d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Estimador de minimos cuadrados para filtro FIR usando scipy.signal</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">firls</span><span class="p">(</span><span class="n">numtaps</span><span class="o">=</span><span class="mi">1000</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span>                        <span class="n">bands</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">2340</span><span class="p">,</span> <span class="mi">2350</span><span class="p">,</span> <span class="mi">2750</span><span class="p">,</span> <span class="mi">2760</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                        <span class="n">desired</span><span class="o">=</span><span class="p">(</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">fs</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="ne">NameError</span>: name &#39;sample_rate&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -401,19 +514,6 @@ n &amp; \delta[n] &amp; y[n] \\
 <span class="n">interact</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="n">FloatSlider_nice</span><span class="p">(</span><span class="nb">min</span><span class="o">=-</span><span class="mf">1.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">msg_throttle</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">859</span><span class="n">dc7908603</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">ax</span><span class="o">.</span><span class="n">cla</span><span class="p">();</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">);</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">interact</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="n">FloatSlider_nice</span><span class="p">(</span><span class="nb">min</span><span class="o">=-</span><span class="mf">1.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">msg_throttle</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-
-<span class="ne">NameError</span>: name &#39;interact&#39; is not defined
-</pre></div>
-</div>
-<img alt="../../_images/04_filtros_IIR_5_1.png" src="../../_images/04_filtros_IIR_5_1.png" />
 </div>
 </div>
 <ul class="simple">
