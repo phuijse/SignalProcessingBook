@@ -13,4 +13,7 @@
     - file: clases/unidad2/02_sistemas
     - file: clases/unidad2/03_filtros_FIR
     - file: clases/unidad2/04_filtros_IIR
+- part: Unidad 3
+  chapters:
+    - file: clases/unidad3/01_wiener
 
