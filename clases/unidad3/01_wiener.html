@@ -1,0 +1,1186 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Estimador lineal óptimo &#8212; INFO183 Análisis de sistemas lineales</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/ui_handle.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="prev" title="4. Diseño de sistemas y filtros IIR" href="../unidad2/04_filtros_IIR.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Unidad 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/01_introducci%C3%B3n.html">
+   1. Introducción al procesamiento digital de señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/02_espectro.html">
+   2. Espectro y Transformada de Fourier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/03_muestreo.html">
+   3. Efectos del muestreo y fenómeno de aliasing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad1/04_enventanado.html">
+   4. Fuga espectral y técnica de enventanado
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Unidad 2
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad2/01_espectrograma.html">
+   1. Espectrograma
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad2/02_sistemas.html">
+   2. Sistemas para el procesamiento de señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad2/03_filtros_FIR.html">
+   3. Diseño de sistemas y filtros FIR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unidad2/04_filtros_IIR.html">
+   4. Diseño de sistemas y filtros IIR
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Unidad 3
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Estimador lineal óptimo
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+            title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/clases/unidad3/01_wiener.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Modo de pantalla completa"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/phuijse/UACH-INFO183/master?urlpath=tree/clases/unidad3/01_wiener.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/phuijse/UACH-INFO183/blob/master/clases/unidad3/01_wiener.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Lanzamiento Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contenido
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definiciones-y-fundamentos">
+   1.1. Definiciones y fundamentos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proceso-aleatorio-o-proceso-estocastico">
+     1.1.1. Proceso aleatorio o proceso estocástico
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#momentos-de-un-proceso-estocastico">
+       1.1.1.1. Momentos de un proceso estocástico
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#proceso-estocastico-estacionario">
+       1.1.1.2. Proceso estocástico estacionario
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#densidad-espectral-de-potencia">
+       1.1.1.3. Densidad espectral de potencia
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimadores-optimos">
+     1.1.2. Estimadores óptimos
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtro-de-wiener">
+   1.2. Filtro de Wiener
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ajuste-del-filtro-de-wiener">
+     1.2.1. Ajuste del filtro de Wiener
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#requisitos-supuestos-de-este-filtro">
+     1.2.2. Requisitos/supuestos de este filtro
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-minimo-del-filtro-de-wiener">
+     1.2.3. Error mínimo del filtro de Wiener
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicaciones-del-filtro-de-wiener">
+   1.3. Aplicaciones del filtro de Wiener
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regresion-o-identificacion-de-sistema">
+     1.3.1. Regresión  o identificación de sistema
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediccion">
+     1.3.2. Predicción
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eliminar-ruido-blanco-aditivo">
+     1.3.3. Eliminar ruido blanco aditivo
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> notebook
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span> <span class="nn">scipy.fft</span> <span class="k">as</span> <span class="nn">sfft</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Audio</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span><span class="p">,</span> <span class="n">row</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">Slider</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_notebook</span>
+<span class="kn">from</span> <span class="nn">bokeh.palettes</span> <span class="kn">import</span> <span class="n">Dark2_5</span> <span class="k">as</span> <span class="n">palette</span>
+
+<span class="n">output_notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div class="bk-root">
+    <a href="https://bokeh.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
+    <span id="1001">Loading BokehJS ...</span>
+</div></div><script type="application/javascript">
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  var JS_MIME_TYPE = 'application/javascript';
+  var HTML_MIME_TYPE = 'text/html';
+  var EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  var CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    var script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    var cell = handle.cell;
+
+    var id = cell.output_area._bokeh_element_id;
+    var server_id = cell.output_area._bokeh_server_id;
+    // Clean up Bokeh references
+    if (id != null && id in Bokeh.index) {
+      Bokeh.index[id].model.document.clear();
+      delete Bokeh.index[id];
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      var cmd = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd, {
+        iopub: {
+          output: function(msg) {
+            var id = msg.content.text.trim();
+            if (id in Bokeh.index) {
+              Bokeh.index[id].model.document.clear();
+              delete Bokeh.index[id];
+            }
+          }
+        }
+      });
+      // Destroy server and session
+      var cmd = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    var output_area = handle.output_area;
+    var output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+      return
+    }
+
+    var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      var bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      var script_attrs = bk_div.children[0].attributes;
+      for (var i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+        toinsert[toinsert.length - 1].firstChild.textContent = bk_div.children[0].textContent
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      var toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+
+  
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  var NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded() {
+    var el = document.getElementById("1001");
+    if (el != null) {
+      el.textContent = "BokehJS is loading...";
+    }
+    if (root.Bokeh !== undefined) {
+      if (el != null) {
+        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(display_loaded, 100)
+    }
+  }
+
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    const hashes = {"https://cdn.bokeh.org/bokeh/release/bokeh-2.2.1.min.js": "qkRvDQVAIfzsJo40iRBbxt6sttt0hv4lh74DG7OK4MCHv4C5oohXYoHUM5W11uqS", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.1.min.js": "Sb7Mr06a9TNlet/GEBeKaf5xH3eb6AlCzwjtU82wNPyDrnfoiVl26qnvlKjmcAd+", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.1.min.js": "HaJ15vgfmcfRtB4c4YBOI4f1MUujukqInOWVqZJZZGK7Q+ivud0OKGSTn/Vm2iso"};
+
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      if (url in hashes) {
+        element.crossOrigin = "anonymous";
+        element.integrity = "sha384-" + hashes[url];
+      }
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.1.min.js"];
+  var css_urls = [];
+  
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {
+    
+    
+    }
+  ];
+
+  function run_inline_js() {
+    
+    if (root.Bokeh !== undefined || force === true) {
+      
+    for (var i = 0; i < inline_js.length; i++) {
+      inline_js[i].call(root, root.Bokeh);
+    }
+    if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));</script></div>
+</div>
+<div class="section" id="estimador-lineal-optimo">
+<h1><span class="section-number">1. </span>Estimador lineal óptimo<a class="headerlink" href="#estimador-lineal-optimo" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="definiciones-y-fundamentos">
+<h2><span class="section-number">1.1. </span>Definiciones y fundamentos<a class="headerlink" href="#definiciones-y-fundamentos" title="Enlazar permanentemente con este título">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Estimador:</strong> Sistema diseñado para <strong>extraer información</strong> a partir de una <strong>señal</strong></p></li>
+<li><p>La señal contiene <strong>información y ruido</strong></p></li>
+<li><p>La señal es representada como una secuencia de <strong>datos</strong></p></li>
+</ul>
+<p>Tipos de estimador</p>
+<ul class="simple">
+<li><p><strong>Filtro:</strong> Estimo el valor actual de mi señal acentuando o eliminando una o más características</p></li>
+<li><p><strong>Predictor:</strong> Estimo el valor futuro de mi señal</p></li>
+</ul>
+<p>Estimador lineal óptimo</p>
+<ul class="simple">
+<li><p>Lineal: La cantidad estimada es una función lineal de la entrada</p></li>
+<li><p>Óptimo: El estimador es la mejor solución posible de acuerdo a un criterio</p></li>
+</ul>
+<div class="section" id="proceso-aleatorio-o-proceso-estocastico">
+<h3><span class="section-number">1.1.1. </span>Proceso aleatorio o proceso estocástico<a class="headerlink" href="#proceso-aleatorio-o-proceso-estocastico" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un proceso estocástico es una <strong>colección de variables aleatorias</strong> indexadas tal que forman una secuencia</p>
+<p>Se denotan matematicamente como un conjunto <span class="math notranslate nohighlight">\(\{U_k\}\)</span>, con <span class="math notranslate nohighlight">\(k=0, 1, 2, \ldots, N\)</span>. El índice <span class="math notranslate nohighlight">\(k\)</span> puede representar tiempo, espacio u otra variable independiente</p>
+<p>La siguiente figura muestre tres realizaciones u observaciones de un proceso estocástico con cuatro elementos</p>
+<a class="reference internal image-reference" href="../../_images/stochastic_process.png"><img alt="../../_images/stochastic_process.png" src="../../_images/stochastic_process.png" style="width: 600px;" /></a>
+<p>Se usan para modelar la evolución de un fenomeno estadístico en el tiempo donde el fenomeno se rige por leyes probabilísticas</p>
+<div class="section" id="momentos-de-un-proceso-estocastico">
+<h4><span class="section-number">1.1.1.1. </span>Momentos de un proceso estocástico<a class="headerlink" href="#momentos-de-un-proceso-estocastico" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Un proceso aleatorio <span class="math notranslate nohighlight">\(U_n = (u_n, u_{n-1}, u_{n-2}, \ldots, u_{n-L})\)</span> se describe a través de sus momentos estadísticos</p>
+<p>Si consideramos una caracterízación de segundo orden necesitamos definir</p>
+<ul class="simple">
+<li><p>Momento central o media: Describe el valor central del proceso</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mu(n) = \mathbb{E}[U_n]
+\]</div>
+<ul class="simple">
+<li><p>Segundo momento o correlación: Describe la dispersión de un proceso</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+r_{uu}(n, n-k) = \mathbb{E}[U_n U_{n-k}]
+\]</div>
+<ul class="simple">
+<li><p>Segundo momento centrado o covarianza</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+c_{uu}(n, n-k) &amp;= \mathbb{E}[(U_n-\mu_n) (U_{n-k}- \mu_{n-k})] \nonumber \\
+&amp;= r(n,n-k) - \mu_n \mu_{n-k} \nonumber
+\end{align}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Correlación cruzada entre dos procesos</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+r_{ud}(n, n-k) = \mathbb{E}[U_n D_{n-k}]
+\]</div>
+</div>
+<div class="section" id="proceso-estocastico-estacionario">
+<h4><span class="section-number">1.1.1.2. </span>Proceso estocástico estacionario<a class="headerlink" href="#proceso-estocastico-estacionario" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>En general consideraremos el caso simplificado donde el <strong>proceso es estacionario</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\mu(n)  = \mu, \forall n
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[
+r_{uu}(n, n-k)  = r_{uu}(k), \forall n
+\]</div>
+<p>es decir que los momentos estadísticos se mantienen constantes en el tiempo (no depende de <span class="math notranslate nohighlight">\(n\)</span>)</p>
+<p>Otra simplificación es que el proceso sea ergódico</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[U_n] = \frac{1}{N} \sum_{n=1}^N u_n
+\]</div>
+<p>es decir podemos reemplazar el valor esperado por la media muestral en el tiempo</p>
+</div>
+<div class="section" id="densidad-espectral-de-potencia">
+<h4><span class="section-number">1.1.1.3. </span>Densidad espectral de potencia<a class="headerlink" href="#densidad-espectral-de-potencia" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Otra cantidad de interés es la PSD (<em>power spectral density</em>) que mide la distribución de la potencia en frecuencia</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+S_{uu}(f) &amp;= \sum_{k=-\infty}^{\infty} r_{uu}(k) e^{-j 2\pi f k} \nonumber \\
+&amp;= \lim_{N\to\infty} \frac{1}{2N+1} \mathbb{E} \left [\left|\sum_{n=-N}^{N} u_n e^{-j 2\pi f n} \right|^2 \right]
+\end{align}
+\end{split}\]</div>
+<p>que corresponde a la transformada de Fourier de la correlación (caso estacionario)</p>
+<p>La PSD y la correlación forman un par de Fourier</p>
+</div>
+</div>
+<div class="section" id="estimadores-optimos">
+<h3><span class="section-number">1.1.2. </span>Estimadores óptimos<a class="headerlink" href="#estimadores-optimos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Definición de <a class="reference external" href="http://dle.rae.es/?id=R7bbor7">Óptimo</a>: adjetivo. Sumamente bueno, que no puede ser mejor.</p>
+<p>Para diseñar un estimador óptimo necesitamos un <strong>criterio</strong></p>
+<p>Luego el estimador será <strong>óptimo según dicho criterio</strong></p>
+<p>Usualmente también consideramos supuestos</p>
+<p>Por ejemplo podríamos asumir que</p>
+<ul class="simple">
+<li><p>el ruido es aditivo y blanco o que tiene una cierta covarianza conocida</p></li>
+<li><p>conocemos la media y covarianza de la señal</p></li>
+<li><p>el proceso es estacionario</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="filtro-de-wiener">
+<h2><span class="section-number">1.2. </span>Filtro de Wiener<a class="headerlink" href="#filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Este filtro fue publicado por Norbert Wiener en 1949. Es un filtro de tiempo discreto con estructura FIR y <span class="math notranslate nohighlight">\(L+1\)</span> coeficientes: <span class="math notranslate nohighlight">\(h_0, h_1, h_2, \ldots, h_{L}\)</span></p>
+<ul class="simple">
+<li><p>La entrada al filtro es una señal <span class="math notranslate nohighlight">\(u_0, u_1, u_2, \ldots\)</span></p></li>
+<li><p>Para cada tiempo el filtro produce una salida <span class="math notranslate nohighlight">\(y_0, y_1, y_2, \ldots\)</span></p></li>
+</ul>
+<p>Los coeficientes del filtro se aprenden en base a dos ingredientes</p>
+<ul class="simple">
+<li><p>Una respuesta «deseada» u objetivo <span class="math notranslate nohighlight">\(d_0, d_1, d_2, \ldots\)</span></p></li>
+<li><p>Un criterio de optimalidad que opera sobre el error entre la respuesta deseada y la salida</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+e_n = d_n - y_n = d_n - \sum_{k=0}^{L} h_k u_{n-k} 
+\]</div>
+<p>Diagrama del filtro de Wiener</p>
+<p><img alt="wiener.png" src="clases/unidad3/attachment:wiener.png" /></p>
+<div class="section" id="ajuste-del-filtro-de-wiener">
+<h3><span class="section-number">1.2.1. </span>Ajuste del filtro de Wiener<a class="headerlink" href="#ajuste-del-filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El criterio más común para aprender o adaptar el filtro de Wiener es <strong>el error medio cuadrático</strong> entre la respuesta deseada y la salida del filtro</p>
+<p>Asumiendo que <span class="math notranslate nohighlight">\(u\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son secuencias de valores reales podemos escribir el MSE como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{MSE} &amp;= \mathbb{E}\left [e_n^2 \right] \nonumber \\
+&amp;= \mathbb{E}\left [(d_n - y_n)^2 \right] \nonumber \\
+&amp;= \mathbb{E}\left [d_n^2 \right]  - 2\mathbb{E}\left [ d_n y_n \right] + \mathbb{E}\left [ y_n^2 \right] \nonumber 
+\end{align}
+\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\sigma_d^2 = \mathbb{E}\left [d_n^2 \right]\)</span> es la varianza de la señal deseada y <span class="math notranslate nohighlight">\(\sigma_y^2 = \mathbb{E}\left [ y_n^2 \right]\)</span> es la varianza de nuestro estimador</p>
+<div class="alert alert-info">
+<p>Minimizar el MSE implica acercar la salida del filtro a la respuesta deseada</p>
+</div>
+<p>En este caso, igualando la derivada del MSE a cero, tenemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{d}{d h_j} \text{MSE} &amp;= -2\mathbb{E}\left[ d_n \frac{d y_n}{d h_j}  \right]  + 2 \mathbb{E}\left[ y_n \frac{d y_n}{d h_j}    \right]  \nonumber \\
+&amp;= -2\mathbb{E}\left[ d_n u_{n-j} \right]  + 2 \mathbb{E}\left[ y_n u_{n-j}    \right]  \nonumber \\
+&amp;= -2\mathbb{E}\left[ d_n u_{n-j} \right]  + 2 \mathbb{E}\left[ \sum_{k=0}^{L} h_k u_{n-k}  u_{n-j} \right] \nonumber \\
+&amp;= -2\mathbb{E}\left[ d_n u_{n-j} \right]  + 2 \sum_{k=0}^{L} h_k \mathbb{E}\left[ u_{n-k}  u_{n-j} \right] = 0 \nonumber \end{align}
+\end{split}\]</div>
+<p>Si despejamos y repetimos para <span class="math notranslate nohighlight">\(j=0, \ldots, L\)</span> obtenemos el siguiente sistema de ecuaciones</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\begin{pmatrix}
+r_{uu}(0) &amp; r_{uu}(1) &amp; r_{uu}(2) &amp; \ldots &amp; r_{uu}(L) \\
+r_{uu}(1) &amp; r_{uu}(0) &amp; r_{uu}(1) &amp; \ldots &amp; r_{uu}(L-1) \\
+r_{uu}(2) &amp; r_{uu}(1) &amp; r_{uu}(0) &amp; \ldots &amp; r_{uu}(L-2) \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp;\vdots \\
+r_{uu}(L) &amp; r_{uu}(L-1) &amp; r_{uu}(L-2) &amp; \ldots &amp; r_{uu}(0) \\
+\end{pmatrix}
+\begin{pmatrix}
+h_0  \\
+h_1  \\
+h_2  \\
+\vdots  \\
+h_L \\
+\end{pmatrix} &amp;= 
+\begin{pmatrix}
+r_{ud}(0)  \\
+r_{ud}(1)  \\
+r_{ud}(2) \\
+\vdots  \\
+r_{ud}(L) \\
+\end{pmatrix} \nonumber \\
+R_{uu} \textbf{h} &amp;= R_{ud},
+\end{align}
+\end{split}\]</div>
+<p>que se conoce como las <strong>ecuaciones de Wiener-Hopf</strong>. Además <span class="math notranslate nohighlight">\(R_{uu}\)</span> se conoce como matriz de auto-correlación.</p>
+<p>Asumiendo que <span class="math notranslate nohighlight">\(R_{uu}\)</span> es no-singular, es decir que su inversa existe, la <strong>solución óptima en el sentido de mínimo MSE</strong> es</p>
+<div class="math notranslate nohighlight">
+\[
+\textbf{h}^{*} = R_{uu} ^{-1} R_{ud}
+\]</div>
+<p>En general <span class="math notranslate nohighlight">\(R_{uu}\)</span> es una matriz definida-positiva (su inversa existe) y el sistema puede resolverse en <span class="math notranslate nohighlight">\(\mathcal{O}(L^2)\)</span> usando la <a class="reference external" href="https://en.wikipedia.org/wiki/Levinson_recursion">recursión de Levison-Durbin</a></p>
+</div>
+<div class="section" id="requisitos-supuestos-de-este-filtro">
+<h3><span class="section-number">1.2.2. </span>Requisitos/supuestos de este filtro<a class="headerlink" href="#requisitos-supuestos-de-este-filtro" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li><p>La salida deseada y la entrada tienen media cero, <em>i.e.</em> <span class="math notranslate nohighlight">\(\mathbb{E}[d_n] = \mathbb{E}[u_n] = 0\)</span>, si esto no fuera así puede restarse antes de entrenar el filtro</p></li>
+<li><p>La salida deseada y la entrada son estacionarias en el sentido amplio, es decir la correlación solo depende de <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="error-minimo-del-filtro-de-wiener">
+<h3><span class="section-number">1.2.3. </span>Error mínimo del filtro de Wiener<a class="headerlink" href="#error-minimo-del-filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Sea <span class="math notranslate nohighlight">\(U_n = (u_n, u_{n-1}, u_{n-2}, \ldots, u_{n-L})\)</span></p>
+<p>Dado que <span class="math notranslate nohighlight">\(y_n = \textbf{h}^T U_n = U_n^T \textbf{h} \)</span>, podemos expresar el MSE como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{MSE} &amp;= \mathbb{E}\left [d_n^2 \right]  - 2\mathbb{E}\left [ d_n y_n \right] + \mathbb{E}\left [ y_n^2 \right] \nonumber \\
+&amp;= \mathbb{E}\left [d_n^2 \right] - 2 \textbf{h}^T \mathbb{E}\left [ d_n U_n \right]  + \textbf{h}^T \mathbb{E}\left [U_n U_n^T \right]  \textbf{h}  \nonumber \\
+&amp;= \sigma_d^2 - 2 \textbf{h}^T R_{ud} + \textbf{h}^T R_{uu} \textbf{h} \nonumber 
+\end{align}
+\end{split}\]</div>
+<p>Luego el mínimo error que se puede obtener es</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{MSE}_{\text{min}} &amp;= \sigma_d^2 - (R_{uu}^{-1} R_{ud})^T R_{ud} \nonumber \\
+&amp;= \sigma_d^2 - R_{ud}^T R_{uu}^{-1} R_{ud} &lt; \sigma_d^2
+\end{align}
+\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="aplicaciones-del-filtro-de-wiener">
+<h2><span class="section-number">1.3. </span>Aplicaciones del filtro de Wiener<a class="headerlink" href="#aplicaciones-del-filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="regresion-o-identificacion-de-sistema">
+<h3><span class="section-number">1.3.1. </span>Regresión  o identificación de sistema<a class="headerlink" href="#regresion-o-identificacion-de-sistema" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En regresión buscamos encontrar los coeficientes <span class="math notranslate nohighlight">\(h\)</span> a partir de <span class="math notranslate nohighlight">\((X, Y)\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[
+Y = h^T X + \epsilon,
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{N\times D}\)</span> son las variables dependientes (entrada), <span class="math notranslate nohighlight">\(Y \in \mathbb{R}^N\)</span> es la  variable dependiente (salida) y <span class="math notranslate nohighlight">\(\epsilon\)</span> es ruido</p>
+<p>Para entrenar el filtro</p>
+<ol class="simple">
+<li><p>Asumimos que hemos observado N muestras de <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+<li><p>A partir de <span class="math notranslate nohighlight">\(u=X\)</span> construimos <span class="math notranslate nohighlight">\(R_{uu}\)</span></p></li>
+<li><p>A partir de <span class="math notranslate nohighlight">\(d=Y\)</span> construimos <span class="math notranslate nohighlight">\(R_{ud}\)</span></p></li>
+<li><p>Finalmente recuperamos <span class="math notranslate nohighlight">\(\textbf{h}\)</span> usando <span class="math notranslate nohighlight">\(R_{uu} ^{-1} R_{ud}\)</span></p></li>
+<li><p>Con esto podemos interpolar <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+</ol>
+<p>Sea por ejemplo una regresión de tipo polinomial donde encontrar <span class="math notranslate nohighlight">\(h_k\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[
+d_i = f_i + \epsilon = \sum_{k=1}^L h_k u_i^k + \epsilon
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">u</span><span class="o">**</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">u</span> <span class="c1"># Los coeficientes reales son [0, 5, 0, -2, 0, 1/4, 0, 0, 0, ...]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>¿Cómo cambia el resultado con L?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_wiener_regression</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">L</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">U</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="o">**</span><span class="n">i</span>
+    <span class="n">Ruu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
+    <span class="n">Rud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">d</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Ruu</span><span class="p">,</span> <span class="n">Rud</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">interpolate_wiener</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">L</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">U</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="o">**</span><span class="n">i</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+
+<span class="n">uhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p_</span><span class="p">,</span> <span class="n">L_</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">palette</span><span class="p">):</span>
+    <span class="n">fhat</span> <span class="o">=</span> <span class="n">interpolate_wiener</span><span class="p">(</span><span class="n">uhat</span><span class="p">,</span> <span class="n">train_wiener_regression</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">L_</span><span class="p">))</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Señal intrísinca f&quot;</span><span class="p">)</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Señal contaminada y&quot;</span><span class="p">)</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">uhat</span><span class="p">,</span> <span class="n">fhat</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Señal interpolada L=</span><span class="si">{</span><span class="n">L_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="s1">&#39;bottom_right&#39;</span>
+<span class="n">show</span><span class="p">(</span><span class="n">column</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+
+
+
+
+<div class="bk-root" id="e42e7f8f-59d1-4b82-af89-2d0944929a92" data-root-id="1251"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    
+  var docs_json = {"646922df-49f1-47cb-8236-7476d37531fe":{"roots":{"references":[{"attributes":{"children":[{"id":"1002"},{"id":"1033"},{"id":"1064"}]},"id":"1251","type":"Column"},{"attributes":{"label":{"value":"Se\u00f1al contaminada y"},"renderers":[{"id":"1114"}]},"id":"1127","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"black"},"line_alpha":{"value":0.1},"line_width":{"value":3},"x":{"field":"x"},"y":{"field":"y"}},"id":"1113","type":"Scatter"},{"attributes":{"fill_color":{"value":"black"},"line_width":{"value":3},"x":{"field":"x"},"y":{"field":"y"}},"id":"1216","type":"Scatter"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMCNsNzTCMv9vxphuacRlvu/qBGWexph+b81wnJPIyz3v8JyTyMs9/S/UCMs9zTC8r/d0wjLPY3wv9QIyz2NsOy/7mmE5Z5G6L8Iyz2NsNzjv0hY7mmE5d6/fBphuacR1r9guacRlnvKv6B7GmG5p7G/oHsaYbmnsT9guacRlnvKP3gaYbmnEdY/SFjuaYTl3j8Iyz2NsNzjP/BphOWeRug/1AjLPY2w7D/c0wjLPY3wP1AjLPc0wvI/wnJPIyz39D80wnJPIyz3P6gRlnsaYfk/GmG5pxGW+z+MsNzTCMv9PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]},"y":{"__ndarray__":"rr/QgB41BsA5lmNBHH4AwI6KIRxeJQfA8pU6dgB1CsB/LUJKPCsGwCqXD3dP/wbAIyxVf9fEBsD31GgRpowLwGTrPzFmmxDAekBGaRKs+b8fKP5Kwyvxv5uHJw5PxPa/Lha9SdGS9L+YZm03XcT7v4ajIawU4vA/KIFiM+UeoD8RSwQ0JhHgP7UqX1PpUfM/L72MNWNuBUA/gioQ6p4DQIAeiVcSrQRAMFWf3OQiBUANMg6DpgMUQL2/dMWD+AVA0KKcmygo+D9pS+x+M6/6P/OjoAmqOAdACTywgmtmAUAqZcQUM438Pza79h9HAgZA","dtype":"float64","order":"little","shape":[30]}},"selected":{"id":"1125"},"selection_policy":{"id":"1126"}},"id":"1111","type":"ColumnDataSource"},{"attributes":{"label":{"value":"Se\u00f1al contaminada y"},"renderers":[{"id":"1218"}]},"id":"1231","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"black"},"line_alpha":{"value":0.1},"line_width":{"value":3},"x":{"field":"x"},"y":{"field":"y"}},"id":"1217","type":"Scatter"},{"attributes":{"source":{"id":"1111"}},"id":"1115","type":"CDSView"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1087","type":"BoxAnnotation"},{"attributes":{"data_source":{"id":"1111"},"glyph":{"id":"1112"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1113"},"selection_glyph":null,"view":{"id":"1115"}},"id":"1114","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1128"}},"id":"1132","type":"CDSView"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMCNsNzTCMv9vxphuacRlvu/qBGWexph+b81wnJPIyz3v8JyTyMs9/S/UCMs9zTC8r/d0wjLPY3wv9QIyz2NsOy/7mmE5Z5G6L8Iyz2NsNzjv0hY7mmE5d6/fBphuacR1r9guacRlnvKv6B7GmG5p7G/oHsaYbmnsT9guacRlnvKP3gaYbmnEdY/SFjuaYTl3j8Iyz2NsNzjP/BphOWeRug/1AjLPY2w7D/c0wjLPY3wP1AjLPc0wvI/wnJPIyz39D80wnJPIyz3P6gRlnsaYfk/GmG5pxGW+z+MsNzTCMv9PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]},"y":{"__ndarray__":"rr/QgB41BsA5lmNBHH4AwI6KIRxeJQfA8pU6dgB1CsB/LUJKPCsGwCqXD3dP/wbAIyxVf9fEBsD31GgRpowLwGTrPzFmmxDAekBGaRKs+b8fKP5Kwyvxv5uHJw5PxPa/Lha9SdGS9L+YZm03XcT7v4ajIawU4vA/KIFiM+UeoD8RSwQ0JhHgP7UqX1PpUfM/L72MNWNuBUA/gioQ6p4DQIAeiVcSrQRAMFWf3OQiBUANMg6DpgMUQL2/dMWD+AVA0KKcmygo+D9pS+x+M6/6P/OjoAmqOAdACTywgmtmAUAqZcQUM438Pza79h9HAgZA","dtype":"float64","order":"little","shape":[30]}},"selected":{"id":"1229"},"selection_policy":{"id":"1230"}},"id":"1215","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1215"}},"id":"1219","type":"CDSView"},{"attributes":{"data_source":{"id":"1215"},"glyph":{"id":"1216"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1217"},"selection_glyph":null,"view":{"id":"1219"}},"id":"1218","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1232"}},"id":"1236","type":"CDSView"},{"attributes":{},"id":"1126","type":"UnionRenderers"},{"attributes":{},"id":"1040","type":"LinearScale"},{"attributes":{},"id":"1125","type":"Selection"},{"attributes":{"data_source":{"id":"1128"},"glyph":{"id":"1129"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1130"},"selection_glyph":null,"view":{"id":"1132"}},"id":"1131","type":"GlyphRenderer"},{"attributes":{},"id":"1036","type":"DataRange1d"},{"attributes":{"formatter":{"id":"1155"},"ticker":{"id":"1047"}},"id":"1046","type":"LinearAxis"},{"attributes":{},"id":"1230","type":"UnionRenderers"},{"attributes":{"formatter":{"id":"1157"},"ticker":{"id":"1043"}},"id":"1042","type":"LinearAxis"},{"attributes":{},"id":"1229","type":"Selection"},{"attributes":{},"id":"1007","type":"LinearScale"},{"attributes":{},"id":"1038","type":"LinearScale"},{"attributes":{},"id":"1055","type":"HelpTool"},{"attributes":{},"id":"1043","type":"BasicTicker"},{"attributes":{"axis":{"id":"1042"},"ticker":null},"id":"1045","type":"Grid"},{"attributes":{"text":""},"id":"1100","type":"Title"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMAFav1KgVr/vwrU+pUCtf6/ED744IMP/r8VqPUrBWr9vxoS83aGxPy/H3zwwQcf/L8k5u0MiXn7vylQ61cK1Pq/Lrrooosu+r80JObtDIn5vzmO4ziO4/i/Pvjggw8++L9DYt7OkJj3v0jM2xkS8/a/TjbZZJNN9r9SoNavFKj1v1gK1PqVAvW/XXTRRRdd9L9i3s6QmLfzv2dIzNsZEvO/bLLJJpts8r9yHMdxHMfxv3aGxLydIfG/fPDBBx988L8CtX6lQK3vvwyJeTtDYu6/Fl100UUX7b8gMW9nSMzrvywFav1Kgeq/Ntlkk0026b9ArV8pUOvnv0qBWr9SoOa/VFVVVVVV5b9eKVDrVwrkv2j9SoFav+K/dNFFF1104b9+pUCtXyngvxDzdobEvN2/JJtssskm2784Q2LezpDYv0zrVwrU+tW/ZJNNNtlk0794O0Ni3s7QvxjHcRzHccy/QBdddNFFx79oZ0jM2xnCvyBvZ0jM27m/AB988MEHr79Av1Kg1q+Uv4C/UqDWr5Q/QB988MEHrz9Ab2dIzNu5P3BnSMzbGcI/UBdddNFFxz8gx3Ecx3HMP4A7Q2LeztA/aJNNNtlk0z9Q61cK1PrVP0BDYt7OkNg/KJtssskm2z8Y83aGxLzdP4ClQK1fKeA/eNFFF1104T9s/UqBWr/iP2ApUOtXCuQ/WFVVVVVV5T9MgVq/UqDmP0StXylQ6+c/ONlkk0026T8wBWr9SoHqPyQxb2dIzOs/GF100UUX7T8QiXk7Q2LuPwS1fqVAre8/fvDBBx988D94hsS8nSHxP3Icx3Ecx/E/brLJJpts8j9oSMzbGRLzP2TezpCYt/M/XnTRRRdd9D9aCtT6lQL1P1Sg1q8UqPU/TjbZZJNN9j9KzNsZEvP2P0Ri3s6QmPc/QPjggw8++D86juM4juP4PzYk5u0Mifk/MLrooosu+j8qUOtXCtT6Pybm7QyJefs/IHzwwQcf/D8cEvN2hsT8Pxao9SsFav0/ED744IMP/j8M1PqVArX+PwZq/UqBWv8/AAAAAAAAAEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"/sxb2s+xDcAE12BWABkNwAnhZdIwgAzAEOtqTmHnC8AW9W/KkU4LwBv/dEbCtQrAIQl6wvIcCsAnE38+I4QJwC0dhLpT6wjAMieJNoRSCMA5MY6ytLkHwD87ky7lIAfAREWYqhWIBsBKT50mRu8FwFBZoqJ2VgXAVmOnHqe9BMBbbaya1yQEwGJ3sRYIjAPAZ4G2kjjzAsBti7sOaVoCwHOVwIqZwQHAeJ/FBsooAcB/qcqC+o8AwAdnn/1V7v+/FHup9ba8/r8fj7PtF4v9vyujveV4Wfy/NrfH3dkn+79Cy9HVOvb5v0/f282bxPi/WvPlxfyS979mB/C9XWH2v3Eb+rW+L/W/fC8Erh/+87+IQw6mgMzyv5NXGJ7hmvG/oGsilkJp8L9Y/1gcR2/uv28nbQwJDOy/hU+B/Mqo6b+cd5XsjEXnv7OfqdxO4uS/zce9zBB/4r/l79G80hvgv/cvzFkpcdu/JYD0Oa2q1r9S0BwaMeTRvwBBivRpO8q/auHatHGuwL8SB67U5YWsvwHvHlT2W5M/KHtmFO7wtz8pneJJb4XFP8D8kYlnEs8/Oa6g5K9P1D8FXngELBbZP94NUCSo3N0/1d4TIpJR4T+7tv8x0LTjP6iO60EOGOY/jWbXUUx76D96PsNhit7qP18Wr3HIQe0/TO6agQal7z8ZY8NIIgTxPwxPuVDBNfI/AjuvWGBn8z/1JqVg/5j0P+sSm2ieyvU/3v6QcD389j/V6oZ43C34P8fWfIB7X/k/usJyiBqR+j+wrmiQucL7P6OaXphY9Pw/moZUoPcl/j+Mckqollf/Pz8vINiaRABAOiUbXGrdAEA0GxbgOXYBQC8REWQJDwJAKAcM6NinAkAk/QZsqEADQB3zAfB32QNAFun8c0dyBEAR3/f3FgsFQAvV8nvmowVABsvt/7U8BkD/wOiDhdUGQPu24wdVbgdA9KzeiyQHCEDtotkP9J8IQOmY1JPDOAlA4o7PF5PRCUDdhMqbYmoKQNd6xR8yAwtA0HDAowGcC0DLZrsn0TQMQMVctqugzQxAvlKxL3BmDUA=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1144"},"selection_policy":{"id":"1145"}},"id":"1128","type":"ColumnDataSource"},{"attributes":{"axis":{"id":"1046"},"dimension":1,"ticker":null},"id":"1049","type":"Grid"},{"attributes":{},"id":"1145","type":"UnionRenderers"},{"attributes":{"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1096","type":"Line"},{"attributes":{},"id":"1047","type":"BasicTicker"},{"attributes":{},"id":"1065","type":"DataRange1d"},{"attributes":{"source":{"id":"1095"}},"id":"1099","type":"CDSView"},{"attributes":{},"id":"1003","type":"DataRange1d"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1097","type":"Line"},{"attributes":{"line_color":"#1b9e77","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1129","type":"Line"},{"attributes":{"items":[{"id":"1110"},{"id":"1127"},{"id":"1146"}],"location":"bottom_right"},"id":"1109","type":"Legend"},{"attributes":{"line_alpha":0.1,"line_color":"#1b9e77","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1130","type":"Line"},{"attributes":{},"id":"1051","type":"WheelZoomTool"},{"attributes":{"formatter":{"id":"1103"},"ticker":{"id":"1016"}},"id":"1015","type":"LinearAxis"},{"attributes":{},"id":"1050","type":"PanTool"},{"attributes":{"below":[{"id":"1011"}],"center":[{"id":"1014"},{"id":"1018"},{"id":"1109"}],"left":[{"id":"1015"}],"plot_height":250,"renderers":[{"id":"1098"},{"id":"1114"},{"id":"1131"}],"title":{"id":"1100"},"toolbar":{"id":"1026"},"toolbar_location":"below","x_range":{"id":"1003"},"x_scale":{"id":"1007"},"y_range":{"id":"1005"},"y_scale":{"id":"1009"}},"id":"1002","subtype":"Figure","type":"Plot"},{"attributes":{"overlay":{"id":"1056"}},"id":"1052","type":"BoxZoomTool"},{"attributes":{},"id":"1249","type":"UnionRenderers"},{"attributes":{"below":[{"id":"1073"}],"center":[{"id":"1076"},{"id":"1080"},{"id":"1213"}],"left":[{"id":"1077"}],"plot_height":250,"renderers":[{"id":"1202"},{"id":"1218"},{"id":"1235"}],"title":{"id":"1204"},"toolbar":{"id":"1088"},"toolbar_location":"below","x_range":{"id":"1065"},"x_scale":{"id":"1069"},"y_range":{"id":"1067"},"y_scale":{"id":"1071"}},"id":"1064","subtype":"Figure","type":"Plot"},{"attributes":{"fill_color":{"value":"black"},"line_width":{"value":3},"x":{"field":"x"},"y":{"field":"y"}},"id":"1112","type":"Scatter"},{"attributes":{},"id":"1053","type":"SaveTool"},{"attributes":{"label":{"value":"Se\u00f1al interpolada L=2"},"renderers":[{"id":"1131"}]},"id":"1146","type":"LegendItem"},{"attributes":{},"id":"1054","type":"ResetTool"},{"attributes":{"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1233","type":"Line"},{"attributes":{"line_alpha":0.1,"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1234","type":"Line"},{"attributes":{"below":[{"id":"1042"}],"center":[{"id":"1045"},{"id":"1049"},{"id":"1161"}],"left":[{"id":"1046"}],"plot_height":250,"renderers":[{"id":"1150"},{"id":"1166"},{"id":"1183"}],"title":{"id":"1152"},"toolbar":{"id":"1057"},"toolbar_location":"below","x_range":{"id":"1034"},"x_scale":{"id":"1038"},"y_range":{"id":"1036"},"y_scale":{"id":"1040"}},"id":"1033","subtype":"Figure","type":"Plot"},{"attributes":{"formatter":{"id":"1105"},"ticker":{"id":"1012"}},"id":"1011","type":"LinearAxis"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMCNsNzTCMv9vxphuacRlvu/qBGWexph+b81wnJPIyz3v8JyTyMs9/S/UCMs9zTC8r/d0wjLPY3wv9QIyz2NsOy/7mmE5Z5G6L8Iyz2NsNzjv0hY7mmE5d6/fBphuacR1r9guacRlnvKv6B7GmG5p7G/oHsaYbmnsT9guacRlnvKP3gaYbmnEdY/SFjuaYTl3j8Iyz2NsNzjP/BphOWeRug/1AjLPY2w7D/c0wjLPY3wP1AjLPc0wvI/wnJPIyz39D80wnJPIyz3P6gRlnsaYfk/GmG5pxGW+z+MsNzTCMv9PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]},"y":{"__ndarray__":"AAAAAAAAAMDwRcjBHOj/v5j7A8e8bgHAagBSFPasA8A+TGCj/BEGwOsLhwpZJAjABOwK38iKCcCahkN4LQkKwPfQwbJ6fQnAYIl2s6XcB8DHpNiqky8FwJa8C5gIkAHAufgMGCxL+r84H3LZE0Xwv+l7nMHpBta/6XucwekG1j84H3LZE0XwP7X4DBgsS/o/lrwLmAiQAUDHpNiqky8FQGGJdrOl3AdA99DBsnp9CUCahkN4LQkKQATsCt/IiglA6wuHClkkCEBCTGCj/BEGQGoAUhT2rANAmPsDx7xuAUD4RcjBHOj/PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]}},"selected":{"id":"1107"},"selection_policy":{"id":"1108"}},"id":"1095","type":"ColumnDataSource"},{"attributes":{"axis":{"id":"1077"},"dimension":1,"ticker":null},"id":"1080","type":"Grid"},{"attributes":{},"id":"1005","type":"DataRange1d"},{"attributes":{"axis":{"id":"1073"},"ticker":null},"id":"1076","type":"Grid"},{"attributes":{"label":{"value":"Se\u00f1al interpolada L=10"},"renderers":[{"id":"1235"}]},"id":"1250","type":"LegendItem"},{"attributes":{},"id":"1009","type":"LinearScale"},{"attributes":{},"id":"1103","type":"BasicTickFormatter"},{"attributes":{},"id":"1144","type":"Selection"},{"attributes":{},"id":"1024","type":"HelpTool"},{"attributes":{},"id":"1078","type":"BasicTicker"},{"attributes":{},"id":"1084","type":"SaveTool"},{"attributes":{},"id":"1012","type":"BasicTicker"},{"attributes":{"axis":{"id":"1011"},"ticker":null},"id":"1014","type":"Grid"},{"attributes":{},"id":"1082","type":"WheelZoomTool"},{"attributes":{},"id":"1248","type":"Selection"},{"attributes":{"formatter":{"id":"1207"},"ticker":{"id":"1078"}},"id":"1077","type":"LinearAxis"},{"attributes":{},"id":"1074","type":"BasicTicker"},{"attributes":{"overlay":{"id":"1087"}},"id":"1083","type":"BoxZoomTool"},{"attributes":{"axis":{"id":"1015"},"dimension":1,"ticker":null},"id":"1018","type":"Grid"},{"attributes":{"formatter":{"id":"1209"},"ticker":{"id":"1074"}},"id":"1073","type":"LinearAxis"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1019"},{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"},{"id":"1024"}]},"id":"1026","type":"Toolbar"},{"attributes":{"data_source":{"id":"1180"},"glyph":{"id":"1181"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1182"},"selection_glyph":null,"view":{"id":"1184"}},"id":"1183","type":"GlyphRenderer"},{"attributes":{},"id":"1016","type":"BasicTicker"},{"attributes":{},"id":"1081","type":"PanTool"},{"attributes":{},"id":"1034","type":"DataRange1d"},{"attributes":{},"id":"1020","type":"WheelZoomTool"},{"attributes":{"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1148","type":"Line"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1056","type":"BoxAnnotation"},{"attributes":{},"id":"1067","type":"DataRange1d"},{"attributes":{},"id":"1019","type":"PanTool"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMCNsNzTCMv9vxphuacRlvu/qBGWexph+b81wnJPIyz3v8JyTyMs9/S/UCMs9zTC8r/d0wjLPY3wv9QIyz2NsOy/7mmE5Z5G6L8Iyz2NsNzjv0hY7mmE5d6/fBphuacR1r9guacRlnvKv6B7GmG5p7G/oHsaYbmnsT9guacRlnvKP3gaYbmnEdY/SFjuaYTl3j8Iyz2NsNzjP/BphOWeRug/1AjLPY2w7D/c0wjLPY3wP1AjLPc0wvI/wnJPIyz39D80wnJPIyz3P6gRlnsaYfk/GmG5pxGW+z+MsNzTCMv9PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]},"y":{"__ndarray__":"AAAAAAAAAMDwRcjBHOj/v5j7A8e8bgHAagBSFPasA8A+TGCj/BEGwOsLhwpZJAjABOwK38iKCcCahkN4LQkKwPfQwbJ6fQnAYIl2s6XcB8DHpNiqky8FwJa8C5gIkAHAufgMGCxL+r84H3LZE0Xwv+l7nMHpBta/6XucwekG1j84H3LZE0XwP7X4DBgsS/o/lrwLmAiQAUDHpNiqky8FQGGJdrOl3AdA99DBsnp9CUCahkN4LQkKQATsCt/IiglA6wuHClkkCEBCTGCj/BEGQGoAUhT2rANAmPsDx7xuAUD4RcjBHOj/PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]}},"selected":{"id":"1159"},"selection_policy":{"id":"1160"}},"id":"1147","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"1147"},"glyph":{"id":"1148"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1149"},"selection_glyph":null,"view":{"id":"1151"}},"id":"1150","type":"GlyphRenderer"},{"attributes":{"overlay":{"id":"1025"}},"id":"1021","type":"BoxZoomTool"},{"attributes":{},"id":"1022","type":"SaveTool"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1149","type":"Line"},{"attributes":{},"id":"1023","type":"ResetTool"},{"attributes":{"source":{"id":"1147"}},"id":"1151","type":"CDSView"},{"attributes":{"text":""},"id":"1152","type":"Title"},{"attributes":{},"id":"1108","type":"UnionRenderers"},{"attributes":{},"id":"1105","type":"BasicTickFormatter"},{"attributes":{"items":[{"id":"1162"},{"id":"1179"},{"id":"1198"}],"location":"bottom_right"},"id":"1161","type":"Legend"},{"attributes":{"label":{"value":"Se\u00f1al intr\u00edsinca f"},"renderers":[{"id":"1150"}]},"id":"1162","type":"LegendItem"},{"attributes":{},"id":"1107","type":"Selection"},{"attributes":{},"id":"1086","type":"HelpTool"},{"attributes":{},"id":"1155","type":"BasicTickFormatter"},{"attributes":{"data_source":{"id":"1095"},"glyph":{"id":"1096"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1097"},"selection_glyph":null,"view":{"id":"1099"}},"id":"1098","type":"GlyphRenderer"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1081"},{"id":"1082"},{"id":"1083"},{"id":"1084"},{"id":"1085"},{"id":"1086"}]},"id":"1088","type":"Toolbar"},{"attributes":{},"id":"1085","type":"ResetTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1050"},{"id":"1051"},{"id":"1052"},{"id":"1053"},{"id":"1054"},{"id":"1055"}]},"id":"1057","type":"Toolbar"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1025","type":"BoxAnnotation"},{"attributes":{},"id":"1071","type":"LinearScale"},{"attributes":{"label":{"value":"Se\u00f1al intr\u00edsinca f"},"renderers":[{"id":"1098"}]},"id":"1110","type":"LegendItem"},{"attributes":{},"id":"1069","type":"LinearScale"},{"attributes":{},"id":"1197","type":"UnionRenderers"},{"attributes":{},"id":"1196","type":"Selection"},{"attributes":{},"id":"1157","type":"BasicTickFormatter"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMCNsNzTCMv9vxphuacRlvu/qBGWexph+b81wnJPIyz3v8JyTyMs9/S/UCMs9zTC8r/d0wjLPY3wv9QIyz2NsOy/7mmE5Z5G6L8Iyz2NsNzjv0hY7mmE5d6/fBphuacR1r9guacRlnvKv6B7GmG5p7G/oHsaYbmnsT9guacRlnvKP3gaYbmnEdY/SFjuaYTl3j8Iyz2NsNzjP/BphOWeRug/1AjLPY2w7D/c0wjLPY3wP1AjLPc0wvI/wnJPIyz39D80wnJPIyz3P6gRlnsaYfk/GmG5pxGW+z+MsNzTCMv9PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]},"y":{"__ndarray__":"AAAAAAAAAMDwRcjBHOj/v5j7A8e8bgHAagBSFPasA8A+TGCj/BEGwOsLhwpZJAjABOwK38iKCcCahkN4LQkKwPfQwbJ6fQnAYIl2s6XcB8DHpNiqky8FwJa8C5gIkAHAufgMGCxL+r84H3LZE0Xwv+l7nMHpBta/6XucwekG1j84H3LZE0XwP7X4DBgsS/o/lrwLmAiQAUDHpNiqky8FQGGJdrOl3AdA99DBsnp9CUCahkN4LQkKQATsCt/IiglA6wuHClkkCEBCTGCj/BEGQGoAUhT2rANAmPsDx7xuAUD4RcjBHOj/PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]}},"selected":{"id":"1211"},"selection_policy":{"id":"1212"}},"id":"1199","type":"ColumnDataSource"},{"attributes":{"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1200","type":"Line"},{"attributes":{"text":""},"id":"1204","type":"Title"},{"attributes":{"data_source":{"id":"1199"},"glyph":{"id":"1200"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1201"},"selection_glyph":null,"view":{"id":"1203"}},"id":"1202","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1199"}},"id":"1203","type":"CDSView"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1201","type":"Line"},{"attributes":{},"id":"1159","type":"Selection"},{"attributes":{"items":[{"id":"1214"},{"id":"1231"},{"id":"1250"}],"location":"bottom_right"},"id":"1213","type":"Legend"},{"attributes":{"label":{"value":"Se\u00f1al intr\u00edsinca f"},"renderers":[{"id":"1202"}]},"id":"1214","type":"LegendItem"},{"attributes":{},"id":"1160","type":"UnionRenderers"},{"attributes":{},"id":"1207","type":"BasicTickFormatter"},{"attributes":{"fill_color":{"value":"black"},"line_width":{"value":3},"x":{"field":"x"},"y":{"field":"y"}},"id":"1164","type":"Scatter"},{"attributes":{"label":{"value":"Se\u00f1al contaminada y"},"renderers":[{"id":"1166"}]},"id":"1179","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"black"},"line_alpha":{"value":0.1},"line_width":{"value":3},"x":{"field":"x"},"y":{"field":"y"}},"id":"1165","type":"Scatter"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMCNsNzTCMv9vxphuacRlvu/qBGWexph+b81wnJPIyz3v8JyTyMs9/S/UCMs9zTC8r/d0wjLPY3wv9QIyz2NsOy/7mmE5Z5G6L8Iyz2NsNzjv0hY7mmE5d6/fBphuacR1r9guacRlnvKv6B7GmG5p7G/oHsaYbmnsT9guacRlnvKP3gaYbmnEdY/SFjuaYTl3j8Iyz2NsNzjP/BphOWeRug/1AjLPY2w7D/c0wjLPY3wP1AjLPc0wvI/wnJPIyz39D80wnJPIyz3P6gRlnsaYfk/GmG5pxGW+z+MsNzTCMv9PwAAAAAAAABA","dtype":"float64","order":"little","shape":[30]},"y":{"__ndarray__":"rr/QgB41BsA5lmNBHH4AwI6KIRxeJQfA8pU6dgB1CsB/LUJKPCsGwCqXD3dP/wbAIyxVf9fEBsD31GgRpowLwGTrPzFmmxDAekBGaRKs+b8fKP5Kwyvxv5uHJw5PxPa/Lha9SdGS9L+YZm03XcT7v4ajIawU4vA/KIFiM+UeoD8RSwQ0JhHgP7UqX1PpUfM/L72MNWNuBUA/gioQ6p4DQIAeiVcSrQRAMFWf3OQiBUANMg6DpgMUQL2/dMWD+AVA0KKcmygo+D9pS+x+M6/6P/OjoAmqOAdACTywgmtmAUAqZcQUM438Pza79h9HAgZA","dtype":"float64","order":"little","shape":[30]}},"selected":{"id":"1177"},"selection_policy":{"id":"1178"}},"id":"1163","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1163"}},"id":"1167","type":"CDSView"},{"attributes":{"data_source":{"id":"1163"},"glyph":{"id":"1164"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1165"},"selection_glyph":null,"view":{"id":"1167"}},"id":"1166","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1180"}},"id":"1184","type":"CDSView"},{"attributes":{},"id":"1209","type":"BasicTickFormatter"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMAFav1KgVr/vwrU+pUCtf6/ED744IMP/r8VqPUrBWr9vxoS83aGxPy/H3zwwQcf/L8k5u0MiXn7vylQ61cK1Pq/Lrrooosu+r80JObtDIn5vzmO4ziO4/i/Pvjggw8++L9DYt7OkJj3v0jM2xkS8/a/TjbZZJNN9r9SoNavFKj1v1gK1PqVAvW/XXTRRRdd9L9i3s6QmLfzv2dIzNsZEvO/bLLJJpts8r9yHMdxHMfxv3aGxLydIfG/fPDBBx988L8CtX6lQK3vvwyJeTtDYu6/Fl100UUX7b8gMW9nSMzrvywFav1Kgeq/Ntlkk0026b9ArV8pUOvnv0qBWr9SoOa/VFVVVVVV5b9eKVDrVwrkv2j9SoFav+K/dNFFF1104b9+pUCtXyngvxDzdobEvN2/JJtssskm2784Q2LezpDYv0zrVwrU+tW/ZJNNNtlk0794O0Ni3s7QvxjHcRzHccy/QBdddNFFx79oZ0jM2xnCvyBvZ0jM27m/AB988MEHr79Av1Kg1q+Uv4C/UqDWr5Q/QB988MEHrz9Ab2dIzNu5P3BnSMzbGcI/UBdddNFFxz8gx3Ecx3HMP4A7Q2LeztA/aJNNNtlk0z9Q61cK1PrVP0BDYt7OkNg/KJtssskm2z8Y83aGxLzdP4ClQK1fKeA/eNFFF1104T9s/UqBWr/iP2ApUOtXCuQ/WFVVVVVV5T9MgVq/UqDmP0StXylQ6+c/ONlkk0026T8wBWr9SoHqPyQxb2dIzOs/GF100UUX7T8QiXk7Q2LuPwS1fqVAre8/fvDBBx988D94hsS8nSHxP3Icx3Ecx/E/brLJJpts8j9oSMzbGRLzP2TezpCYt/M/XnTRRRdd9D9aCtT6lQL1P1Sg1q8UqPU/TjbZZJNN9j9KzNsZEvP2P0Ri3s6QmPc/QPjggw8++D86juM4juP4PzYk5u0Mifk/MLrooosu+j8qUOtXCtT6Pybm7QyJefs/IHzwwQcf/D8cEvN2hsT8Pxao9SsFav0/ED744IMP/j8M1PqVArX+PwZq/UqBWv8/AAAAAAAAAEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"8OV25NloBcAQTwiJ/5QEwKDR99AaCATAwFliGNe+A8AAXmEcZrMDwPCMufU43gPAAEbuqZ02BMBgwivPQ7MEwAj7lZ2qSgXAKJF5p3rzBcAoJ55RzaQGwIS/jgVkVgfA8NcU+dAACMB4Fl5Ik50IwGp1UgMoJwnAyu+BshGZCcC6vsS81+8JwHRDMPz+KArAEL9ct/xCCsBY+iQbJT0KwOT8CDmWFwrAQOovdyDTCcDjDqtILXEJwIoVFe+k8wjA4Eb08dNcCMCNmmXkUK8HwBhBiP7i7QbAtinm/WkbBsDB3a2uxzoFwGLe/G7LTgTApX237R9aA8D79XtXO18CwGxGIhZSYAHAxRnxOUxfAMD2cnMue7v+vzSG0y7Bufy/6BCiYye7+r94XrnsssD4v9+ZvBa2yva/xr087tnY9L/sOeoMLOryv4h+5jUw/fC/IJEXleof7r8ZVdUtWkDqv+XKl9mMVua/HmV0+hFd4r/kksptyZzcv90HbUJOStS/WUYzLnVxx7+3lM8ycfqmv1W4fHtEJLk/0yPqf9+Kzz/9etH/bpjZP4RQPXD54OE/S4xs+W4f5z93e9prboTsPyy9ZcqQBfE/4fXR1H7W8z+riAen4rD2Pzn3iZzKj/k/tg6h7H1t/D9xx3sYjkP/Px3TUv52BQFAaiQaOwdeAkDKNMY5gKcDQPKqOBfO3QRAkMSfmNb8BUB4b91VkQAHQCRNXb4h5QdAhKicmvKmCED8VHKb0kIJQChgHHYRtglATHg++Zz+CUBL5U1zHRsKQOrzZq4QCwpAc7gzsOLOCUDTGGVWA2gJQJ0dRdH32AhAIZ0c5mYlCEDibIbKHlIHQNBiV1ATZQZAIJJ8/1JlBUDQVRig8VoEQMznOpvmTgNA0HHUe91KAkAIvOy79lgBQDjWx+t2gwBAAKzOQsSo/z+gEpr9Aqr+P4CDDPmgGv4/gFmsCJ8G/j9A9KOKcnT+P8DZ1Q4wY/8/QMY4IDhkAECAYtqF9EYBQIC78lZaRwJAwO8lCCBKA0CgXwTAbCkEQEBaCULssgRAQFE3oKulBEA=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1248"},"selection_policy":{"id":"1249"}},"id":"1232","type":"ColumnDataSource"},{"attributes":{},"id":"1178","type":"UnionRenderers"},{"attributes":{},"id":"1177","type":"Selection"},{"attributes":{},"id":"1211","type":"Selection"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAMAFav1KgVr/vwrU+pUCtf6/ED744IMP/r8VqPUrBWr9vxoS83aGxPy/H3zwwQcf/L8k5u0MiXn7vylQ61cK1Pq/Lrrooosu+r80JObtDIn5vzmO4ziO4/i/Pvjggw8++L9DYt7OkJj3v0jM2xkS8/a/TjbZZJNN9r9SoNavFKj1v1gK1PqVAvW/XXTRRRdd9L9i3s6QmLfzv2dIzNsZEvO/bLLJJpts8r9yHMdxHMfxv3aGxLydIfG/fPDBBx988L8CtX6lQK3vvwyJeTtDYu6/Fl100UUX7b8gMW9nSMzrvywFav1Kgeq/Ntlkk0026b9ArV8pUOvnv0qBWr9SoOa/VFVVVVVV5b9eKVDrVwrkv2j9SoFav+K/dNFFF1104b9+pUCtXyngvxDzdobEvN2/JJtssskm2784Q2LezpDYv0zrVwrU+tW/ZJNNNtlk0794O0Ni3s7QvxjHcRzHccy/QBdddNFFx79oZ0jM2xnCvyBvZ0jM27m/AB988MEHr79Av1Kg1q+Uv4C/UqDWr5Q/QB988MEHrz9Ab2dIzNu5P3BnSMzbGcI/UBdddNFFxz8gx3Ecx3HMP4A7Q2LeztA/aJNNNtlk0z9Q61cK1PrVP0BDYt7OkNg/KJtssskm2z8Y83aGxLzdP4ClQK1fKeA/eNFFF1104T9s/UqBWr/iP2ApUOtXCuQ/WFVVVVVV5T9MgVq/UqDmP0StXylQ6+c/ONlkk0026T8wBWr9SoHqPyQxb2dIzOs/GF100UUX7T8QiXk7Q2LuPwS1fqVAre8/fvDBBx988D94hsS8nSHxP3Icx3Ecx/E/brLJJpts8j9oSMzbGRLzP2TezpCYt/M/XnTRRRdd9D9aCtT6lQL1P1Sg1q8UqPU/TjbZZJNN9j9KzNsZEvP2P0Ri3s6QmPc/QPjggw8++D86juM4juP4PzYk5u0Mifk/MLrooosu+j8qUOtXCtT6Pybm7QyJefs/IHzwwQcf/D8cEvN2hsT8Pxao9SsFav0/ED744IMP/j8M1PqVArX+PwZq/UqBWv8/AAAAAAAAAEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"PPlstbMTAMD7IUS8raIBwAKvpxBiDgPARUuq0+RXBMCRJycPR4AFwJD6wbWWiAbA1gDnot5xB8DX/MqaJj0IwN82a0pz6wjAIn2NR8Z9CcCyI8AQHvUJwIUEWg12UgrAcH96jcaWCsAjegnKBMMKwDtgt+Qi2ArAKCP95w/XCsBFOhzHt8AKwMyiHl4DlgrA0d/WcdhXCsBU+t+vGQcKwCmBna6mpAnAD4k77VsxCcCirK7TEq4IwFwMtLKhGwjAnk7Rw9t6B8Ckn1QpkcwGwI2xVO6OEQbAWrywBp9KBcDqfRBPiHgEwAA65IwOnAPAOrpkbvK1AsAfTpOK8cYBwBDLOWHGzwDApRjVtVCi/78V5gCSl5f9v3zMPcvDgPu/qaVjpzFf+b8mV9s9NzT3v0TSnnckAfW/FRQ5D0PH8r9uJcaQ1ofwv8A15rM4iOy/iyn8M5f6579efmyjKmnjv+VH702RrN2/9UIADXWI1L+/Viq09NTGv75s24sSuKK/YWvtqKq2uj8Yx3LguT7PP++yZJH9edg/QpAvLMec4D9FKsPkFO3kP0PkeZEBLOk/eWM+LrNX7T+/muwJLrfwP0ho+Hsdt/I/ocmEds2q9D9i4kKxaZH2P2LKUhIkavg/pI1DrjQ0+j+ALBPI2e77P3qbLtFXmf0/ZsNxafky/z+iwJOvh10AQC/ThFd4GAFAIXwgQv3JAUBWmDIcyHECQNR+vqmNDwNAtAD/xQWjA0BAaWZj6ysEQNB9nov8qQRA5n2IX/ocBUAiIz0XqYQFQDuhDALQ4AVAE6Z+hjkxBkCkWVIis3UGQAdefmoNrgZAes8wCxzaBkBSRM/HtfkGQAvN9nq0DAdAPfR7FvUSB0CfvmqjVwwHQASrBkK/+AZAZrLKKRLYBkDXR2mpOaoGQI5YzCYibwZA3ksVH7smBkA2A50m99AFQC3a8+jLbQVAbqbhKDL9BEDSt2XAJX8EQELYtqCl8wNA0EtD0rNaA0Cq0LB0VbQCQBqf3L6SAAJAlGnb/nY/AUCaXPmZEHEAQMA9dBniKv8/YKKx1VlZ/T8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1196"},"selection_policy":{"id":"1197"}},"id":"1180","type":"ColumnDataSource"},{"attributes":{},"id":"1212","type":"UnionRenderers"},{"attributes":{"line_color":"#d95f02","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1181","type":"Line"},{"attributes":{"line_alpha":0.1,"line_color":"#d95f02","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1182","type":"Line"},{"attributes":{"data_source":{"id":"1232"},"glyph":{"id":"1233"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1234"},"selection_glyph":null,"view":{"id":"1236"}},"id":"1235","type":"GlyphRenderer"},{"attributes":{"label":{"value":"Se\u00f1al interpolada L=5"},"renderers":[{"id":"1183"}]},"id":"1198","type":"LegendItem"}],"root_ids":["1251"]},"title":"Bokeh Application","version":"2.2.1"}};
+  var render_items = [{"docid":"646922df-49f1-47cb-8236-7476d37531fe","root_ids":["1251"],"roots":{"1251":"e42e7f8f-59d1-4b82-af89-2d0944929a92"}}];
+  root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+<div class="alert alert-info">
+<p>Si <span class="math notranslate nohighlight">\(L\)</span> es muy pequeño el filtro es demasiado simple. Si <span class="math notranslate nohighlight">\(L\)</span> es muy grande el filtro se puede sobreajustar al ruido</p>
+</div></div>
+<div class="section" id="prediccion">
+<h3><span class="section-number">1.3.2. </span>Predicción<a class="headerlink" href="#prediccion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En este caso asumimos que la señal deseada es la entrada en el futuro</p>
+<div class="math notranslate nohighlight">
+\[
+d_n = \{u_{n+1}, u_{n+2}, \ldots, u_{n+m}\}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(m\)</span> es el horizonte de predicción</p>
+<p>Se llama <em>predicción a un paso</em> al caso <span class="math notranslate nohighlight">\(m=1\)</span></p>
+<p>El largo del filtro <span class="math notranslate nohighlight">\(L\)</span> define la cantidad de muestras pasadas que usamos para predecir</p>
+<p>Por ejemplo un sistema de predicción a un paso con <span class="math notranslate nohighlight">\(L+1 = 3\)</span> coeficientes:</p>
+<div class="math notranslate nohighlight">
+\[
+h_0 u_n +  h_1 u_{n-1} + h_2 u_{n-2}= y_n = \hat u_{n+1} \approx u_{n+1}
+\]</div>
+<p>Para entrenar el filtro</p>
+<ol class="simple">
+<li><p>Asumimos que la señal ha sido observada y que se cuenta con <span class="math notranslate nohighlight">\(N\)</span> muestras para entrenar</p></li>
+<li><p>Podemos formar una matriz cuyas filas son <span class="math notranslate nohighlight">\([u_n, u_{n-1}, \ldots, u_{n-L}]\)</span> para <span class="math notranslate nohighlight">\(n=L,L+1,\ldots, N-1\)</span></p></li>
+<li><p>Podemos formar un vector <span class="math notranslate nohighlight">\([u_N, u_{N-1}, \ldots, u_{L+1}]^T\)</span> (caso <span class="math notranslate nohighlight">\(m=1\)</span>)</p></li>
+<li><p>Con esto podemos formar las matrices de correlación y obtener <span class="math notranslate nohighlight">\(\textbf{h}\)</span></p></li>
+<li><p>Finalmente usamos <span class="math notranslate nohighlight">\(\textbf{h}\)</span> para predecir el futuro no observado de <span class="math notranslate nohighlight">\(u\)</span></p></li>
+</ol>
+<p>¿Cómo afecta <span class="math notranslate nohighlight">\(L\)</span> a la calidad del predictor lineal?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.lib.stride_tricks</span> <span class="kn">import</span> <span class="n">as_strided</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">0.5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">train_wiener_predictor</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                   <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">strides</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u</span><span class="o">.</span><span class="n">strides</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">Ruu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">L</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">L</span><span class="p">])</span>
+    <span class="n">Rud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">L</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">[:,</span> <span class="n">L</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Ruu</span><span class="p">,</span> <span class="n">Rud</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">predict_wiener</span><span class="p">(</span><span class="n">u_past</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">u_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">L</span><span class="p">,</span> <span class="p">))</span>
+    <span class="n">u_pred</span><span class="p">[:</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_past</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="n">L</span><span class="p">):</span>
+        <span class="n">u_pred</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">u_pred</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="n">L</span><span class="p">:</span><span class="n">k</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">u_pred</span><span class="p">[</span><span class="n">L</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> 
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Filtro de orden </span><span class="si">{</span><span class="n">L_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">L_</span> <span class="ow">in</span> <span class="n">L</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p_</span><span class="p">,</span> <span class="n">L_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">train_wiener_predictor</span><span class="p">(</span><span class="n">u</span><span class="p">[:</span><span class="n">N</span><span class="p">],</span> <span class="n">L_</span><span class="p">)</span>
+    <span class="n">u_pred</span> <span class="o">=</span> <span class="n">predict_wiener</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="n">L_</span><span class="p">:</span><span class="n">N</span><span class="p">],</span> <span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="n">N</span><span class="p">],</span> <span class="n">u</span><span class="p">[:</span><span class="n">N</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Pasado&quot;</span><span class="p">)</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">u</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Futuro real&quot;</span><span class="p">)</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">u_pred</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">legend_label</span><span class="o">=</span><span class="s2">&quot;Futuro predicho&quot;</span><span class="p">)</span>
+    <span class="n">p_</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="s1">&#39;bottom_left&#39;</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">column</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+
+
+
+
+<div class="bk-root" id="9c5f6368-3a40-46cc-99a8-4b9ced146114" data-root-id="1814"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    
+  var docs_json = {"335e68b9-a793-4612-bfca-5b010872239c":{"roots":{"references":[{"attributes":{"children":[{"id":"1486"},{"id":"1519"},{"id":"1552"},{"id":"1585"}]},"id":"1814","type":"Column"},{"attributes":{},"id":"1674","type":"BasicTickFormatter"},{"attributes":{},"id":"1605","type":"WheelZoomTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1577","type":"BoxAnnotation"},{"attributes":{},"id":"1772","type":"BasicTickFormatter"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAACBhJ9ciLqpP4GEn1yIurk/YaN3ReZLwz+BhJ9ciLrJP9Gy4zmVFNA/YaN3ReZL0z/xkwtRN4PWP4GEn1yIutk/EXUzaNnx3D/RsuM5lRTgPxmrrb89sOE/YaN3ReZL4z+pm0HLjufkP/GTC1E3g+Y/OYzV1t8e6D+BhJ9ciLrpP8l8aeIwVus/EXUzaNnx7D9Zbf3tgY3uP9Gy4zmVFPA/9a7IfGni8D8Zq62/PbDxPz2nkgISfvI/YaN3ReZL8z+Fn1yIuhn0P6mbQcuO5/Q/zZcmDmO19T/xkwtRN4P2PxWQ8JMLUfc/OYzV1t8e+D9diLoZtOz4P4GEn1yIuvk/pYCEn1yI+j/JfGniMFb7P+14TiUFJPw/EXUzaNnx/D81cRirrb/9P1lt/e2Bjf4/fWniMFZb/z/RsuM5lRQAQOMwVlt/ewBA9a7IfGniAEAHLTueU0kBQBmrrb89sAFAKykg4ScXAkA9p5ICEn4CQE8lBST85AJAYaN3ReZLA0BzIepm0LIDQIWfXIi6GQRAlx3PqaSABECpm0HLjucEQLsZtOx4TgVAzZcmDmO1BUDfFZkvTRwGQPGTC1E3gwZAAxJ+ciHqBkAVkPCTC1EHQCcOY7X1twdAOYzV1t8eCEBLCkj4yYUIQF2Iuhm07AhAbwYtO55TCUCBhJ9ciLoJQJMCEn5yIQpApYCEn1yICkC3/vbARu8KQMl8aeIwVgtA2/rbAxu9C0DteE4lBSQMQP/2wEbvigxAEXUzaNnxDEAj86WJw1gNQDVxGKutvw1AR++KzJcmDkBZbf3tgY0OQGvrbw9s9A5AfWniMFZbD0CP51RSQMIPQNGy4zmVFBBA2vGcSgpIEEDjMFZbf3sQQOxvD2z0rhBA9a7IfGniEED+7YGN3hURQActO55TSRFAEGz0rsh8EUAZq62/PbARQCLqZtCy4xFAKykg4ScXEkA0aNnxnEoSQD2nkgISfhJARuZLE4exEkBPJQUk/OQSQFhkvjRxGBNAYaN3ReZLE0Bq4jBWW38TQHMh6mbQshNAfGCjd0XmE0A=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"pc/l84453D8ULfS71nbQP/iqfxc4xOE/MQi6VttC8D/3P0QCZurwP/tlpNHwy90/h1I3Rv3J8D+XmpN4lWHrP7dJ7zB+q+0/MAvJY3l28T8yNdR9X5PwP8BuzhIImfU/V8Fblao28j8CwTrVxFXtP/CHImDiOu0/JHOkZf4G6T9gd3Je7W7uP1uTWt9LAdk/XX4BwFzr1z/+rReRT2myv2bW1RLY7eS/QKME8K41g7+gJ0y+EwC8v/Qja2jw+uS/gD1UEcQ1or+J72K4Klrxv6oOOwws5+m/CvB1phNQ7r9iUv0j92Hiv8KBKN4b9eO/a4AM9F7A7r9HMguG43Lsv3n+M95oo/K/+l/ZQTr89b/tjTWTZCjsv0KodF4xvuS/dd/YCoJy0L8MtmQ3iUfAv60SCqrUI9i/amBXaOnLyb/lkDnCToPNv6GvebQwVsW/KNkZAvUQtr9NagyP1RfvP7fkmIsyPd8/UTiQkoDp4z+KszkpLIjgP8ECiGUsoPE/FfHBYhfg4T9uJoAI9BLuPzyR2YK0z+g/2hxJu7E88T9ntHOVfOrpP6wBNqxCb+I/DJglkYzW6D8Fs7+Z+wzpP3vYV8vMLeI/mBvEOvxM3z+GE4apQkm7P5wwn2+NEZQ/KFixjiGUy79Ckyl8qMvSv2jgwarl3uG/yPQq+L687b/dIy4fSqziv1zZc9Xq+Oq/bvcvQO7v87+q02wavYnpvyCZ7Z7lFvO/oO+JCYZq779mvdgOUh7qvytme/R/Pu6/kL1KuDC15L/TeNkc4MDyvwFOJK0Rh+W/mmPq8zu66r8s2QnWhTDov5XKTapXZuG/BRgWcrH61L+WWFRYK560v6odTOoPNc2/H0eW+IJx3D8jkmLKjR/fP9DaGPX+SsA/RHOO680x8D+hqdgGXaHzP1zxrBB7RPI/zON4oaIA7D/2b4bCEHvmPz82dwVUKPQ/9CrtZ6Gx7D8tI1/P73j0Pzs28AllTe8/SzUOU22X8T9sy0tqH0brP/J80Oluheo/s7A2zBfh4D+MaYSmVZfqPwoDSgZ2C9E/klcI5O/0xj8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1727"},"selection_policy":{"id":"1728"}},"id":"1716","type":"ColumnDataSource"},{"attributes":{},"id":"1522","type":"DataRange1d"},{"attributes":{"source":{"id":"1698"}},"id":"1702","type":"CDSView"},{"attributes":{"data_source":{"id":"1716"},"glyph":{"id":"1717"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1718"},"selection_glyph":null,"view":{"id":"1720"}},"id":"1719","type":"GlyphRenderer"},{"attributes":{"label":{"value":"Futuro predicho"},"renderers":[{"id":"1701"}]},"id":"1715","type":"LegendItem"},{"attributes":{},"id":"1627","type":"BasicTickFormatter"},{"attributes":{"overlay":{"id":"1610"}},"id":"1606","type":"BoxZoomTool"},{"attributes":{},"id":"1714","type":"UnionRenderers"},{"attributes":{},"id":"1713","type":"Selection"},{"attributes":{},"id":"1607","type":"SaveTool"},{"attributes":{},"id":"1609","type":"HelpTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1511","type":"BoxAnnotation"},{"attributes":{},"id":"1608","type":"ResetTool"},{"attributes":{},"id":"1676","type":"BasicTickFormatter"},{"attributes":{"data_source":{"id":"1698"},"glyph":{"id":"1699"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1700"},"selection_glyph":null,"view":{"id":"1702"}},"id":"1701","type":"GlyphRenderer"},{"attributes":{},"id":"1604","type":"PanTool"},{"attributes":{},"id":"1774","type":"BasicTickFormatter"},{"attributes":{},"id":"1665","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1618"},"glyph":{"id":"1619"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1620"},"selection_glyph":null,"view":{"id":"1622"}},"id":"1621","type":"GlyphRenderer"},{"attributes":{"formatter":{"id":"1674"},"ticker":{"id":"1535"}},"id":"1534","type":"LinearAxis"},{"attributes":{"label":{"value":"Futuro predicho"},"renderers":[{"id":"1652"}]},"id":"1666","type":"LegendItem"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"XlsVba4ChD+H/K1OQHzOv2BQ7PQLqeC/Vcm8rQ+F4L9fL52UjJ7iv/pZn1EaBOm/Fct9hxFS7b9FLmtEcCLuv1rv3qj7efC/9dYzzSuM8r9/v2r7a3zwv+jw2ScIEvK/OgGXq4PP7r/KLhHLtOfwvyy/AHxoze2/s9vwX0286r82WoRl30flv/lR+4QaBuO/9ZyuXPpn1L8B1YAPVCfIv3L2y/cBHZa/75d6iqvRsz+ugjslSf7UP70IzJTTF9w/aL7onug74j9X9hqnBgLoP5I8EV+iI+s/+QZH7nqq7T+QL3NpT0zvPyLXNFgJwvA/w/XAuE8R8T/X64MG1l7xP39W/iTYiPA/po4GZJxR8D/mLIutUgntP9lY4YRuIuo/zdVUynJS5T/4no80l5XiP3ejPSoJCdo/nWOtcidS0D+GvIWYBXe4P0I9JiZoL62/0FhzMI8C0L8khtrV+fjYvy3WlVgj7uC/+TXjMz4V5b+OOAOFHfrovxuECLIaDuy/Ku6L4/Zn7r+y++ORiUjwvwwb+OSqrPC/hXhcgPrL8L/4Is1Zezzwv7DcLGjQYe+/JZgQDHMY7b92S96OOF3qv1NdBcy1mua/09bQkxEW478GsbGcxm3cv7R2EAob3tK/cmGRyrJ8wb894XgVKMaJP9AQ387HvMY/bIdbnHfw1D8Xuf2egyDeP6fAayeDXeM/vL4dxwNS5z+PthrGGIXqPzwm07PtBe0/2RN1n5rv7j9clOblmAfwPxTLGoUfQfA/huWeU8z+7z9e0MUtVf/uP9A3hT3FD+0/4Dr8dLl76j8c3wP6wCDnP61zz9qOiOM/I+9ttJuE3j/bDCsRo3rVPwoXZVnAssc/VkfOJ7TfoT9s/Gt5Zni/v5v3mSn6gtG/31IMRlK42r+wOWBdpJjhv0g3mNDLduW/kjyO7dvE6L8sXSC/u3brvyMZMOlPiu2/aIafdXPo7r8DCvOIUojvvwoqAjN1U++/9MOKZQ107r8hw1r+V9Lsv0qjr2Miieq/A3M8oISR57/8PoeSHifkv7HLDEaZLuC/ZkJe0Cu1178=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1762"},"selection_policy":{"id":"1763"}},"id":"1747","type":"ColumnDataSource"},{"attributes":{},"id":"1629","type":"Selection"},{"attributes":{"formatter":{"id":"1676"},"ticker":{"id":"1531"}},"id":"1530","type":"LinearAxis"},{"attributes":{"fill_color":{"value":"#1b9e77"},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1717","type":"Scatter"},{"attributes":{},"id":"1630","type":"UnionRenderers"},{"attributes":{},"id":"1526","type":"LinearScale"},{"attributes":{"data_source":{"id":"1747"},"glyph":{"id":"1748"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1749"},"selection_glyph":null,"view":{"id":"1751"}},"id":"1750","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1b9e77"},"line_alpha":{"value":0.1},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1718","type":"Scatter"},{"attributes":{},"id":"1664","type":"Selection"},{"attributes":{"items":[{"id":"1730"},{"id":"1746"},{"id":"1764"}],"location":"bottom_left"},"id":"1729","type":"Legend"},{"attributes":{},"id":"1528","type":"LinearScale"},{"attributes":{"source":{"id":"1649"}},"id":"1653","type":"CDSView"},{"attributes":{"label":{"value":"Pasado"},"renderers":[{"id":"1719"}]},"id":"1730","type":"LegendItem"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAACBhJ9ciLqpP4GEn1yIurk/YaN3ReZLwz+BhJ9ciLrJP9Gy4zmVFNA/YaN3ReZL0z/xkwtRN4PWP4GEn1yIutk/EXUzaNnx3D/RsuM5lRTgPxmrrb89sOE/YaN3ReZL4z+pm0HLjufkP/GTC1E3g+Y/OYzV1t8e6D+BhJ9ciLrpP8l8aeIwVus/EXUzaNnx7D9Zbf3tgY3uP9Gy4zmVFPA/9a7IfGni8D8Zq62/PbDxPz2nkgISfvI/YaN3ReZL8z+Fn1yIuhn0P6mbQcuO5/Q/zZcmDmO19T/xkwtRN4P2PxWQ8JMLUfc/OYzV1t8e+D9diLoZtOz4P4GEn1yIuvk/pYCEn1yI+j/JfGniMFb7P+14TiUFJPw/EXUzaNnx/D81cRirrb/9P1lt/e2Bjf4/fWniMFZb/z/RsuM5lRQAQOMwVlt/ewBA9a7IfGniAEAHLTueU0kBQBmrrb89sAFAKykg4ScXAkA9p5ICEn4CQE8lBST85AJAYaN3ReZLA0BzIepm0LIDQIWfXIi6GQRAlx3PqaSABECpm0HLjucEQLsZtOx4TgVAzZcmDmO1BUDfFZkvTRwGQPGTC1E3gwZAAxJ+ciHqBkAVkPCTC1EHQCcOY7X1twdAOYzV1t8eCEBLCkj4yYUIQF2Iuhm07AhAbwYtO55TCUCBhJ9ciLoJQJMCEn5yIQpApYCEn1yICkC3/vbARu8KQMl8aeIwVgtA2/rbAxu9C0DteE4lBSQMQP/2wEbvigxAEXUzaNnxDEAj86WJw1gNQDVxGKutvw1AR++KzJcmDkBZbf3tgY0OQGvrbw9s9A5AfWniMFZbD0CP51RSQMIPQNGy4zmVFBBA2vGcSgpIEEDjMFZbf3sQQOxvD2z0rhBA9a7IfGniEED+7YGN3hURQActO55TSRFAEGz0rsh8EUAZq62/PbARQCLqZtCy4xFAKykg4ScXEkA0aNnxnEoSQD2nkgISfhJARuZLE4exEkBPJQUk/OQSQFhkvjRxGBNAYaN3ReZLE0Bq4jBWW38TQHMh6mbQshNAfGCjd0XmE0A=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"pc/l84453D8ULfS71nbQP/iqfxc4xOE/MQi6VttC8D/3P0QCZurwP/tlpNHwy90/h1I3Rv3J8D+XmpN4lWHrP7dJ7zB+q+0/MAvJY3l28T8yNdR9X5PwP8BuzhIImfU/V8Fblao28j8CwTrVxFXtP/CHImDiOu0/JHOkZf4G6T9gd3Je7W7uP1uTWt9LAdk/XX4BwFzr1z/+rReRT2myv2bW1RLY7eS/QKME8K41g7+gJ0y+EwC8v/Qja2jw+uS/gD1UEcQ1or+J72K4Klrxv6oOOwws5+m/CvB1phNQ7r9iUv0j92Hiv8KBKN4b9eO/a4AM9F7A7r9HMguG43Lsv3n+M95oo/K/+l/ZQTr89b/tjTWTZCjsv0KodF4xvuS/dd/YCoJy0L8MtmQ3iUfAv60SCqrUI9i/amBXaOnLyb/lkDnCToPNv6GvebQwVsW/KNkZAvUQtr9NagyP1RfvP7fkmIsyPd8/UTiQkoDp4z+KszkpLIjgP8ECiGUsoPE/FfHBYhfg4T9uJoAI9BLuPzyR2YK0z+g/2hxJu7E88T9ntHOVfOrpP6wBNqxCb+I/DJglkYzW6D8Fs7+Z+wzpP3vYV8vMLeI/mBvEOvxM3z+GE4apQkm7P5wwn2+NEZQ/KFixjiGUy79Ckyl8qMvSv2jgwarl3uG/yPQq+L687b/dIy4fSqziv1zZc9Xq+Oq/bvcvQO7v87+q02wavYnpvyCZ7Z7lFvO/oO+JCYZq779mvdgOUh7qvytme/R/Pu6/kL1KuDC15L/TeNkc4MDyvwFOJK0Rh+W/mmPq8zu66r8s2QnWhTDov5XKTapXZuG/BRgWcrH61L+WWFRYK560v6odTOoPNc2/H0eW+IJx3D8jkmLKjR/fP9DaGPX+SsA/RHOO680x8D+hqdgGXaHzP1zxrBB7RPI/zON4oaIA7D/2b4bCEHvmPz82dwVUKPQ/9CrtZ6Gx7D8tI1/P73j0Pzs28AllTe8/SzUOU22X8T9sy0tqH0brP/J80Oluheo/s7A2zBfh4D+MaYSmVZfqPwoDSgZ2C9E/klcI5O/0xj8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1678"},"selection_policy":{"id":"1679"}},"id":"1667","type":"ColumnDataSource"},{"attributes":{"axis":{"id":"1534"},"dimension":1,"ticker":null},"id":"1537","type":"Grid"},{"attributes":{"source":{"id":"1716"}},"id":"1720","type":"CDSView"},{"attributes":{},"id":"1678","type":"Selection"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1610","type":"BoxAnnotation"},{"attributes":{},"id":"1776","type":"Selection"},{"attributes":{"source":{"id":"1667"}},"id":"1671","type":"CDSView"},{"attributes":{},"id":"1679","type":"UnionRenderers"},{"attributes":{},"id":"1777","type":"UnionRenderers"},{"attributes":{"fill_color":{"value":"#d95f02"},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1634","type":"Scatter"},{"attributes":{"label":{"value":"Futuro real"},"renderers":[{"id":"1636"}]},"id":"1648","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#d95f02"},"line_alpha":{"value":0.1},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1635","type":"Scatter"},{"attributes":{},"id":"1723","type":"BasicTickFormatter"},{"attributes":{"data_source":{"id":"1633"},"glyph":{"id":"1634"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1635"},"selection_glyph":null,"view":{"id":"1637"}},"id":"1636","type":"GlyphRenderer"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"5+wlFHcV2T8X7nttBkriv6YdRzjTd+a/XIItZ4cU0r/rqZya7UDuv96lAA1/v9G/5s1p/cmt7r/Y8hNH0c7xv5f419E9kN+/zIgnGj4T5L8oUEjnYPDgv9FSIitjzOe/WstxrXQq8r/w2lEGBKbXv5XSfQ/RPOq/4GBqoXkg3L/Q0hUPApLRv0ivDjIfJ9q/kDTxL9TRsL/7yHkp327FP/bL4XzeJsg/GA7ZhyWJmb+oTS7bTE/eP7SHoYyR1es/sHGlSoli3z8BPhH6nIznP+Z6khSiJeg/s/nHzfxO9j/NC0YcwlPyP7f2wWv9mvE/padHoB6s6T+smwa9A57xP0zcsMN72Oc/2KVEc2cW6z/REAtx26viP3Bj32D+gOk/7uPJXC2K5D9FwQ+V9GXTPy/Jx834YNM/xL1AWAbrzL8mgjBxE+vevy6jUP5/4cO/ElM8oV3L17/Bc22ADiLZv6CnoRCheLS/9gDr6PiB4b9eBl7ZU5fxv1zVI1r3EOW/mcWfy/7z9L9pzZATedXxv66zZLszKfC/OB+yoW0U4b878Qv5pn7xv8ybi8U4lfC/dUAqJk806L9gXeB/KwHpv9rLp+8u5cm/H32GfQWI478QfDZ3VGnev6z0H18PDcK/wAktd2vIVz93z/UHWmjoP25495DFSOU/Op4SujHE4j+nom49aGHYP5g4pOSPEPA/jlqqylcf5D/T2YRf8dDhP2724a05ffQ/WtNhnmZD8T9z/YAiI4rzP5EtjPzsmPA/noCztMHV8T9B+nTIlQ/lPyYipbdTl90/30F+Mbm/6D/ug5lLNDvRP8HNi0e1mMM/Xi9OT04orj+cUhNlyKOUP6LS7NcDdM2/GCMXM2t05L97e3Jb8Urjv6JXqJ1KIvK/NAOzmidb4b9SqRPobj/zv2hwz4EtmfK/w+3nseTr7b+yYVoAK73yv/yNiaGmp+O/gkZJI+j99L9wxsMH91vsv196zb8D6Oy/ut9+/zmp8b9fov3Mw4fiv3GqAnVdQ+S/2oyUennX0L/Whl5T0cm6vzoIOs/RjNg/vk6QIWti1T8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1646"},"selection_policy":{"id":"1647"}},"id":"1633","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1633"}},"id":"1637","type":"CDSView"},{"attributes":{"line_alpha":0.1,"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1651","type":"Line"},{"attributes":{"fill_color":{"value":"#d95f02"},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1683","type":"Scatter"},{"attributes":{"label":{"value":"Futuro real"},"renderers":[{"id":"1685"}]},"id":"1697","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#d95f02"},"line_alpha":{"value":0.1},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1684","type":"Scatter"},{"attributes":{"fill_color":{"value":"#d95f02"},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1781","type":"Scatter"},{"attributes":{"label":{"value":"Futuro real"},"renderers":[{"id":"1783"}]},"id":"1795","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#d95f02"},"line_alpha":{"value":0.1},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1782","type":"Scatter"},{"attributes":{"data_source":{"id":"1682"},"glyph":{"id":"1683"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1684"},"selection_glyph":null,"view":{"id":"1686"}},"id":"1685","type":"GlyphRenderer"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1604"},{"id":"1605"},{"id":"1606"},{"id":"1607"},{"id":"1608"},{"id":"1609"}]},"id":"1611","type":"Toolbar"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"5+wlFHcV2T8X7nttBkriv6YdRzjTd+a/XIItZ4cU0r/rqZya7UDuv96lAA1/v9G/5s1p/cmt7r/Y8hNH0c7xv5f419E9kN+/zIgnGj4T5L8oUEjnYPDgv9FSIitjzOe/WstxrXQq8r/w2lEGBKbXv5XSfQ/RPOq/4GBqoXkg3L/Q0hUPApLRv0ivDjIfJ9q/kDTxL9TRsL/7yHkp327FP/bL4XzeJsg/GA7ZhyWJmb+oTS7bTE/eP7SHoYyR1es/sHGlSoli3z8BPhH6nIznP+Z6khSiJeg/s/nHzfxO9j/NC0YcwlPyP7f2wWv9mvE/padHoB6s6T+smwa9A57xP0zcsMN72Oc/2KVEc2cW6z/REAtx26viP3Bj32D+gOk/7uPJXC2K5D9FwQ+V9GXTPy/Jx834YNM/xL1AWAbrzL8mgjBxE+vevy6jUP5/4cO/ElM8oV3L17/Bc22ADiLZv6CnoRCheLS/9gDr6PiB4b9eBl7ZU5fxv1zVI1r3EOW/mcWfy/7z9L9pzZATedXxv66zZLszKfC/OB+yoW0U4b878Qv5pn7xv8ybi8U4lfC/dUAqJk806L9gXeB/KwHpv9rLp+8u5cm/H32GfQWI478QfDZ3VGnev6z0H18PDcK/wAktd2vIVz93z/UHWmjoP25495DFSOU/Op4SujHE4j+nom49aGHYP5g4pOSPEPA/jlqqylcf5D/T2YRf8dDhP2724a05ffQ/WtNhnmZD8T9z/YAiI4rzP5EtjPzsmPA/noCztMHV8T9B+nTIlQ/lPyYipbdTl90/30F+Mbm/6D/ug5lLNDvRP8HNi0e1mMM/Xi9OT04orj+cUhNlyKOUP6LS7NcDdM2/GCMXM2t05L97e3Jb8Urjv6JXqJ1KIvK/NAOzmidb4b9SqRPobj/zv2hwz4EtmfK/w+3nseTr7b+yYVoAK73yv/yNiaGmp+O/gkZJI+j99L9wxsMH91vsv196zb8D6Oy/ut9+/zmp8b9fov3Mw4fiv3GqAnVdQ+S/2oyUennX0L/Whl5T0cm6vzoIOs/RjNg/vk6QIWti1T8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1695"},"selection_policy":{"id":"1696"}},"id":"1682","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"1780"},"glyph":{"id":"1781"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1782"},"selection_glyph":null,"view":{"id":"1784"}},"id":"1783","type":"GlyphRenderer"},{"attributes":{},"id":"1647","type":"UnionRenderers"},{"attributes":{"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1699","type":"Line"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"5+wlFHcV2T8X7nttBkriv6YdRzjTd+a/XIItZ4cU0r/rqZya7UDuv96lAA1/v9G/5s1p/cmt7r/Y8hNH0c7xv5f419E9kN+/zIgnGj4T5L8oUEjnYPDgv9FSIitjzOe/WstxrXQq8r/w2lEGBKbXv5XSfQ/RPOq/4GBqoXkg3L/Q0hUPApLRv0ivDjIfJ9q/kDTxL9TRsL/7yHkp327FP/bL4XzeJsg/GA7ZhyWJmb+oTS7bTE/eP7SHoYyR1es/sHGlSoli3z8BPhH6nIznP+Z6khSiJeg/s/nHzfxO9j/NC0YcwlPyP7f2wWv9mvE/padHoB6s6T+smwa9A57xP0zcsMN72Oc/2KVEc2cW6z/REAtx26viP3Bj32D+gOk/7uPJXC2K5D9FwQ+V9GXTPy/Jx834YNM/xL1AWAbrzL8mgjBxE+vevy6jUP5/4cO/ElM8oV3L17/Bc22ADiLZv6CnoRCheLS/9gDr6PiB4b9eBl7ZU5fxv1zVI1r3EOW/mcWfy/7z9L9pzZATedXxv66zZLszKfC/OB+yoW0U4b878Qv5pn7xv8ybi8U4lfC/dUAqJk806L9gXeB/KwHpv9rLp+8u5cm/H32GfQWI478QfDZ3VGnev6z0H18PDcK/wAktd2vIVz93z/UHWmjoP25495DFSOU/Op4SujHE4j+nom49aGHYP5g4pOSPEPA/jlqqylcf5D/T2YRf8dDhP2724a05ffQ/WtNhnmZD8T9z/YAiI4rzP5EtjPzsmPA/noCztMHV8T9B+nTIlQ/lPyYipbdTl90/30F+Mbm/6D/ug5lLNDvRP8HNi0e1mMM/Xi9OT04orj+cUhNlyKOUP6LS7NcDdM2/GCMXM2t05L97e3Jb8Urjv6JXqJ1KIvK/NAOzmidb4b9SqRPobj/zv2hwz4EtmfK/w+3nseTr7b+yYVoAK73yv/yNiaGmp+O/gkZJI+j99L9wxsMH91vsv196zb8D6Oy/ut9+/zmp8b9fov3Mw4fiv3GqAnVdQ+S/2oyUennX0L/Whl5T0cm6vzoIOs/RjNg/vk6QIWti1T8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1793"},"selection_policy":{"id":"1794"}},"id":"1780","type":"ColumnDataSource"},{"attributes":{},"id":"1646","type":"Selection"},{"attributes":{},"id":"1538","type":"PanTool"},{"attributes":{"source":{"id":"1682"}},"id":"1686","type":"CDSView"},{"attributes":{},"id":"1725","type":"BasicTickFormatter"},{"attributes":{"line_alpha":0.1,"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1700","type":"Line"},{"attributes":{"label":{"value":"Pasado"},"renderers":[{"id":"1621"}]},"id":"1632","type":"LegendItem"},{"attributes":{"source":{"id":"1780"}},"id":"1784","type":"CDSView"},{"attributes":{"source":{"id":"1618"}},"id":"1622","type":"CDSView"},{"attributes":{"axis":{"id":"1530"},"ticker":null},"id":"1533","type":"Grid"},{"attributes":{"items":[{"id":"1632"},{"id":"1648"},{"id":"1666"}],"location":"bottom_left"},"id":"1631","type":"Legend"},{"attributes":{"data_source":{"id":"1667"},"glyph":{"id":"1668"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1669"},"selection_glyph":null,"view":{"id":"1671"}},"id":"1670","type":"GlyphRenderer"},{"attributes":{},"id":"1535","type":"BasicTicker"},{"attributes":{"text":"Filtro de orden 20"},"id":"1553","type":"Title"},{"attributes":{},"id":"1696","type":"UnionRenderers"},{"attributes":{},"id":"1531","type":"BasicTicker"},{"attributes":{},"id":"1695","type":"Selection"},{"attributes":{},"id":"1794","type":"UnionRenderers"},{"attributes":{"label":{"value":"Pasado"},"renderers":[{"id":"1670"}]},"id":"1681","type":"LegendItem"},{"attributes":{},"id":"1793","type":"Selection"},{"attributes":{},"id":"1625","type":"BasicTickFormatter"},{"attributes":{"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1650","type":"Line"},{"attributes":{},"id":"1524","type":"DataRange1d"},{"attributes":{"items":[{"id":"1681"},{"id":"1697"},{"id":"1715"}],"location":"bottom_left"},"id":"1680","type":"Legend"},{"attributes":{},"id":"1727","type":"Selection"},{"attributes":{},"id":"1728","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1649"},"glyph":{"id":"1650"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1651"},"selection_glyph":null,"view":{"id":"1653"}},"id":"1652","type":"GlyphRenderer"},{"attributes":{"line_alpha":0.1,"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1798","type":"Line"},{"attributes":{},"id":"1543","type":"HelpTool"},{"attributes":{},"id":"1539","type":"WheelZoomTool"},{"attributes":{"source":{"id":"1796"}},"id":"1800","type":"CDSView"},{"attributes":{"overlay":{"id":"1544"}},"id":"1540","type":"BoxZoomTool"},{"attributes":{},"id":"1541","type":"SaveTool"},{"attributes":{"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1797","type":"Line"},{"attributes":{},"id":"1542","type":"ResetTool"},{"attributes":{},"id":"1590","type":"DataRange1d"},{"attributes":{"fill_color":{"value":"#d95f02"},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1732","type":"Scatter"},{"attributes":{"label":{"value":"Futuro predicho"},"renderers":[{"id":"1799"}]},"id":"1813","type":"LegendItem"},{"attributes":{"label":{"value":"Futuro real"},"renderers":[{"id":"1734"}]},"id":"1746","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#d95f02"},"line_alpha":{"value":0.1},"line_color":{"value":"#d95f02"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1733","type":"Scatter"},{"attributes":{},"id":"1812","type":"UnionRenderers"},{"attributes":{"text":"Filtro de orden 40"},"id":"1586","type":"Title"},{"attributes":{"data_source":{"id":"1731"},"glyph":{"id":"1732"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1733"},"selection_glyph":null,"view":{"id":"1735"}},"id":"1734","type":"GlyphRenderer"},{"attributes":{},"id":"1811","type":"Selection"},{"attributes":{},"id":"1588","type":"DataRange1d"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"5+wlFHcV2T8X7nttBkriv6YdRzjTd+a/XIItZ4cU0r/rqZya7UDuv96lAA1/v9G/5s1p/cmt7r/Y8hNH0c7xv5f419E9kN+/zIgnGj4T5L8oUEjnYPDgv9FSIitjzOe/WstxrXQq8r/w2lEGBKbXv5XSfQ/RPOq/4GBqoXkg3L/Q0hUPApLRv0ivDjIfJ9q/kDTxL9TRsL/7yHkp327FP/bL4XzeJsg/GA7ZhyWJmb+oTS7bTE/eP7SHoYyR1es/sHGlSoli3z8BPhH6nIznP+Z6khSiJeg/s/nHzfxO9j/NC0YcwlPyP7f2wWv9mvE/padHoB6s6T+smwa9A57xP0zcsMN72Oc/2KVEc2cW6z/REAtx26viP3Bj32D+gOk/7uPJXC2K5D9FwQ+V9GXTPy/Jx834YNM/xL1AWAbrzL8mgjBxE+vevy6jUP5/4cO/ElM8oV3L17/Bc22ADiLZv6CnoRCheLS/9gDr6PiB4b9eBl7ZU5fxv1zVI1r3EOW/mcWfy/7z9L9pzZATedXxv66zZLszKfC/OB+yoW0U4b878Qv5pn7xv8ybi8U4lfC/dUAqJk806L9gXeB/KwHpv9rLp+8u5cm/H32GfQWI478QfDZ3VGnev6z0H18PDcK/wAktd2vIVz93z/UHWmjoP25495DFSOU/Op4SujHE4j+nom49aGHYP5g4pOSPEPA/jlqqylcf5D/T2YRf8dDhP2724a05ffQ/WtNhnmZD8T9z/YAiI4rzP5EtjPzsmPA/noCztMHV8T9B+nTIlQ/lPyYipbdTl90/30F+Mbm/6D/ug5lLNDvRP8HNi0e1mMM/Xi9OT04orj+cUhNlyKOUP6LS7NcDdM2/GCMXM2t05L97e3Jb8Urjv6JXqJ1KIvK/NAOzmidb4b9SqRPobj/zv2hwz4EtmfK/w+3nseTr7b+yYVoAK73yv/yNiaGmp+O/gkZJI+j99L9wxsMH91vsv196zb8D6Oy/ut9+/zmp8b9fov3Mw4fiv3GqAnVdQ+S/2oyUennX0L/Whl5T0cm6vzoIOs/RjNg/vk6QIWti1T8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1744"},"selection_policy":{"id":"1745"}},"id":"1731","type":"ColumnDataSource"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1571"},{"id":"1572"},{"id":"1573"},{"id":"1574"},{"id":"1575"},{"id":"1576"}]},"id":"1578","type":"Toolbar"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAACBhJ9ciLqpP4GEn1yIurk/YaN3ReZLwz+BhJ9ciLrJP9Gy4zmVFNA/YaN3ReZL0z/xkwtRN4PWP4GEn1yIutk/EXUzaNnx3D/RsuM5lRTgPxmrrb89sOE/YaN3ReZL4z+pm0HLjufkP/GTC1E3g+Y/OYzV1t8e6D+BhJ9ciLrpP8l8aeIwVus/EXUzaNnx7D9Zbf3tgY3uP9Gy4zmVFPA/9a7IfGni8D8Zq62/PbDxPz2nkgISfvI/YaN3ReZL8z+Fn1yIuhn0P6mbQcuO5/Q/zZcmDmO19T/xkwtRN4P2PxWQ8JMLUfc/OYzV1t8e+D9diLoZtOz4P4GEn1yIuvk/pYCEn1yI+j/JfGniMFb7P+14TiUFJPw/EXUzaNnx/D81cRirrb/9P1lt/e2Bjf4/fWniMFZb/z/RsuM5lRQAQOMwVlt/ewBA9a7IfGniAEAHLTueU0kBQBmrrb89sAFAKykg4ScXAkA9p5ICEn4CQE8lBST85AJAYaN3ReZLA0BzIepm0LIDQIWfXIi6GQRAlx3PqaSABECpm0HLjucEQLsZtOx4TgVAzZcmDmO1BUDfFZkvTRwGQPGTC1E3gwZAAxJ+ciHqBkAVkPCTC1EHQCcOY7X1twdAOYzV1t8eCEBLCkj4yYUIQF2Iuhm07AhAbwYtO55TCUCBhJ9ciLoJQJMCEn5yIQpApYCEn1yICkC3/vbARu8KQMl8aeIwVgtA2/rbAxu9C0DteE4lBSQMQP/2wEbvigxAEXUzaNnxDEAj86WJw1gNQDVxGKutvw1AR++KzJcmDkBZbf3tgY0OQGvrbw9s9A5AfWniMFZbD0CP51RSQMIPQNGy4zmVFBBA2vGcSgpIEEDjMFZbf3sQQOxvD2z0rhBA9a7IfGniEED+7YGN3hURQActO55TSRFAEGz0rsh8EUAZq62/PbARQCLqZtCy4xFAKykg4ScXEkA0aNnxnEoSQD2nkgISfhJARuZLE4exEkBPJQUk/OQSQFhkvjRxGBNAYaN3ReZLE0Bq4jBWW38TQHMh6mbQshNAfGCjd0XmE0A=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"pc/l84453D8ULfS71nbQP/iqfxc4xOE/MQi6VttC8D/3P0QCZurwP/tlpNHwy90/h1I3Rv3J8D+XmpN4lWHrP7dJ7zB+q+0/MAvJY3l28T8yNdR9X5PwP8BuzhIImfU/V8Fblao28j8CwTrVxFXtP/CHImDiOu0/JHOkZf4G6T9gd3Je7W7uP1uTWt9LAdk/XX4BwFzr1z/+rReRT2myv2bW1RLY7eS/QKME8K41g7+gJ0y+EwC8v/Qja2jw+uS/gD1UEcQ1or+J72K4Klrxv6oOOwws5+m/CvB1phNQ7r9iUv0j92Hiv8KBKN4b9eO/a4AM9F7A7r9HMguG43Lsv3n+M95oo/K/+l/ZQTr89b/tjTWTZCjsv0KodF4xvuS/dd/YCoJy0L8MtmQ3iUfAv60SCqrUI9i/amBXaOnLyb/lkDnCToPNv6GvebQwVsW/KNkZAvUQtr9NagyP1RfvP7fkmIsyPd8/UTiQkoDp4z+KszkpLIjgP8ECiGUsoPE/FfHBYhfg4T9uJoAI9BLuPzyR2YK0z+g/2hxJu7E88T9ntHOVfOrpP6wBNqxCb+I/DJglkYzW6D8Fs7+Z+wzpP3vYV8vMLeI/mBvEOvxM3z+GE4apQkm7P5wwn2+NEZQ/KFixjiGUy79Ckyl8qMvSv2jgwarl3uG/yPQq+L687b/dIy4fSqziv1zZc9Xq+Oq/bvcvQO7v87+q02wavYnpvyCZ7Z7lFvO/oO+JCYZq779mvdgOUh7qvytme/R/Pu6/kL1KuDC15L/TeNkc4MDyvwFOJK0Rh+W/mmPq8zu66r8s2QnWhTDov5XKTapXZuG/BRgWcrH61L+WWFRYK560v6odTOoPNc2/H0eW+IJx3D8jkmLKjR/fP9DaGPX+SsA/RHOO680x8D+hqdgGXaHzP1zxrBB7RPI/zON4oaIA7D/2b4bCEHvmPz82dwVUKPQ/9CrtZ6Gx7D8tI1/P73j0Pzs28AllTe8/SzUOU22X8T9sy0tqH0brP/J80Oluheo/s7A2zBfh4D+MaYSmVZfqPwoDSgZ2C9E/klcI5O/0xj8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1776"},"selection_policy":{"id":"1777"}},"id":"1765","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1731"}},"id":"1735","type":"CDSView"},{"attributes":{},"id":"1601","type":"BasicTicker"},{"attributes":{"line_alpha":0.1,"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1749","type":"Line"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1b9e77"},"line_alpha":{"value":0.1},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1620","type":"Scatter"},{"attributes":{},"id":"1510","type":"HelpTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1544","type":"BoxAnnotation"},{"attributes":{"below":[{"id":"1563"}],"center":[{"id":"1566"},{"id":"1570"},{"id":"1729"}],"left":[{"id":"1567"}],"plot_height":250,"renderers":[{"id":"1719"},{"id":"1734"},{"id":"1750"}],"title":{"id":"1553"},"toolbar":{"id":"1578"},"toolbar_location":"below","x_range":{"id":"1555"},"x_scale":{"id":"1559"},"y_range":{"id":"1557"},"y_scale":{"id":"1561"}},"id":"1552","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1745","type":"UnionRenderers"},{"attributes":{},"id":"1744","type":"Selection"},{"attributes":{"axis":{"id":"1497"},"ticker":null},"id":"1500","type":"Grid"},{"attributes":{"fill_color":{"value":"#1b9e77"},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1619","type":"Scatter"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1538"},{"id":"1539"},{"id":"1540"},{"id":"1541"},{"id":"1542"},{"id":"1543"}]},"id":"1545","type":"Toolbar"},{"attributes":{"source":{"id":"1747"}},"id":"1751","type":"CDSView"},{"attributes":{"line_color":"#7570b3","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1748","type":"Line"},{"attributes":{"below":[{"id":"1497"}],"center":[{"id":"1500"},{"id":"1504"},{"id":"1631"}],"left":[{"id":"1501"}],"plot_height":250,"renderers":[{"id":"1621"},{"id":"1636"},{"id":"1652"}],"title":{"id":"1487"},"toolbar":{"id":"1512"},"toolbar_location":"below","x_range":{"id":"1489"},"x_scale":{"id":"1493"},"y_range":{"id":"1491"},"y_scale":{"id":"1495"}},"id":"1486","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1564","type":"BasicTicker"},{"attributes":{},"id":"1559","type":"LinearScale"},{"attributes":{"data_source":{"id":"1765"},"glyph":{"id":"1766"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1767"},"selection_glyph":null,"view":{"id":"1769"}},"id":"1768","type":"GlyphRenderer"},{"attributes":{},"id":"1594","type":"LinearScale"},{"attributes":{},"id":"1555","type":"DataRange1d"},{"attributes":{"axis":{"id":"1600"},"dimension":1,"ticker":null},"id":"1603","type":"Grid"},{"attributes":{"label":{"value":"Futuro predicho"},"renderers":[{"id":"1750"}]},"id":"1764","type":"LegendItem"},{"attributes":{"below":[{"id":"1530"}],"center":[{"id":"1533"},{"id":"1537"},{"id":"1680"}],"left":[{"id":"1534"}],"plot_height":250,"renderers":[{"id":"1670"},{"id":"1685"},{"id":"1701"}],"title":{"id":"1520"},"toolbar":{"id":"1545"},"toolbar_location":"below","x_range":{"id":"1522"},"x_scale":{"id":"1526"},"y_range":{"id":"1524"},"y_scale":{"id":"1528"}},"id":"1519","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1574","type":"SaveTool"},{"attributes":{"formatter":{"id":"1723"},"ticker":{"id":"1568"}},"id":"1567","type":"LinearAxis"},{"attributes":{},"id":"1557","type":"DataRange1d"},{"attributes":{},"id":"1763","type":"UnionRenderers"},{"attributes":{"text":"Filtro de orden 5"},"id":"1487","type":"Title"},{"attributes":{},"id":"1576","type":"HelpTool"},{"attributes":{},"id":"1493","type":"LinearScale"},{"attributes":{"formatter":{"id":"1725"},"ticker":{"id":"1564"}},"id":"1563","type":"LinearAxis"},{"attributes":{},"id":"1762","type":"Selection"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"hwbhuxiexj82K3R8wWitPyD4ulnu7V4/QGOsASvl/j5P9d1TG8Wgv1QG/MRZiae/yQkvFgX7p7/m0HHXLAuqv0203l2uaqq/BbOMCKi5qL+gMlzUbmSnv23CYQYGsaW/y4iNmCOgo79EzPbNabGhvzmZ4AFzrJ+/qnfgmnsKnL8LKSSZ5buYvzAALys0uZW/hwmkorD6kr/0yCXREIiQv0mwUp6+uIy/kgr1tBTgiL/Fw7bwiH+Fv0X2gF6Ki4K/L16ayJXvf7/Gqim433R7v4jGjhIsk3e/zluOJ443dL+eqSMYsVFxvyTTZ79QpW2/SkeIMOtZab/QHLCPnKllv+JW/vmOf2K/Rukz5sSSX799nrJbNu5av5BL8c2Z9Va/lhVXz7aQU7//lNW2mqpQv6pws5dYYky/LtBcVZopSL8TiJW+GJBEvwSf5ni4fkG/vJl8LETDPb9w/tInpU85vx5tzXlvhTW/REEkI7JLMr9AbRZgMxovvzMMsfnabiq/3Dj64Dx2Jr88wdoWyxUjv1T76JvfNiC/Ir24NleMG7/LIpxIdmYXvxEhyfcU4BO/+C/rS1XhEL8WKkZwzKsMvzyzlE37WAi/mUT458usBL+shC48OI4Bv/JsYhnxz/2+EDa9y+lP+b50zBk+l331vsjPSpjTPvK++hm2Ccz67r603OPO2EzqvsAJU9G2U+a+A0yIGyP04r6vkFka9RbgvoAWjeMBUdu+nlXpxiIw1761ZJqN667TvrBgoCxCtdC+hGtqGV5dzL7qYg3ooRPIviSyxfPLb8S+TGMWvcxYwb6UPf9kunK9vp749VLZ/ri+Lb76pUk3tb66SQi9AAKyvnlbSPTFka6+DKhahFfyqb5ICTTP2AWmvqW8Kho9saK+mXXwRRy7n74xKd4dnO6avkiJUGvi25a+OmTMXNhmk75k/fkjpneQvn8WVGMd9Iu+qpzFgsi5h77wErvrIyOEvth0urBuF4G+o+wmHkwDfb4w0QYr6Z94vhKeoV1u5nS+nfu5gym9cb4AoMNhlhxuvmTWM6qgjmm+FuCiIAWxZb4=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1664"},"selection_policy":{"id":"1665"}},"id":"1649","type":"ColumnDataSource"},{"attributes":{},"id":"1561","type":"LinearScale"},{"attributes":{},"id":"1498","type":"BasicTicker"},{"attributes":{},"id":"1491","type":"DataRange1d"},{"attributes":{"axis":{"id":"1563"},"ticker":null},"id":"1566","type":"Grid"},{"attributes":{},"id":"1489","type":"DataRange1d"},{"attributes":{"axis":{"id":"1501"},"dimension":1,"ticker":null},"id":"1504","type":"Grid"},{"attributes":{"formatter":{"id":"1627"},"ticker":{"id":"1498"}},"id":"1497","type":"LinearAxis"},{"attributes":{"axis":{"id":"1567"},"dimension":1,"ticker":null},"id":"1570","type":"Grid"},{"attributes":{},"id":"1568","type":"BasicTicker"},{"attributes":{"below":[{"id":"1596"}],"center":[{"id":"1599"},{"id":"1603"},{"id":"1778"}],"left":[{"id":"1600"}],"plot_height":250,"renderers":[{"id":"1768"},{"id":"1783"},{"id":"1799"}],"title":{"id":"1586"},"toolbar":{"id":"1611"},"toolbar_location":"below","x_range":{"id":"1588"},"x_scale":{"id":"1592"},"y_range":{"id":"1590"},"y_scale":{"id":"1594"}},"id":"1585","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1495","type":"LinearScale"},{"attributes":{},"id":"1572","type":"WheelZoomTool"},{"attributes":{"formatter":{"id":"1625"},"ticker":{"id":"1502"}},"id":"1501","type":"LinearAxis"},{"attributes":{},"id":"1571","type":"PanTool"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"niLoJ36o0T+gu6ammqCxP32j3eC/Htm/ElDqPbeq4r/stl1eId/pvxYOq3TmWuO/g+eNmDoD6b9ytfNHmqrwv/qyRkEZNPS/hVKGIXec9L+QKIt7kArwvxBY77N27fG/5DThdsGi7b8o2JkaJ0fzv1OzbRmoIu2/z7/40MHN6L+80JjKEvThvxUvfkVB3eC/MJtDOQwH4r+UVgxIjuHWvzBUi6xxsK8/qK58YTwtuD+3ZqrXfhLZP5INHZI8+sA/uLmFZh+k4T+HRPGU5dToP9TzSWbrX/A/RMZSsWja8z9x/nmHsHzvP206wNdEe+8/NVcyLCoh9D9U8q5XrXP2P0Qmv4IxqPM/hUcaLxHe7T/Of8wT6kXpP/Kv2knz7+0/wjOtyLt67T894vbaVsHkP5heUCncKss/B8A24CyUwj9Izknr51KxPxDJx0NNzsI/wpTaSlfkxr9TpB7AFurfvwTIHzc+1eq/Ic6wDpUK6L/d4KKB+3zmv77O5WGWHOu/zP7uwRsU9L94mP5RMOj2v/YPyiPrp/S/9hpPgb7b8L/U1ECBXX3wv4qlW7TCofS/eo1O9fWx9b+2o3TPpnLuv56VVKgNgeO/IKW6tWaa27/Kj+nzxzDhvyjbla0c/eO/nGYT+6VFur/k6ueiAn7SP8ZvQ8Y9++A/plHNmobe1j+43PZJTKjTP6gRGLNVF+U/Tnewq5818j8/Jr4oi3X0P60evII9OvE/JGUbi2+S7D8Ss65EzXPyP41D6x4/lvc/OH9cvQll+T9wr70yXu3yPyLZHxlKkeo/ZQQh2brB6j/KrTTv76DxP5bDHl0zSvE/tIqUtUhV4D8Awx/JbcZfvyDAdfKfB7q/snTZD9dcwj+4onFkJl6+P5Zyn3gVZdy/wP4/xPcx8L9UyIZoWIDwv/H15/BQQ+i//meDl8Xs5L+pNYgftJTxv/cbihb2ufm/BkHQSACP+b+agi9XYOPxv/sRVgg6oey/A7lhZ5gi8r93G8seL0X5v0iP1hZ7EPe//ush1YWZ6b+QWY7N8B7Vv/6h1/tDLdy/clRnFHNp6b8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1811"},"selection_policy":{"id":"1812"}},"id":"1796","type":"ColumnDataSource"},{"attributes":{},"id":"1592","type":"LinearScale"},{"attributes":{"overlay":{"id":"1577"}},"id":"1573","type":"BoxZoomTool"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAACBhJ9ciLqpP4GEn1yIurk/YaN3ReZLwz+BhJ9ciLrJP9Gy4zmVFNA/YaN3ReZL0z/xkwtRN4PWP4GEn1yIutk/EXUzaNnx3D/RsuM5lRTgPxmrrb89sOE/YaN3ReZL4z+pm0HLjufkP/GTC1E3g+Y/OYzV1t8e6D+BhJ9ciLrpP8l8aeIwVus/EXUzaNnx7D9Zbf3tgY3uP9Gy4zmVFPA/9a7IfGni8D8Zq62/PbDxPz2nkgISfvI/YaN3ReZL8z+Fn1yIuhn0P6mbQcuO5/Q/zZcmDmO19T/xkwtRN4P2PxWQ8JMLUfc/OYzV1t8e+D9diLoZtOz4P4GEn1yIuvk/pYCEn1yI+j/JfGniMFb7P+14TiUFJPw/EXUzaNnx/D81cRirrb/9P1lt/e2Bjf4/fWniMFZb/z/RsuM5lRQAQOMwVlt/ewBA9a7IfGniAEAHLTueU0kBQBmrrb89sAFAKykg4ScXAkA9p5ICEn4CQE8lBST85AJAYaN3ReZLA0BzIepm0LIDQIWfXIi6GQRAlx3PqaSABECpm0HLjucEQLsZtOx4TgVAzZcmDmO1BUDfFZkvTRwGQPGTC1E3gwZAAxJ+ciHqBkAVkPCTC1EHQCcOY7X1twdAOYzV1t8eCEBLCkj4yYUIQF2Iuhm07AhAbwYtO55TCUCBhJ9ciLoJQJMCEn5yIQpApYCEn1yICkC3/vbARu8KQMl8aeIwVgtA2/rbAxu9C0DteE4lBSQMQP/2wEbvigxAEXUzaNnxDEAj86WJw1gNQDVxGKutvw1AR++KzJcmDkBZbf3tgY0OQGvrbw9s9A5AfWniMFZbD0CP51RSQMIPQNGy4zmVFBBA2vGcSgpIEEDjMFZbf3sQQOxvD2z0rhBA9a7IfGniEED+7YGN3hURQActO55TSRFAEGz0rsh8EUAZq62/PbARQCLqZtCy4xFAKykg4ScXEkA0aNnxnEoSQD2nkgISfhJARuZLE4exEkBPJQUk/OQSQFhkvjRxGBNAYaN3ReZLE0Bq4jBWW38TQHMh6mbQshNAfGCjd0XmE0A=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"pc/l84453D8ULfS71nbQP/iqfxc4xOE/MQi6VttC8D/3P0QCZurwP/tlpNHwy90/h1I3Rv3J8D+XmpN4lWHrP7dJ7zB+q+0/MAvJY3l28T8yNdR9X5PwP8BuzhIImfU/V8Fblao28j8CwTrVxFXtP/CHImDiOu0/JHOkZf4G6T9gd3Je7W7uP1uTWt9LAdk/XX4BwFzr1z/+rReRT2myv2bW1RLY7eS/QKME8K41g7+gJ0y+EwC8v/Qja2jw+uS/gD1UEcQ1or+J72K4Klrxv6oOOwws5+m/CvB1phNQ7r9iUv0j92Hiv8KBKN4b9eO/a4AM9F7A7r9HMguG43Lsv3n+M95oo/K/+l/ZQTr89b/tjTWTZCjsv0KodF4xvuS/dd/YCoJy0L8MtmQ3iUfAv60SCqrUI9i/amBXaOnLyb/lkDnCToPNv6GvebQwVsW/KNkZAvUQtr9NagyP1RfvP7fkmIsyPd8/UTiQkoDp4z+KszkpLIjgP8ECiGUsoPE/FfHBYhfg4T9uJoAI9BLuPzyR2YK0z+g/2hxJu7E88T9ntHOVfOrpP6wBNqxCb+I/DJglkYzW6D8Fs7+Z+wzpP3vYV8vMLeI/mBvEOvxM3z+GE4apQkm7P5wwn2+NEZQ/KFixjiGUy79Ckyl8qMvSv2jgwarl3uG/yPQq+L687b/dIy4fSqziv1zZc9Xq+Oq/bvcvQO7v87+q02wavYnpvyCZ7Z7lFvO/oO+JCYZq779mvdgOUh7qvytme/R/Pu6/kL1KuDC15L/TeNkc4MDyvwFOJK0Rh+W/mmPq8zu66r8s2QnWhTDov5XKTapXZuG/BRgWcrH61L+WWFRYK560v6odTOoPNc2/H0eW+IJx3D8jkmLKjR/fP9DaGPX+SsA/RHOO680x8D+hqdgGXaHzP1zxrBB7RPI/zON4oaIA7D/2b4bCEHvmPz82dwVUKPQ/9CrtZ6Gx7D8tI1/P73j0Pzs28AllTe8/SzUOU22X8T9sy0tqH0brP/J80Oluheo/s7A2zBfh4D+MaYSmVZfqPwoDSgZ2C9E/klcI5O/0xj8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1629"},"selection_policy":{"id":"1630"}},"id":"1618","type":"ColumnDataSource"},{"attributes":{},"id":"1575","type":"ResetTool"},{"attributes":{"formatter":{"id":"1774"},"ticker":{"id":"1597"}},"id":"1596","type":"LinearAxis"},{"attributes":{"fill_color":{"value":"#1b9e77"},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1766","type":"Scatter"},{"attributes":{"data_source":{"id":"1796"},"glyph":{"id":"1797"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1798"},"selection_glyph":null,"view":{"id":"1800"}},"id":"1799","type":"GlyphRenderer"},{"attributes":{},"id":"1502","type":"BasicTicker"},{"attributes":{"fill_color":{"value":"#1b9e77"},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1668","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1b9e77"},"line_alpha":{"value":0.1},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1767","type":"Scatter"},{"attributes":{"text":"Filtro de orden 10"},"id":"1520","type":"Title"},{"attributes":{"items":[{"id":"1779"},{"id":"1795"},{"id":"1813"}],"location":"bottom_left"},"id":"1778","type":"Legend"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1505"},{"id":"1506"},{"id":"1507"},{"id":"1508"},{"id":"1509"},{"id":"1510"}]},"id":"1512","type":"Toolbar"},{"attributes":{"label":{"value":"Pasado"},"renderers":[{"id":"1768"}]},"id":"1779","type":"LegendItem"},{"attributes":{},"id":"1506","type":"WheelZoomTool"},{"attributes":{},"id":"1505","type":"PanTool"},{"attributes":{},"id":"1509","type":"ResetTool"},{"attributes":{"data":{"x":{"__ndarray__":"hZ9ciLoZFECO3hWZL00UQJcdz6mkgBRAoFyIuhm0FECpm0HLjucUQLLa+tsDGxVAuxm07HhOFUDEWG397YEVQM2XJg5jtRVA1tbfHtjoFUDfFZkvTRwWQOhUUkDCTxZA8ZMLUTeDFkD60sRhrLYWQAMSfnIh6hZADFE3g5YdF0AVkPCTC1EXQB7PqaSAhBdAJw5jtfW3F0AwTRzGausXQDmM1dbfHhhAQsuO51RSGEBLCkj4yYUYQFRJAQk/uRhAXYi6GbTsGEBmx3MqKSAZQG8GLTueUxlAeEXmSxOHGUCBhJ9ciLoZQIrDWG397RlAkwISfnIhGkCcQcuO51QaQKWAhJ9ciBpArr89sNG7GkC3/vbARu8aQMA9sNG7IhtAyXxp4jBWG0DSuyLzpYkbQNv62wMbvRtA5DmVFJDwG0DteE4lBSQcQPa3BzZ6VxxA//bARu+KHEAINnpXZL4cQBF1M2jZ8RxAGrTseE4lHUAj86WJw1gdQCwyX5o4jB1ANXEYq62/HUA+sNG7IvMdQEfvisyXJh5AUC5E3QxaHkBZbf3tgY0eQGKstv72wB5Aa+tvD2z0HkB0Kikg4ScfQH1p4jBWWx9AhqibQcuOH0CP51RSQMIfQJgmDmO19R9A0bLjOZUUIEBVUkDCTy4gQNrxnEoKSCBAXpH50sRhIEDjMFZbf3sgQGfQsuM5lSBA7G8PbPSuIEBwD2z0rsggQPWuyHxp4iBAeU4lBST8IED+7YGN3hUhQIKN3hWZLyFABy07nlNJIUCLzJcmDmMhQBBs9K7IfCFAlAtRN4OWIUAZq62/PbAhQJ1KCkj4ySFAIupm0LLjIUCmicNYbf0hQCspIOEnFyJAr8h8aeIwIkA0aNnxnEoiQLgHNnpXZCJAPaeSAhJ+IkDBRu+KzJciQEbmSxOHsSJAyoWom0HLIkBPJQUk/OQiQNPEYay2/iJAWGS+NHEYI0DcAxu9KzIjQGGjd0XmSyNA5ULUzaBlI0Bq4jBWW38jQO6Bjd4VmSNAcyHqZtCyI0D3wEbviswjQHxgo3dF5iNAAAAAAAAAJEA=","dtype":"float64","order":"little","shape":[100]},"y":{"__ndarray__":"y3RjP7KOpT9EPeJymEHBv3CrqMxz+9G/wsyUSB8/27+YefFSTVLgv4olq35fheO/FozN+Xbh6r/Ka1Cegt/qvzloALkQi+y/Qo9Z9SHd7b9shrziR6Ptv+x0M+b2Ju2/5lopZ4DM678My1q8KRbrvwy3SkMHFOm/AKyQy4Tr5L8U8boxKuPhv+RS6WbjTNy/6GaxaVcJ1L/6UdGfzU/Iv9GoS1/55bC/OckLpynnqz+Yc/LYUoTIP3hXwYe6UtQ/mESDr0Kp2j/fQsg6Z2ngP40ob/ci7eI/b3+/WbjX5D8aqCOLclLmPwiqYmMzW+c/CoLB+wfn5z/QUrPX8JznP1DPut6rt+Y/xKfaKVds5T8aGdXiw5LjPxP/7JbZVuE/1OBM/Gif3T9aUaF3HPvXP8O7fsP+wtE/wparfqAzxj/eXPX6nMOxPxBb5Qvy6qC/Jqmi9nIBwb9uIbFf9e/Mv4PUxCpf9NO/R4pH1F/o2L/OzUdv2jXdv860CXLIWOC/y8dKif+e4b/Vu730FnLiv1a5sfqGz+K/YlbhtDy24r8EWZXYei/ivy67oHx/P+G/0PbpqxXT37+mqF7tdWrcv4hTuHTJY9i/IfhtPZbi07/A1P4hVAXOv/qPeS4Sy8O/uUfByp6zsr+i8tiOCIiBP3TAaa0fobY/LM1E6fkLxT8+OmoVoAnOPwK6RLztCtM/DkhqeBWE1j/Qw501DV7ZP85tFyimjNs/fchgiPwH3T9A9/wzdsndPzp91nWIzt0/rH9Sj9wa3T8et6CnHrjbPzhDIXOTs9k/jwTlKo4d1z94rLwswQnUPyE+4X1KjdA/BscraWt9yT/wPxNhFG7BP+DLAXv9Q7I/2JQf16fZeT8kg4XmKmCtvweFwsxcQ76/TdKtkPVgxr8ThyRPpe3Mv3+9aNnqUdG/831bmTqy078bWlAdj4vVv3c9gc6S1da/AunIYMuL17/SCZTrZa3Xv/pCdOkjPde/Uy4XHBBB1r+v4ueNJMLUv7aUG4BLzNK/P062ST9u0L910ejvE3LLv3Qg9fbNfsW/vFuOJdZUvr8=","dtype":"float64","order":"little","shape":[100]}},"selected":{"id":"1713"},"selection_policy":{"id":"1714"}},"id":"1698","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1765"}},"id":"1769","type":"CDSView"},{"attributes":{"overlay":{"id":"1511"}},"id":"1507","type":"BoxZoomTool"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1b9e77"},"line_alpha":{"value":0.1},"line_color":{"value":"#1b9e77"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1669","type":"Scatter"},{"attributes":{"axis":{"id":"1596"},"ticker":null},"id":"1599","type":"Grid"},{"attributes":{},"id":"1597","type":"BasicTicker"},{"attributes":{"formatter":{"id":"1772"},"ticker":{"id":"1601"}},"id":"1600","type":"LinearAxis"},{"attributes":{},"id":"1508","type":"SaveTool"}],"root_ids":["1814"]},"title":"Bokeh Application","version":"2.2.1"}};
+  var render_items = [{"docid":"335e68b9-a793-4612-bfca-5b010872239c","root_ids":["1814"],"roots":{"1814":"9c5f6368-3a40-46cc-99a8-4b9ced146114"}}];
+  root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+<div class="alert alert-info">    
+<p>El resultado es similar al caso anterior. Si <span class="math notranslate nohighlight">\(L\)</span> es muy pequeño el filtro es demasiado simple. Si <span class="math notranslate nohighlight">\(L\)</span> es muy grande el filtro se puede sobreajustar al ruido</p>
+</div>
+</div>
+<div class="section" id="eliminar-ruido-blanco-aditivo">
+<h3><span class="section-number">1.3.3. </span>Eliminar ruido blanco aditivo<a class="headerlink" href="#eliminar-ruido-blanco-aditivo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En este caso asumimos que la señal de entrada corresponde a una señal deseada (información) que ha sido contaminada con ruido aditivo</p>
+<div class="math notranslate nohighlight">
+\[
+u_n = d_n + \nu_n,
+\]</div>
+<p>adicionalmente asumimos que</p>
+<ul class="simple">
+<li><p>el ruido es estacionario en el sentido amplio y de media cero <span class="math notranslate nohighlight">\(\mathbb{E}[\nu_n] = 0\)</span></p></li>
+<li><p>el ruido es blanco, es decir no tiene correlación consigo mismo o con la señal deseada</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+r_{\nu d}(k) = 0, \forall k
+\]</div>
+<ul class="simple">
+<li><p>el ruido tiene una cierta varianza <span class="math notranslate nohighlight">\(\mathbb{E}[\nu_n^2] = \sigma_\nu^2, \forall n\)</span></p></li>
+</ul>
+<p>Notemos que en este caso <span class="math notranslate nohighlight">\(R_{uu} = R_{dd} + R_{\nu\nu}\)</span> y <span class="math notranslate nohighlight">\(R_{ud} = R_{dd}\)</span>, luego</p>
+<p>la señal recuperada es <span class="math notranslate nohighlight">\(\hat d_n = h^{*} u_n\)</span> y el filtro es</p>
+<div class="math notranslate nohighlight">
+\[
+\vec h^{*} = \frac{R_{dd}}{R_{dd} + R_{\nu\nu}}
+\]</div>
+<p>y su respuesta en frecuencia</p>
+<div class="math notranslate nohighlight">
+\[
+H(f) = \frac{S_{dd}(f)}{S_{dd}(f) + S_{\nu\nu}(f)}
+\]</div>
+<p>es decir que</p>
+<ul class="simple">
+<li><p>en frecuencias donde la <span class="math notranslate nohighlight">\(S_{dd}(f) &gt; S_{\nu\nu}(f)\)</span>, entonces <span class="math notranslate nohighlight">\(H(f) = 1\)</span></p></li>
+<li><p>en frecuencias donde la <span class="math notranslate nohighlight">\(S_{dd}(f) &lt; S_{\nu\nu}(f)\)</span>, entonces <span class="math notranslate nohighlight">\(H(f) = 0\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "info183"
+        },
+        kernelOptions: {
+            kernelName: "info183",
+            path: "./clases/unidad3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'info183'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../unidad2/04_filtros_IIR.html" title="previous page"><span class="section-number">4. </span>Diseño de sistemas y filtros IIR</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pablo Huijse Heise<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>
