@@ -602,8 +602,8 @@ r_{uu}(n, n-k) = \mathbb{E}[U_n U_{n-k}]
 <li><p>Segundo momento centrado o covarianza
 $$</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-9e1aedd2-b624-43f8-bced-43e9f9dfd24f">
-<span class="eqno">()<a class="headerlink" href="#equation-9e1aedd2-b624-43f8-bced-43e9f9dfd24f" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7e95e52f-ab16-4f53-b99c-0bc12aca0cf8">
+<span class="eqno">()<a class="headerlink" href="#equation-7e95e52f-ab16-4f53-b99c-0bc12aca0cf8" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 c_{uu}(n, n-k) &amp;= \mathbb{E}[(U_n-\mu_n) (U_{n-k}- \mu_{n-k})] \nonumber \\
 &amp;= r(n,n-k) - \mu_n \mu_{n-k} \nonumber
 \end{align}\]</div>
@@ -750,16 +750,16 @@ R_{uu} \textbf{h} &amp;= R_{ud},
 <h2>Error mínimo del filtro de Wiener<a class="headerlink" href="#error-minimo-del-filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Dado que <span class="math notranslate nohighlight">\(y_n = \textbf{h}^T U_n = U_n^T \textbf{h} \)</span>, podemos expresar el MSE como
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b13fbe94-12cf-4447-b404-9ee3d5ae56ee">
-<span class="eqno">()<a class="headerlink" href="#equation-b13fbe94-12cf-4447-b404-9ee3d5ae56ee" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ea5f7a8c-bf90-4516-8667-56ff9ad1f09c">
+<span class="eqno">()<a class="headerlink" href="#equation-ea5f7a8c-bf90-4516-8667-56ff9ad1f09c" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 \text{MSE} &amp;= \mathbb{E}\left [d_n^2 \right]  - 2\mathbb{E}\left [ d_n y_n \right] + \mathbb{E}\left [ y_n^2 \right] \nonumber \\
 &amp;= \mathbb{E}\left [d_n^2 \right] - 2 \textbf{h}^T \mathbb{E}\left [ d_n U_n \right]  + \textbf{h}^T \mathbb{E}\left [U_n U_n^T \right]  \textbf{h}  \nonumber \\
 &amp;= \sigma_d^2 - 2 \textbf{h}^T R_{ud} + \textbf{h}^T R_{uu} \textbf{h} \nonumber 
 \end{align}\]</div>
 <div class="math notranslate nohighlight">
 \[Luego el mínimo error que se puede obtener es\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-4a00b5e9-a61b-403f-8538-5026c8e49daa">
-<span class="eqno">()<a class="headerlink" href="#equation-4a00b5e9-a61b-403f-8538-5026c8e49daa" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a1969304-5d22-40ee-981b-b960fc7c6439">
+<span class="eqno">()<a class="headerlink" href="#equation-a1969304-5d22-40ee-981b-b960fc7c6439" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 \text{MSE}_{\text{min}} &amp;= \sigma_d^2 - (R_{uu}^{-1} R_{ud})^T R_{ud} \nonumber \\
 &amp;= \sigma_d^2 - R_{ud}^T R_{uu}^{-1} R_{ud} &lt; \sigma_d^2
 \end{align}\]</div>
@@ -1056,8 +1056,8 @@ w_{n+1, k} = w_{n, k} + 2 \mu e_n u_{n-k}, k=0, 1, \ldots, L
 \)</span><span class="math notranslate nohighlight">\(
 o en forma matricial
 \)</span>$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0984b907-f46b-4e93-8bd3-d207df2c0136">
-<span class="eqno">()<a class="headerlink" href="#equation-0984b907-f46b-4e93-8bd3-d207df2c0136" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b902b4ef-96e4-466c-b951-caf0a313eae5">
+<span class="eqno">()<a class="headerlink" href="#equation-b902b4ef-96e4-466c-b951-caf0a313eae5" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 \textbf{w}_{n+1} &amp;= \textbf{w}_{n} + 2 \mu e_n \textbf{u}_{n}\nonumber \\
 &amp;= \textbf{w}_{n} + 2 \mu (d_n -  \textbf{w}_{n}^T \textbf{u}_{n}) \textbf{u}_{n}, \nonumber 
 \end{align}\]</div>
@@ -1321,8 +1321,8 @@ $<span class="math notranslate nohighlight">\(
 \end{split}\]</div>
 <p>donde reemplazamos <span class="math notranslate nohighlight">\(\textbf{w}_{n-1} = \Phi_{n-1}^{-1} \theta_{n-1}\)</span> y usamos que
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68d9bfbf-2919-4b46-8f92-2e7ce01540b1">
-<span class="eqno">()<a class="headerlink" href="#equation-68d9bfbf-2919-4b46-8f92-2e7ce01540b1" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-faaa17e7-620a-46a2-9bb0-a63b551892a2">
+<span class="eqno">()<a class="headerlink" href="#equation-faaa17e7-620a-46a2-9bb0-a63b551892a2" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 \textbf{k}_n &amp;= \left(\beta^{-1} \Phi_{n-1}^{-1} - \beta^{-1} \textbf{k}_n \textbf{u}_n^T \Phi_{n-1}^{-1} \right)  \textbf{u}_n \nonumber \\ &amp;= \Phi_n^{-1} u_n \nonumber
 \end{align}\]</div>
 <p>$$</p>
@@ -1446,8 +1446,8 @@ $<span class="math notranslate nohighlight">\(
 <li><p>El filtro tiene arquitectura FIR con <span class="math notranslate nohighlight">\(M+1\)</span> coeficientes pero se agrega una no linealidad <span class="math notranslate nohighlight">\(\phi(\cdot)\)</span> en la salida
 $$</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-ecf4944a-a50d-41fa-8a14-94c7bcfd409c">
-<span class="eqno">()<a class="headerlink" href="#equation-ecf4944a-a50d-41fa-8a14-94c7bcfd409c" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a4412a9a-2c12-4cac-b3ba-1b6cc0a92269">
+<span class="eqno">()<a class="headerlink" href="#equation-a4412a9a-2c12-4cac-b3ba-1b6cc0a92269" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 y_n &amp;=  \phi \left(w_0 + \sum_{k=1}^{M} w_k u_{nk} \right) \nonumber \\
 &amp;= \phi \left(\langle \textbf{w}, \text{concat}(1, u_n) \rangle \right), \nonumber 
 \end{align}\]</div>
@@ -1478,8 +1478,8 @@ es decir que la derivada es cero si el ejemplo está bien clasificado</p></li>
 <li><p>Finalmente la regla perceptron usando SGD con tasa de aprendizaje <span class="math notranslate nohighlight">\(\mu\)</span> es
 $$</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-a70b2815-2966-4b30-8b6a-5865428d7431">
-<span class="eqno">()<a class="headerlink" href="#equation-a70b2815-2966-4b30-8b6a-5865428d7431" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-95643999-e861-4f45-94aa-5fbbd1227997">
+<span class="eqno">()<a class="headerlink" href="#equation-95643999-e861-4f45-94aa-5fbbd1227997" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 \textbf{w}^{(t+1)} &amp;= \textbf{w}^{(t)} - \mu \frac{d \mathcal{L}(\textbf{w}^{(t)} )}{d \textbf{w}} \nonumber \\
 &amp; = \textbf{w}^{(t)} + \begin{cases} \mu d_n \text{concat}(1, u_n) &amp; \\ 0 &amp; \text{en otro caso} \end{cases}
 \end{align}\]</div>
