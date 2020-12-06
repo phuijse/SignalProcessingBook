@@ -158,6 +158,11 @@
    1. Estimador lineal óptimo
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_LMS.html">
+   2. Estimadores adaptivos parte I
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -726,8 +731,8 @@ $<span class="math notranslate nohighlight">\(
 \end{split}\]</div>
 <p>donde reemplazamos <span class="math notranslate nohighlight">\(\textbf{w}_{n-1} = \Phi_{n-1}^{-1} \theta_{n-1}\)</span> y usamos que
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9573f52f-8868-4b12-9df7-a3f19912dd5c">
-<span class="eqno">()<a class="headerlink" href="#equation-9573f52f-8868-4b12-9df7-a3f19912dd5c" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-91bf1287-5910-45fc-a673-1506c6934c10">
+<span class="eqno">()<a class="headerlink" href="#equation-91bf1287-5910-45fc-a673-1506c6934c10" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 \textbf{k}_n &amp;= \left(\beta^{-1} \Phi_{n-1}^{-1} - \beta^{-1} \textbf{k}_n \textbf{u}_n^T \Phi_{n-1}^{-1} \right)  \textbf{u}_n \nonumber \\ &amp;= \Phi_n^{-1} u_n \nonumber
 \end{align}\]</div>
 <p>$$</p>
@@ -1754,7 +1759,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='d64a3bfb-d7c6-4f3c-a852-ba0f1bf72914'></div></div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+</script><div class="output text_html"><div id='e0beda1d-06ea-42c5-a412-97ea0738b71f'></div></div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">ca301585dc17</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">43</span> 
@@ -1780,8 +1785,8 @@ if (IPython.notebook.kernel !== null) {
 <li><p>El filtro tiene arquitectura FIR con <span class="math notranslate nohighlight">\(M+1\)</span> coeficientes pero se agrega una no linealidad <span class="math notranslate nohighlight">\(\phi(\cdot)\)</span> en la salida
 $$</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-2a8d7145-e88a-4c4d-8d5f-f6d672b362cd">
-<span class="eqno">()<a class="headerlink" href="#equation-2a8d7145-e88a-4c4d-8d5f-f6d672b362cd" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-56a188a0-ec5f-4c63-9f44-9654b5067f74">
+<span class="eqno">()<a class="headerlink" href="#equation-56a188a0-ec5f-4c63-9f44-9654b5067f74" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 y_n &amp;=  \phi \left(w_0 + \sum_{k=1}^{M} w_k u_{nk} \right) \nonumber \\
 &amp;= \phi \left(\langle \textbf{w}, \text{concat}(1, u_n) \rangle \right), \nonumber 
 \end{align}\]</div>
@@ -1813,8 +1818,8 @@ es decir que la derivada es cero si el ejemplo está bien clasificado</p></li>
 <li><p>Finalmente la regla perceptron usando SGD con tasa de aprendizaje <span class="math notranslate nohighlight">\(\mu\)</span> es
 $$</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-ca290204-45c8-48a1-83f2-a4106899a7ae">
-<span class="eqno">()<a class="headerlink" href="#equation-ca290204-45c8-48a1-83f2-a4106899a7ae" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b33f5d75-53bc-4b7c-ac26-ce0eaf95bd5d">
+<span class="eqno">()<a class="headerlink" href="#equation-b33f5d75-53bc-4b7c-ac26-ce0eaf95bd5d" title="Enlace permanente a esta ecuación">¶</a></span>\[\begin{align}
 \textbf{w}^{(t+1)} &amp;= \textbf{w}^{(t)} - \mu \frac{d \mathcal{L}(\textbf{w}^{(t)} )}{d \textbf{w}} \nonumber \\
 &amp; = \textbf{w}^{(t)} + \begin{cases} \mu d_n \text{concat}(1, u_n) &amp; \\ 0 &amp; \text{en otro caso} \end{cases}
 \end{align}\]</div>
