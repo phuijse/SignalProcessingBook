@@ -16,4 +16,6 @@
 - part: Unidad 3
   chapters:
     - file: clases/unidad3/01_wiener
+    - file: clases/unidad3/02_LMS
+
 
