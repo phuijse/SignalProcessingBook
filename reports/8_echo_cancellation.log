@@ -17,74 +17,19 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import librosa
-
-# Esta será la señal s(t) es decir nuestra voz transmitida
-r, Fs = librosa.load("../../data/hola2.ogg")
-Audio(r, rate=int(Fs), normalize=False)
+fig, ax = plt.subplots()
+ax.plot(r, alpha=0.5)
+ax.plot(rh, alpha=.5)
+ax.plot(s, alpha=.5)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mRuntimeError[0m                              Traceback (most recent call last)
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/librosa/core/audio.py[0m in [0;36mload[0;34m(path, sr, mono, offset, duration, dtype, res_type)[0m
-[1;32m    145[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 146[0;31m         [0;32mwith[0m [0msf[0m[0;34m.[0m[0mSoundFile[0m[0;34m([0m[0mpath[0m[0;34m)[0m [0;32mas[0m [0msf_desc[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    147[0m             [0msr_native[0m [0;34m=[0m [0msf_desc[0m[0;34m.[0m[0msamplerate[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/soundfile.py[0m in [0;36m__init__[0;34m(self, file, mode, samplerate, channels, subtype, endian, format, closefd)[0m
-[1;32m    626[0m                                          format, subtype, endian)
-[0;32m--> 627[0;31m         [0mself[0m[0;34m.[0m[0m_file[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_open[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mmode_int[0m[0;34m,[0m [0mclosefd[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    628[0m         [0;32mif[0m [0mset[0m[0;34m([0m[0mmode[0m[0;34m)[0m[0;34m.[0m[0missuperset[0m[0;34m([0m[0;34m'r+'[0m[0;34m)[0m [0;32mand[0m [0mself[0m[0;34m.[0m[0mseekable[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/soundfile.py[0m in [0;36m_open[0;34m(self, file, mode_int, closefd)[0m
-[1;32m   1180[0m             [0;32mraise[0m [0mTypeError[0m[0;34m([0m[0;34m"Invalid file: {0!r}"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mname[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1181[0;31m         _error_check(_snd.sf_error(file_ptr),
-[0m[1;32m   1182[0m                      "Error opening {0!r}: ".format(self.name))
-
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/soundfile.py[0m in [0;36m_error_check[0;34m(err, prefix)[0m
-[1;32m   1354[0m         [0merr_str[0m [0;34m=[0m [0m_snd[0m[0;34m.[0m[0msf_error_number[0m[0;34m([0m[0merr[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1355[0;31m         [0;32mraise[0m [0mRuntimeError[0m[0;34m([0m[0mprefix[0m [0;34m+[0m [0m_ffi[0m[0;34m.[0m[0mstring[0m[0;34m([0m[0merr_str[0m[0;34m)[0m[0;34m.[0m[0mdecode[0m[0;34m([0m[0;34m'utf-8'[0m[0;34m,[0m [0;34m'replace'[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   1356[0m [0;34m[0m[0m
-
-[0;31mRuntimeError[0m: Error opening '../../data/hola2.ogg': System error.
-
-During handling of the above exception, another exception occurred:
-
-[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m<ipython-input-1-b3e040743179>[0m in [0;36m<module>[0;34m[0m
-[1;32m      2[0m [0;34m[0m[0m
-[1;32m      3[0m [0;31m# Esta será la señal s(t) es decir nuestra voz transmitida[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 4[0;31m [0mr[0m[0;34m,[0m [0mFs[0m [0;34m=[0m [0mlibrosa[0m[0;34m.[0m[0mload[0m[0;34m([0m[0;34m"../../data/hola2.ogg"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      5[0m [0mAudio[0m[0;34m([0m[0mr[0m[0;34m,[0m [0mrate[0m[0;34m=[0m[0mint[0m[0;34m([0m[0mFs[0m[0;34m)[0m[0;34m,[0m [0mnormalize[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/librosa/core/audio.py[0m in [0;36mload[0;34m(path, sr, mono, offset, duration, dtype, res_type)[0m
-[1;32m    161[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mpath[0m[0;34m,[0m [0;34m([0m[0mstr[0m[0;34m,[0m [0mpathlib[0m[0;34m.[0m[0mPurePath[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    162[0m             [0mwarnings[0m[0;34m.[0m[0mwarn[0m[0;34m([0m[0;34m"PySoundFile failed. Trying audioread instead."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 163[0;31m             [0my[0m[0;34m,[0m [0msr_native[0m [0;34m=[0m [0m__audioread_load[0m[0;34m([0m[0mpath[0m[0;34m,[0m [0moffset[0m[0;34m,[0m [0mduration[0m[0;34m,[0m [0mdtype[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    164[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    165[0m             [0;32mraise[0m [0;34m([0m[0mexc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/librosa/core/audio.py[0m in [0;36m__audioread_load[0;34m(path, offset, duration, dtype)[0m
-[1;32m    185[0m [0;34m[0m[0m
-[1;32m    186[0m     [0my[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 187[0;31m     [0;32mwith[0m [0maudioread[0m[0;34m.[0m[0maudio_open[0m[0;34m([0m[0mpath[0m[0;34m)[0m [0;32mas[0m [0minput_file[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    188[0m         [0msr_native[0m [0;34m=[0m [0minput_file[0m[0;34m.[0m[0msamplerate[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    189[0m         [0mn_channels[0m [0;34m=[0m [0minput_file[0m[0;34m.[0m[0mchannels[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/audioread/__init__.py[0m in [0;36maudio_open[0;34m(path, backends)[0m
-[1;32m    109[0m     [0;32mfor[0m [0mBackendClass[0m [0;32min[0m [0mbackends[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    110[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 111[0;31m             [0;32mreturn[0m [0mBackendClass[0m[0;34m([0m[0mpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    112[0m         [0;32mexcept[0m [0mDecodeError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    113[0m             [0;32mpass[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/.conda/envs/info183/lib/python3.8/site-packages/audioread/rawread.py[0m in [0;36m__init__[0;34m(self, filename)[0m
-[1;32m     60[0m     """
-[1;32m     61[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mfilename[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 62[0;31m         [0mself[0m[0;34m.[0m[0m_fh[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0;34m'rb'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     63[0m [0;34m[0m[0m
-[1;32m     64[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../../data/hola2.ogg'
-FileNotFoundError: [Errno 2] No such file or directory: '../../data/hola2.ogg'
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-4-82884f36aa86>[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0max[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mr[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0;36m0.5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0max[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mrh[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0;36m.5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 4[0;31m [0max[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0ms[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0;36m.5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mNameError[0m: name 's' is not defined
+NameError: name 's' is not defined
 
