@@ -2,11 +2,11 @@
 title: INFO183 Análisis de sistemas lineales
 author: Pablo Huijse Heise 
 logo: logo.png
+only_build_toc_files: true
+exclude_patterns : [_build, "**.ipynb_checkpoints"]
 
 execute:
   execute_notebooks: force
-  exclude_patterns:
-  - 'tarea*'
 
 parse:
   myst_extended_syntax: true
