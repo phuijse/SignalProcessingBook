@@ -17,5 +17,6 @@
   chapters:
     - file: clases/unidad3/01_wiener
     - file: clases/unidad3/02_LMS
+    - file: clases/unidad3/03_RLS
 
 
