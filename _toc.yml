@@ -1,22 +1,24 @@
-- file: README
-  numbered: true
-
-- part: Unidad 1
-  chapters:
+format: jb-book
+root: README
+parts:
+  - caption: Unidad 1
+    numbered: true
+    chapters:
     - file: clases/unidad1/01_introducción
     - file: clases/unidad1/02_espectro
     - file: clases/unidad1/03_muestreo
     - file: clases/unidad1/04_enventanado
-- part: Unidad 2
-  chapters:
+  - caption: Unidad 2
+    numbered: true
+    chapters:
     - file: clases/unidad2/01_espectrograma
     - file: clases/unidad2/02_sistemas
     - file: clases/unidad2/03_filtros_FIR
     - file: clases/unidad2/04_filtros_IIR
-- part: Unidad 3
-  chapters:
+  - caption: Unidad 3
+    numbered: true
+    chapters:
     - file: clases/unidad3/01_wiener
     - file: clases/unidad3/02_LMS
     - file: clases/unidad3/03_RLS
-
 
