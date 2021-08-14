@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>INFO183: Análisis de sistemas lineales &#8212; INFO183 Análisis de sistemas lineales</title>
     
-  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,39 +20,32 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/ui_handle.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -61,15 +55,15 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="1. Introducción al procesamiento digital de señales" href="clases/unidad1/01_introducci%C3%B3n.html" />
-
+    <link rel="next" title="1. Introducción al procesamiento digital de señales" href="lectures/unit1/lecture1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -78,102 +72,34 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <p class="caption">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
  <span class="caption-text">
   Unidad 1
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad1/01_introducci%C3%B3n.html">
+  <a class="reference internal" href="lectures/unit1/lecture1.html">
    1. Introducción al procesamiento digital de señales
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad1/02_espectro.html">
-   2. Espectro y Transformada de Fourier
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad1/03_muestreo.html">
-   3. Efectos del muestreo y fenómeno de aliasing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad1/04_enventanado.html">
-   4. Fuga espectral y técnica de enventanado
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Unidad 2
- </span>
-</p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad2/01_espectrograma.html">
-   1. Espectrograma
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad2/02_sistemas.html">
-   2. Sistemas para el procesamiento de señales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad2/03_filtros_FIR.html">
-   3. Diseño de sistemas y filtros FIR
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad2/04_filtros_IIR.html">
-   4. Diseño de sistemas y filtros IIR
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Unidad 3
- </span>
-</p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad3/01_wiener.html">
-   1. Estimador lineal óptimo
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad3/02_LMS.html">
-   2. Estimadores adaptivos parte I
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clases/unidad3/03_RLS.html">
-   3. Estimadores adaptivos parte II
-  </a>
- </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -188,25 +114,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
-            title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -218,23 +144,43 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
 
+            <!-- Source interaction buttons -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Modo de pantalla completa"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Launch buttons -->
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
 
-    </div>
+            <!-- Launch buttons -->
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contenidos">
+   Contenidos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliografia">
+   Bibliografía
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -244,11 +190,31 @@
                 
   <div class="section" id="info183-analisis-de-sistemas-lineales">
 <h1>INFO183: Análisis de sistemas lineales<a class="headerlink" href="#info183-analisis-de-sistemas-lineales" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Material docente del curso INFO183 de la carrera de Ingeniería Civil Informática de la Universidad Austral de Chile.</p>
-<p>Las clases están en formato <a class="reference external" href="http://jupyter.org">jupyter notebook</a> y los códigos están en lenguaje Python 3.</p>
-<div class="toctree-wrapper compound">
+<p>Un curso de la carrera de Ingeniería Civil en Informática de la Universidad Austral de Chile</p>
+<p>El contenido puede explorarse como libro virtual en <a class="reference external" href="https://phuijse.github.io/UACH-INFO183">https://phuijse.github.io/UACH-INFO183</a></p>
+<div class="section" id="contenidos">
+<h2>Contenidos<a class="headerlink" href="#contenidos" title="Enlazar permanentemente con este título">¶</a></h2>
+<ul class="simple">
+<li><p>Unidad 1: Introducción al procesamiento digital de señales</p></li>
+<li><p>Unidad 2: Sistemas para el procesamiento digital de señales</p></li>
+<li><p>Unidad 3: Sistemas y filtros adaptativos</p></li>
+</ul>
 </div>
-<div class="toctree-wrapper compound">
+<div class="section" id="bibliografia">
+<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Enlazar permanentemente con este título">¶</a></h2>
+<ul class="simple">
+<li><p>Obligatoria:</p>
+<ul>
+<li><p>Smith, S. W. (1997). The scientist and engineer’s guide to digital signal processing. California Technical Pub. San Diego. <a class="reference external" href="http://www.dspguide.com/pdfbook.htm">http://www.dspguide.com/pdfbook.htm</a></p></li>
+</ul>
+</li>
+<li><p>Complementaria:</p>
+<ul>
+<li><p>Downey, A. (2014). Think DSP: digital signal processing in Python. Green Tea Press. <a class="reference external" href="http://greenteapress.com/thinkdsp/thinkdsp.pdf">http://greenteapress.com/thinkdsp/thinkdsp.pdf</a></p></li>
+<li><p>Haykin, S. S. (2014). Adaptive filter theory. Pearson (5ed).</p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -276,22 +242,21 @@
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="clases/unidad1/01_introducci%C3%B3n.html" title="next page"><span class="section-number">1. </span>Introducción al procesamiento digital de señales</a>
+        <div class='prev-next-bottom'>
+            
+    <a class='right-next' id="next-link" href="lectures/unit1/lecture1.html" title="next page"><span class="section-number">1. </span>Introducción al procesamiento digital de señales</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
-          By Pablo Huijse Heise<br/>
+          Por Pablo Huijse Heise<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>
@@ -300,11 +265,9 @@
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
-
-
-    
+  
   </body>
 </html>
