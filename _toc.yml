@@ -4,7 +4,7 @@ parts:
   - caption: Unidad 1
     numbered: true
     chapters:
-    - file: clases/unidad1/01_introducción
+    - file: lectures/unit1/lecture1
 #    - file: clases/unidad1/02_espectro
 #    - file: clases/unidad1/03_muestreo
 #    - file: clases/unidad1/04_enventanado
