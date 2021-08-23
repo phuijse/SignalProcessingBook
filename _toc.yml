@@ -1,12 +1,12 @@
 format: jb-book
 root: README
 parts:
-  - caption: Unidad 1
+  - caption: Unidad I
     numbered: true
     chapters:
     - file: lectures/unit1/lecture1
-#    - file: clases/unidad1/02_espectro
-#    - file: clases/unidad1/03_muestreo
+    - file: lectures/unit1/lecture2
+    - file: lectures/unit1/lecture3
 #    - file: clases/unidad1/04_enventanado
 #  - caption: Unidad 2
 #    numbered: true
