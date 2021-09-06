@@ -1,8 +1,7 @@
+# Para visualizar gráficos en la terminal interactiva
 from IPython import get_ipython
 get_ipython().run_line_magic('matplotlib', 'ipympl')
-import numpy as np
-import scipy.fft
-import matplotlib.pyplot as plt
+
 
 """
 # Actividad en clases: Aliasing
@@ -10,6 +9,10 @@ import matplotlib.pyplot as plt
 Consideremos la siguiente señal periódica con componentes 1Hz, 12Hz y 23Hz, respectivamente
 
 """
+
+import numpy as np
+import scipy.fft
+import matplotlib.pyplot as plt
 
 create_time = lambda Fs: np.arange(0, 5, step=1/Fs)
 create_signal = lambda t: np.cos(2.0*np.pi*t) + 0.5*np.cos(2.0*np.pi*t*12) + 0.25*np.cos(2.0*np.pi*t*23)
