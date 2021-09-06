@@ -7,6 +7,7 @@ parts:
     - file: lectures/unit1/lecture1
     - file: lectures/unit1/lecture2
     - file: lectures/unit1/lecture3
+    - file: lectures/unit1/lecture4
 #    - file: clases/unidad1/04_enventanado
 #  - caption: Unidad 2
 #    numbered: true
