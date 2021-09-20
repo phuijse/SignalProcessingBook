@@ -12,7 +12,7 @@ parts:
   - caption: Unidad 2
     numbered: true
     chapters:
-    - file: clases/unit2/lecture1
+    - file: lectures/unit2/lecture1
 #    - file: clases/unidad2/02_sistemas
 #    - file: clases/unidad2/03_filtros_FIR
 #    - file: clases/unidad2/04_filtros_IIR
