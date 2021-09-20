@@ -5,8 +5,14 @@ get_ipython().run_line_magic('matplotlib', 'ipympl')
 
 """
 # Actividad en clases: Aliasing
+
+Objetivos: 
+
+- Reconstruir señales usando los resultados del teorema del muestreo
+- Estudiar de forma práctica el fenomeno de aliasing
+
  
-Consideremos la siguiente señal periódica con componentes 1Hz, 12Hz y 23Hz, respectivamente
+Para esta actividad consideremos la siguiente señal periódica con componentes 1Hz, 12Hz y 23Hz, respectivamente
 
 """
 
@@ -14,39 +20,31 @@ import numpy as np
 import scipy.fft
 import matplotlib.pyplot as plt
 
-create_time = lambda Fs: np.arange(0, 5, step=1/Fs)
-create_signal = lambda t: np.cos(2.0*np.pi*t) + 0.5*np.cos(2.0*np.pi*t*12) + 0.25*np.cos(2.0*np.pi*t*23)
+Fs = 1000
+tn = np.arange(0, 2, step=1/Fs)
+sn = np.cos(2.0*np.pi*tn) + 0.5*np.cos(2.0*np.pi*tn*12) + 0.25*np.cos(2.0*np.pi*tn*23)
+S = scipy.fft.rfft(sn)
+f = scipy.fft.rfftfreq(n=len(tn), d=1/Fs)
 
-Fs = 100
-t = create_time(Fs)
-s = create_signal(t)
-S = scipy.fft.rfft(s)
-f = scipy.fft.rfftfreq(n=len(t), d=1/Fs)
-
-fig, ax = plt.subplots(2, 1, figsize=(5, 3))
-ax[0].plot(t, s)
+fig, ax = plt.subplots(2, 1, figsize=(5, 3), tight_layout=True)
+ax[0].plot(tn, sn, '.', markersize=1)
 ax[1].plot(f, np.abs(S))
 
-
-"""
-## Parte 1
-
-Remuestree la señal disminuyendo su frecuencia de muestreo a la mitad y observe el espectro resultante. Identifique los "aliases" en el nuevo espectro
 """
 
-
-
-"""
-## Parte 2
-
-Use el resultado del teorema del muestreo para reconstruir la señal original en cada caso y visualice el resultado. ¿En qué casos es posible una reconstrucción perfecta?
-
-$$
-s(t) = \sum_{n=-\infty}^{\infty} s[n] \text{sinc}(\pi F_s (t - n /F_s) )
-$$
+Primero visualice la señal y el espectro de amplitud para Fs=1000, Fs=50, Fs=10. ¿En qué casos se pueden detectar sin ambiguedad las frecuencias de la señal? 
 
 """
 
 
+"""
+El teorema del muestreo dice que una señal digital sn cuya frecuencia máxima sea menor que la mitad de la frecuencia de muestreo Fs puede reconstruirse sin perdidas usando la fórmula de interpolación indicada en https://phuijse.github.io/UACH-INFO183/lectures/unit1/lecture4.html#teorema-del-muestreo
 
+que usando NumPy sería
+
+s = np.sum(sn*np.sinc(Fs*(t-tn)))
+
+Utilice la formula para reconstruir la señal usando una frecuencia de muestreo arbitrariamente alta (Fs = 10000) y discuta sobre lo que observa
+
+"""
 
