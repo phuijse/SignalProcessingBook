@@ -13,6 +13,7 @@ parts:
     numbered: true
     chapters:
     - file: lectures/unit2/lecture1
+    - file: lectures/unit2/lecture2
 #    - file: clases/unidad2/02_sistemas
 #    - file: clases/unidad2/03_filtros_FIR
 #    - file: clases/unidad2/04_filtros_IIR
