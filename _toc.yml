@@ -1,7 +1,7 @@
 format: jb-book
 root: README
 parts:
-  - caption: Unidad I
+  - caption: Unidad I: Análisis de señales
     numbered: true
     chapters:
     - file: lectures/unit1/lecture1
@@ -9,7 +9,7 @@ parts:
     - file: lectures/unit1/lecture3
     - file: lectures/unit1/lecture4
     - file: lectures/unit1/lecture5
-  - caption: Unidad 2
+  - caption: Unidad II: Sistemas para el procesamiento de señales
     numbered: true
     chapters:
     - file: lectures/unit2/lecture1
