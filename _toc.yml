@@ -16,10 +16,10 @@ parts:
     - file: lectures/unit2/lecture2
     - file: lectures/unit2/lecture3
     - file: lectures/unit2/lecture4
-#  - caption: Unidad 3
-#    numbered: true
-#    chapters:
-#    - file: clases/unidad3/01_wiener
+  - caption: Unidad 3
+    numbered: true
+    chapters:
+    - file: lectures/unit3/lecture1
 #    - file: clases/unidad3/02_LMS
 #    - file: clases/unidad3/03_RLS
 
