@@ -1,0 +1,820 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10. Estimador lineal óptimo &#8212; INFO183 Análisis de sistemas lineales</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="prev" title="9. Diseño de sistemas y filtros IIR" href="../unit2/lecture4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">INFO183 Análisis de sistemas lineales</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Unidad I
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit1/lecture1.html">
+   1. Introducción al procesamiento digital de señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit1/lecture2.html">
+   2. Espectro y Transformada de Fourier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit1/lecture3.html">
+   3. Transformada de Fourier para señales digitales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit1/lecture4.html">
+   4. Efectos del muestreo y fenómeno de aliasing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit1/lecture5.html">
+   5. Fuga espectral y técnica de enventanado
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Unidad II
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/lecture1.html">
+   6. Análisis de señales no estacionarias utilizando espectrogramas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/lecture2.html">
+   7. Sistemas para el procesamiento de señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/lecture3.html">
+   8. Diseño de sistemas y filtros FIR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unit2/lecture4.html">
+   9. Diseño de sistemas y filtros IIR
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Unidad 3
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   10. Estimador lineal óptimo
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lectures/unit3/lecture1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/phuijse/UACH-INFO183"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/phuijse/UACH-INFO183/master?urlpath=tree/lectures/unit3/lecture1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proceso-aleatorio-o-proceso-estocastico">
+   10.1. Proceso aleatorio o proceso estocástico
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtro-de-wiener">
+   10.2. Filtro de Wiener
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notacion-y-arquitectura-del-filtro-de-wiener">
+     10.2.1. Notación y arquitectura del filtro de Wiener
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ajuste-del-filtro-de-wiener">
+     10.2.2. Ajuste del filtro de Wiener
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicaciones-del-filtro-de-wiener">
+   10.3. Aplicaciones del filtro de Wiener
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regresion-o-identificacion-de-sistema">
+     10.3.1. Regresión  o identificación de sistema
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediccion-a-futuro">
+     10.3.2. Predicción a futuro
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eliminar-ruido-blanco-aditivo">
+     10.3.3. Eliminar ruido blanco aditivo
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">holoviews</span> <span class="k">as</span> <span class="nn">hv</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s1">&#39;bokeh&#39;</span><span class="p">)</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">opts</span><span class="o">.</span><span class="n">defaults</span><span class="p">(</span><span class="n">hv</span><span class="o">.</span><span class="n">opts</span><span class="o">.</span><span class="n">Curve</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span> 
+                 <span class="n">hv</span><span class="o">.</span><span class="n">opts</span><span class="o">.</span><span class="n">Points</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span> 
+                 <span class="n">hv</span><span class="o">.</span><span class="n">opts</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Viridis&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span> <span class="nn">scipy.fft</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="estimador-lineal-optimo">
+<h1><span class="section-number">10. </span>Estimador lineal óptimo<a class="headerlink" href="#estimador-lineal-optimo" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Un <strong>estimador</strong> es un sistema diseñado para <strong>extraer información</strong> a partir de una <strong>señal</strong></p>
+<ul class="simple">
+<li><p>La señal contiene <strong>información y ruido</strong></p></li>
+<li><p>La señal es representada como una secuencia de <strong>datos</strong></p></li>
+</ul>
+<p>Tipos de estimador</p>
+<ul class="simple">
+<li><p><strong>Filtro:</strong> Estimo el valor actual de mi señal acentuando o eliminando una o más características</p></li>
+<li><p><strong>Predictor:</strong> Estimo el valor futuro de mi señal</p></li>
+</ul>
+<p>En esta lección estudiaremos estimadores lineales y óptimos</p>
+<ul class="simple">
+<li><p>Lineal: La cantidad estimada es una función lineal de la entrada</p></li>
+<li><p>Óptimo: El estimador es la mejor solución posible de acuerdo a un criterio</p></li>
+</ul>
+<p>Para entender los fundamentos de los estimadores óptimos es necesario introducir el concepto de proceso aleatorio. Luego estudiaremos uno de los estimadores óptimos más importantes: El filtro de Wiener</p>
+<div class="section" id="proceso-aleatorio-o-proceso-estocastico">
+<h2><span class="section-number">10.1. </span>Proceso aleatorio o proceso estocástico<a class="headerlink" href="#proceso-aleatorio-o-proceso-estocastico" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un proceso estocástico es una <strong>colección de variables aleatorias</strong> indexadas tal que forman una secuencia. Se denotan matemáticamente como un conjunto <span class="math notranslate nohighlight">\(\{U_k\}\)</span>, con <span class="math notranslate nohighlight">\(k=0, 1, 2, \ldots, N\)</span>. El índice <span class="math notranslate nohighlight">\(k\)</span> puede representar tiempo, espacio u otra variable independiente.</p>
+<p>La siguiente figura muestra tres realizaciones u observaciones de un proceso estocástico con cuatro elementos</p>
+<a class="reference internal image-reference" href="../../_images/stochastic_process.png"><img alt="../../_images/stochastic_process.png" src="../../_images/stochastic_process.png" style="width: 600px;" /></a>
+<p>Existen muchos fenómenos cuya evolución se modela utilizando procesos aleatorios. Por ejemplo</p>
+<ul class="simple">
+<li><p>Los índices bursatiles</p></li>
+<li><p>El comportamineto de un gas dentro de un contenedor</p></li>
+<li><p>Las vibraciones de un motor eléctrico</p></li>
+<li><p>El área de una célula durante un proceso de organogénesis</p></li>
+</ul>
+<p>A continuación revisaremos algunas de las propiedades de los procesos aleatorios</p>
+<p><strong>Momentos de un proceso estocástico</strong></p>
+<p>Un proceso aleatorio <span class="math notranslate nohighlight">\(U_n = (u_n, u_{n-1}, u_{n-2}, \ldots, u_{n-L})\)</span> se describe a través de sus momentos estadísticos. Si consideramos una caracterízación de segundo orden necesitamos definir</p>
+<ul class="simple">
+<li><p>Momento central o media: Describe el valor central del proceso</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mu(n) = \mathbb{E}[U_n]
+\]</div>
+<ul class="simple">
+<li><p>Segundo momento o correlación: Describe la dispersión de un proceso</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+r_{uu}(n, n-k) = \mathbb{E}[U_n U_{n-k}]
+\]</div>
+<ul class="simple">
+<li><p>Segundo momento centrado o covarianza</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+c_{uu}(n, n-k) &amp;= \mathbb{E}[(U_n-\mu_n) (U_{n-k}- \mu_{n-k})] \nonumber \\
+&amp;= r(n,n-k) - \mu_n \mu_{n-k} \nonumber
+\end{align}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Correlación cruzada entre dos procesos</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+r_{ud}(n, n-k) = \mathbb{E}[U_n D_{n-k}]
+\]</div>
+<p><strong>Proceso estacionario y ergódico</strong></p>
+<p>En esta lección nos vamos a centrar en el caso simplificado donde el <strong>proceso es estacionario</strong>, matemáticamente esta propiedad significa que</p>
+<div class="math notranslate nohighlight">
+\[
+\mu(n)  = \mu, \forall n
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[
+r_{uu}(n, n-k)  = r_{uu}(k), \forall n
+\]</div>
+<p>es decir que los momentos estadísticos se mantienen constantes en el tiempo (no depende de <span class="math notranslate nohighlight">\(n\)</span>).</p>
+<p>Otra simplificación que utilizaremos es que el proceso sea <strong>ergódico</strong>,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[U_n] = \frac{1}{N} \sum_{n=1}^N u_n
+\]</div>
+<p>es decir que podemos reemplazar el valor esperado por la media muestral en el tiempo</p>
+<p><strong>Densidad espectral de potencia</strong></p>
+<p>La densidad espectral de potencia o <em>power spectral density</em> (PSD) mide la distribución en frecuencia de la potencia del proceso estocástico. Su definición matemática es</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+S_{uu}(f) &amp;= \sum_{k=-\infty}^{\infty} r_{uu}(k) e^{-j 2\pi f k} \nonumber \\
+&amp;= \lim_{N\to\infty} \frac{1}{2N+1} \mathbb{E} \left [\left|\sum_{n=-N}^{N} u_n e^{-j 2\pi f n} \right|^2 \right]
+\end{align}
+\end{split}\]</div>
+<p>que corresponde a la transformada de Fourier de la correlación (caso estacionario)</p>
+<p>La PSD y la correlación forman un par de Fourier, es decir que uno es la transformada de Fourier del otro.</p>
+</div>
+<div class="section" id="filtro-de-wiener">
+<h2><span class="section-number">10.2. </span>Filtro de Wiener<a class="headerlink" href="#filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El filtro de Wiener fue publicado por Norbert Wiener en 1949 y es tal vez el ejemplo más famoso de un estimador lineal óptimo.</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Para diseñar un estimador óptimo necesitamos un <strong>criterio</strong> y <strong>condiciones</strong> (supuestos). Luego el estimador será <strong>óptimo según dicho criterio y bajo los supuestos considerados</strong>. Por ejemplo podríamos suponer un escenario donde el ruido es blanco o donde el proceso es estacionario.</p>
+</div>
+<p>A continuación describiremos en detalle este filtro y explicaremos como se optimiza. Luego se veran ejemplos de aplicaciones.</p>
+<div class="section" id="notacion-y-arquitectura-del-filtro-de-wiener">
+<h3><span class="section-number">10.2.1. </span>Notación y arquitectura del filtro de Wiener<a class="headerlink" href="#notacion-y-arquitectura-del-filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El filtro de Wiener es un sistema de tiempo discreto con estructura FIR y <span class="math notranslate nohighlight">\(L+1\)</span> coeficientes. A continuación se muestra un esquema del filtro de Wiener</p>
+<a class="reference internal image-reference" href="../../_images/wiener.png"><img alt="../../_images/wiener.png" src="../../_images/wiener.png" style="width: 600px;" /></a>
+<p>Del esquema podemos reconocer los elementos más importantes de este filtro</p>
+<ul class="simple">
+<li><p>Los coeficientes del filtro: <span class="math notranslate nohighlight">\(h_0, h_1, h_2, \ldots, h_{L}\)</span></p></li>
+<li><p>La señal de entrada al filtro: <span class="math notranslate nohighlight">\(u_0, u_1, u_2, \ldots\)</span></p></li>
+<li><p>La señal de salida del filtro: <span class="math notranslate nohighlight">\(y_0, y_1, y_2, \ldots\)</span></p></li>
+<li><p>La señal de respuesta “deseada” u objetivo: <span class="math notranslate nohighlight">\(d_0, d_1, d_2, \ldots\)</span></p></li>
+<li><p>La señal de error: <span class="math notranslate nohighlight">\(e_0, e_1, e_2, \ldots\)</span></p></li>
+</ul>
+<p>Al ser un filtro FIR la salida del filtro está definida como</p>
+<div class="math notranslate nohighlight">
+\[
+y_n = \sum_{k=0}^{L} h_k u_{n-k},
+\]</div>
+<p>es decir la convolución entre la entrada y los coeficientes. Luego la señal de error es</p>
+<div class="math notranslate nohighlight">
+\[
+e_n = d_n - y_n = d_n - \sum_{k=0}^{L} h_k u_{n-k} 
+\]</div>
+<p>que corresponde a la diferencia entre la señal objetivo y la señal de salida.</p>
+<p>A continuación veremos que se ajustan los coeficientes del filtro en base al criterio de optimalidad.</p>
+</div>
+<div class="section" id="ajuste-del-filtro-de-wiener">
+<h3><span class="section-number">10.2.2. </span>Ajuste del filtro de Wiener<a class="headerlink" href="#ajuste-del-filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El criterio más común para aprender o adaptar el filtro de Wiener es el <strong>error medio cuadrático</strong> o <em>mean square error</em> (MSE) entre la respuesta deseada y la salida del filtro.</p>
+<p>Asumiendo que <span class="math notranslate nohighlight">\(u\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son secuencias de valores reales podemos escribir el MSE como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{MSE} &amp;= \mathbb{E}\left [e_n^2 \right] \nonumber \\
+&amp;= \mathbb{E}\left [(d_n - y_n)^2 \right] \nonumber \\
+&amp;= \mathbb{E}\left [d_n^2 \right]  - 2\mathbb{E}\left [ d_n y_n \right] + \mathbb{E}\left [ y_n^2 \right] \nonumber 
+\end{align}
+\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\sigma_d^2 = \mathbb{E}\left [d_n^2 \right]\)</span> es la varianza de la señal deseada y <span class="math notranslate nohighlight">\(\sigma_y^2 = \mathbb{E}\left [ y_n^2 \right]\)</span> es la varianza de nuestro estimador</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Minimizar el MSE implica acercar la salida del filtro a la respuesta deseada</p>
+</div>
+<p>En este caso, igualando la derivada del MSE a cero, tenemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{d}{d h_j} \text{MSE} &amp;= -2\mathbb{E}\left[ d_n \frac{d y_n}{d h_j}  \right]  + 2 \mathbb{E}\left[ y_n \frac{d y_n}{d h_j}    \right]  \nonumber \\
+&amp;= -2\mathbb{E}\left[ d_n u_{n-j} \right]  + 2 \mathbb{E}\left[ y_n u_{n-j}    \right]  \nonumber \\
+&amp;= -2\mathbb{E}\left[ d_n u_{n-j} \right]  + 2 \mathbb{E}\left[ \sum_{k=0}^{L} h_k u_{n-k}  u_{n-j} \right] \nonumber \\
+&amp;= -2\mathbb{E}\left[ d_n u_{n-j} \right]  + 2 \sum_{k=0}^{L} h_k \mathbb{E}\left[ u_{n-k}  u_{n-j} \right] = 0 \nonumber \end{align}
+\end{split}\]</div>
+<p>Si despejamos y repetimos para <span class="math notranslate nohighlight">\(j=0, \ldots, L\)</span> obtenemos el siguiente sistema de ecuaciones</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\begin{pmatrix}
+r_{uu}(0) &amp; r_{uu}(1) &amp; r_{uu}(2) &amp; \ldots &amp; r_{uu}(L) \\
+r_{uu}(1) &amp; r_{uu}(0) &amp; r_{uu}(1) &amp; \ldots &amp; r_{uu}(L-1) \\
+r_{uu}(2) &amp; r_{uu}(1) &amp; r_{uu}(0) &amp; \ldots &amp; r_{uu}(L-2) \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp;\vdots \\
+r_{uu}(L) &amp; r_{uu}(L-1) &amp; r_{uu}(L-2) &amp; \ldots &amp; r_{uu}(0) \\
+\end{pmatrix}
+\begin{pmatrix}
+h_0  \\
+h_1  \\
+h_2  \\
+\vdots  \\
+h_L \\
+\end{pmatrix} &amp;= 
+\begin{pmatrix}
+r_{ud}(0)  \\
+r_{ud}(1)  \\
+r_{ud}(2) \\
+\vdots  \\
+r_{ud}(L) \\
+\end{pmatrix} \nonumber \\
+R_{uu} \textbf{h} &amp;= R_{ud},
+\end{align}
+\end{split}\]</div>
+<p>que se conoce como las <strong>ecuaciones de Wiener-Hopf</strong>. Además <span class="math notranslate nohighlight">\(R_{uu}\)</span> se conoce como matriz de auto-correlación.</p>
+<p>Asumiendo que <span class="math notranslate nohighlight">\(R_{uu}\)</span> es no-singular, es decir que su inversa existe, la <strong>solución óptima en el sentido de mínimo MSE</strong> es</p>
+<div class="math notranslate nohighlight">
+\[
+\textbf{h}^{*} = R_{uu} ^{-1} R_{ud}
+\]</div>
+<p>Notar que por construcción la matriz <span class="math notranslate nohighlight">\(R_{uu}\)</span> es simétrica y hermítica. Por lo que el sistema puede resolverse de forma eficiente con  <span class="math notranslate nohighlight">\(\mathcal{O}(L^2)\)</span> operaciones usando la <a class="reference external" href="https://en.wikipedia.org/wiki/Levinson_recursion">recursión de Levison-Durbin</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Para llegar a la solución impusimos dos condiciones sobre la salida deseada y la entrada: (1) tienen media cero y (2) son estacionarias en el sentido amplio (es decir la correlación solo depende del retardo <span class="math notranslate nohighlight">\(m\)</span>).</p>
+</div>
+<ul class="simple">
+<li><p>Si la primera condición no se cumpliera, podría restarse la media previo al entrenamiento del filtro</p></li>
+<li><p>Si la segunda condición no se cumple conviene usar otro método como los que veremos en las lecciones siguientes</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="aplicaciones-del-filtro-de-wiener">
+<h2><span class="section-number">10.3. </span>Aplicaciones del filtro de Wiener<a class="headerlink" href="#aplicaciones-del-filtro-de-wiener" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="regresion-o-identificacion-de-sistema">
+<h3><span class="section-number">10.3.1. </span>Regresión  o identificación de sistema<a class="headerlink" href="#regresion-o-identificacion-de-sistema" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En regresión buscamos encontrar los coeficientes <span class="math notranslate nohighlight">\(h\)</span> a partir de tuplas <span class="math notranslate nohighlight">\((X, Y)\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[
+Y = h^T X + \epsilon,
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{N\times D}\)</span> son las variables dependientes (entrada), <span class="math notranslate nohighlight">\(Y \in \mathbb{R}^N\)</span> es la  variable dependiente (salida) y <span class="math notranslate nohighlight">\(\epsilon\)</span> es ruido</p>
+<p>Para entrenar el filtro</p>
+<ol class="simple">
+<li><p>Asumimos que hemos observado N muestras de <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+<li><p>A partir de <span class="math notranslate nohighlight">\(u=X\)</span> construimos <span class="math notranslate nohighlight">\(R_{uu}\)</span></p></li>
+<li><p>A partir de <span class="math notranslate nohighlight">\(d=Y\)</span> construimos <span class="math notranslate nohighlight">\(R_{ud}\)</span></p></li>
+<li><p>Finalmente recuperamos <span class="math notranslate nohighlight">\(\textbf{h}\)</span> usando <span class="math notranslate nohighlight">\(R_{uu} ^{-1} R_{ud}\)</span></p></li>
+<li><p>Con esto podemos interpolar <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+</ol>
+<p><strong>Ejemplo</strong> Sea por ejemplo una regresión de tipo polinomial donde queremos encontrar <span class="math notranslate nohighlight">\(h_k\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+d_i &amp;= f_i + \epsilon \nonumber \\
+&amp;= \sum_{k=1}^L h_k u_i^k + \epsilon \nonumber
+\end{align}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">u</span><span class="o">**</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">u</span> <span class="c1"># Los coeficientes reales son [0, 5, 0, -2, 0, 1/4, 0, 0, 0, ...]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hv</span><span class="o">.</span><span class="n">Points</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">kdims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Implementemos el filtro como una clase con dos métodos públicos <code class="docutils literal notranslate"><span class="pre">fit</span></code> (ajustar) y <code class="docutils literal notranslate"><span class="pre">predict</span></code> (predecir). El filtro tiene un argumento, el número de coeficientes <span class="math notranslate nohighlight">\(L\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wiener_polynomial_regression</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,))</span>
+        
+    <span class="k">def</span> <span class="nf">_polynomial_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">):</span>
+            <span class="n">U</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="o">**</span><span class="n">i</span>
+        <span class="k">return</span> <span class="n">U</span>
+        
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_polynomial_basis</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="n">Ruu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
+        <span class="n">Rud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">d</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Ruu</span><span class="p">,</span> <span class="n">Rud</span><span class="p">,</span> <span class="n">assume_a</span><span class="o">=</span><span class="s1">&#39;pos&#39;</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_polynomial_basis</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La función <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve(A,</span> <span class="pre">B)</span></code> retorna la solución del sistema de ecuaciones lineal <code class="docutils literal notranslate"><span class="pre">Ax</span> <span class="pre">=</span> <span class="pre">B</span></code>. El argumento <code class="docutils literal notranslate"><span class="pre">assume_a</span></code> puede usarse para indicar que <code class="docutils literal notranslate"><span class="pre">A</span></code> es simétrica, hermítica o definido positiva.</p>
+</div>
+<p>Los solución de un sistema con <code class="docutils literal notranslate"><span class="pre">10</span></code> coeficientes es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regressor</span> <span class="o">=</span> <span class="n">Wiener_polynomial_regression</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">regressor</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>¿Cómo cambia el resultado con L?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">]:</span>
+    <span class="n">regressor</span> <span class="o">=</span> <span class="n">Wiener_polynomial_regression</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="n">yhat</span><span class="p">[</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uhat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">hv</span><span class="o">.</span><span class="n">Points</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">kdims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">L</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">yhat</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hv</span><span class="o">.</span><span class="n">Curve</span><span class="p">((</span><span class="n">uhat</span><span class="p">,</span> <span class="n">prediction</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;L=</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">Overlay</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">legend_position</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si <span class="math notranslate nohighlight">\(L\)</span> es muy pequeño el filtro es demasiado simple. Si <span class="math notranslate nohighlight">\(L\)</span> es muy grande el filtro se puede sobreajustar al ruido</p>
+</div>
+</div>
+<div class="section" id="prediccion-a-futuro">
+<h3><span class="section-number">10.3.2. </span>Predicción a futuro<a class="headerlink" href="#prediccion-a-futuro" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En este caso asumimos que la señal deseada es la entrada en el futuro</p>
+<div class="math notranslate nohighlight">
+\[
+d_n = \{u_{n+1}, u_{n+2}, \ldots, u_{n+m}\}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(m\)</span> es el horizonte de predicción. Se llama <em>predicción a un paso</em> al caso particular <span class="math notranslate nohighlight">\(m=1\)</span>.</p>
+<p>El largo del filtro <span class="math notranslate nohighlight">\(L\)</span> define la cantidad de muestras pasadas que usamos para predecir. Por ejemplo un sistema de predicción a un paso con <span class="math notranslate nohighlight">\(L+1 = 3\)</span> coeficientes:</p>
+<div class="math notranslate nohighlight">
+\[
+h_0 u_n +  h_1 u_{n-1} + h_2 u_{n-2}= y_n = \hat u_{n+1} \approx u_{n+1}
+\]</div>
+<p>Para entrenar el filtro</p>
+<ol class="simple">
+<li><p>Asumimos que la señal ha sido observada y que se cuenta con <span class="math notranslate nohighlight">\(N\)</span> muestras para entrenar</p></li>
+<li><p>Podemos formar una matriz cuyas filas son <span class="math notranslate nohighlight">\([u_n, u_{n-1}, \ldots, u_{n-L}]\)</span> para <span class="math notranslate nohighlight">\(n=L,L+1,\ldots, N-1\)</span></p></li>
+<li><p>Podemos formar un vector <span class="math notranslate nohighlight">\([u_N, u_{N-1}, \ldots, u_{L+1}]^T\)</span> (caso <span class="math notranslate nohighlight">\(m=1\)</span>)</p></li>
+<li><p>Con esto podemos formar las matrices de correlación y obtener <span class="math notranslate nohighlight">\(\textbf{h}\)</span></p></li>
+<li><p>Finalmente usamos <span class="math notranslate nohighlight">\(\textbf{h}\)</span> para predecir el futuro no observado de <span class="math notranslate nohighlight">\(u\)</span></p></li>
+</ol>
+<p>Nuevamente implementamos el filtro como una clase. Esta vez se utiliza la función de numpy <code class="docutils literal notranslate"><span class="pre">as_strided</span></code> para formar los vectores de “instantes pasados”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.lib.stride_tricks</span> <span class="kn">import</span> <span class="n">as_strided</span>
+
+<span class="k">class</span> <span class="nc">Wiener_predictor</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,))</span>
+      
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                       <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">strides</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u</span><span class="o">.</span><span class="n">strides</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="n">Ruu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">])</span>
+        <span class="n">Rud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Ruu</span><span class="p">,</span> <span class="n">Rud</span><span class="p">,</span> <span class="n">assume_a</span><span class="o">=</span><span class="s1">&#39;pos&#39;</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">u_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">u_pred</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="n">L</span><span class="p">):</span>
+            <span class="n">u_pred</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">*</span><span class="n">u_pred</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">:</span><span class="n">k</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">u_pred</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para la siguiente señal sinusoidal ¿Cómo afecta <span class="math notranslate nohighlight">\(L\)</span> a la calidad del predictor lineal?</p>
+<p>Utilizaremos los primeros 100 instantes para ajustar y los siguientes 100 para probar el predictor</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">0.5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">N_fit</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">yhat</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]:</span>
+    <span class="n">predictor</span> <span class="o">=</span> <span class="n">Wiener_predictor</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">predictor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">u</span><span class="p">[:</span><span class="n">N_fit</span><span class="p">])</span>
+    <span class="n">yhat</span><span class="p">[</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">N_fit</span><span class="o">-</span><span class="n">L</span><span class="p">:</span><span class="n">N_fit</span><span class="p">],</span> <span class="n">m</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">hv</span><span class="o">.</span><span class="n">Points</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;instante&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">L</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">yhat</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hv</span><span class="o">.</span><span class="n">Curve</span><span class="p">((</span><span class="n">t</span><span class="p">[</span><span class="n">N_fit</span><span class="p">:],</span> <span class="n">prediction</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;L=</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">Overlay</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">legend_position</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si <span class="math notranslate nohighlight">\(L\)</span> es muy pequeño el filtro es demasiado simple. Si <span class="math notranslate nohighlight">\(L\)</span> es muy grande el filtro se puede sobreajustar al ruido</p>
+</div>
+</div>
+<div class="section" id="eliminar-ruido-blanco-aditivo">
+<h3><span class="section-number">10.3.3. </span>Eliminar ruido blanco aditivo<a class="headerlink" href="#eliminar-ruido-blanco-aditivo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En este caso asumimos que la señal de entrada corresponde a una señal deseada (información) que ha sido contaminada con ruido aditivo</p>
+<div class="math notranslate nohighlight">
+\[
+u_n = d_n + \nu_n,
+\]</div>
+<p>adicionalmente asumimos que</p>
+<ul class="simple">
+<li><p>el ruido es estacionario en el sentido amplio y de media cero <span class="math notranslate nohighlight">\(\mathbb{E}[\nu_n] = 0\)</span></p></li>
+<li><p>el ruido es blanco, es decir no tiene correlación consigo mismo o con la señal deseada</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+r_{\nu d}(k) = 0, \forall k
+\]</div>
+<ul class="simple">
+<li><p>el ruido tiene una cierta varianza <span class="math notranslate nohighlight">\(\mathbb{E}[\nu_n^2] = \sigma_\nu^2, \forall n\)</span></p></li>
+</ul>
+<p>Notemos que en este caso <span class="math notranslate nohighlight">\(R_{uu} = R_{dd} + R_{\nu\nu}\)</span> y <span class="math notranslate nohighlight">\(R_{ud} = R_{dd}\)</span>, luego</p>
+<p>la señal recuperada es <span class="math notranslate nohighlight">\(\hat d_n = h^{*} u_n\)</span> y el filtro es</p>
+<div class="math notranslate nohighlight">
+\[
+\vec h^{*} = \frac{R_{dd}}{R_{dd} + R_{\nu\nu}}
+\]</div>
+<p>y su respuesta en frecuencia</p>
+<div class="math notranslate nohighlight">
+\[
+H(f) = \frac{S_{dd}(f)}{S_{dd}(f) + S_{\nu\nu}(f)}
+\]</div>
+<p>es decir que</p>
+<ul class="simple">
+<li><p>en frecuencias donde la <span class="math notranslate nohighlight">\(S_{dd}(f) &gt; S_{\nu\nu}(f)\)</span>, entonces <span class="math notranslate nohighlight">\(H(f) = 1\)</span></p></li>
+<li><p>en frecuencias donde la <span class="math notranslate nohighlight">\(S_{dd}(f) &lt; S_{\nu\nu}(f)\)</span>, entonces <span class="math notranslate nohighlight">\(H(f) = 0\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lectures/unit3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../unit2/lecture4.html" title="previous page"><span class="section-number">9. </span>Diseño de sistemas y filtros IIR</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Pablo Huijse Heise<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
