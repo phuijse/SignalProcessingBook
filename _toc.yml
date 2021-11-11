@@ -20,6 +20,6 @@ parts:
     numbered: true
     chapters:
     - file: lectures/unit3/lecture1
-#    - file: clases/unidad3/02_LMS
-#    - file: clases/unidad3/03_RLS
+    - file: lectures/unit3/lecture2
+#    - file: lectures/unit3/lecture3
 
