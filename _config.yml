@@ -16,12 +16,13 @@ repository:
 html:
   home_page_in_navbar: false
   use_repository_button: true
-  use_issues_button: false
+  use_issues_button: true
   use_edit_page_button: false
   only_build_toc_files: true
 
 sphinx:
-  extra_extensions: [bokeh.sphinxext.bokeh_plot]
+  extra_extensions:
+    - sphinx_proof
   config:
     html_show_copyright: false
     language: es
