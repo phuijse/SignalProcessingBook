@@ -21,5 +21,5 @@ parts:
     chapters:
     - file: lectures/unit3/lecture1
     - file: lectures/unit3/lecture2
-#    - file: lectures/unit3/lecture3
+    - file: lectures/unit3/lecture3
 
