@@ -1,3 +1,5 @@
+.vscode
+
 # sphinx
 _build
 _notebooks_cache
